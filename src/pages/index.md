@@ -1,0 +1,96 @@
+---
+title: Startseite
+sections:
+  - type: header_section
+    slug: header
+    header_type: alpha
+    title: >-
+      Wir bauen Ihre passgenaue **Wunschgarage** aus Beton
+    image:
+      src: images/dummies/816-1800x900.jpg
+      alt: Wunschgarage
+      fit: cover
+      position: 50% 50%
+  - type: cards_section
+    slug: themen
+    cards_type: alpha
+    columns:
+      - type: content
+        content: >-
+          Wir sind ein Familienunternehmen aus Freiburg und Spezialisten für Betongaragen nach Maß. Bei uns bekommen Sie ganzheitliche Lösungen: individuell, passgenau, besonders.
+          Wir begleiten Sie von der Planung bis zu dem Moment, wo Sie Ihre fertige Garage das erst Mal sehen und wahrnehmen, wie wunderbar sie Ihr Grundstück und die bestehende Architektur ergänzt.
+          Für uns ist eine Garage nicht nur ein Ort, an dem sie Ihr Auto und andere Dinge unterbringen. Für uns ist eine Garage Ausdruck von Individualität. Der Raum, der Ihr Wohnumfeld stimmig ergänzt. Der Raum, der passgenau von uns für Sie entwickelt wird.
+      - type: content
+        title: Garagen nach Maß
+        image:
+          src: images/dummies/527-1800x900.jpg
+          alt: Wunschgarage
+          fit: cover
+          position: 50% 50%
+        content: >-
+          Grundstücke sind unterschiedlich. Die baulichen Anforderungen an die Garage somit meist auch. Wir können Ihnen die passgenaue Garage für alle Gegebenheiten planen und bauen: für Hanglagen, für Nischen und Ecken, zum Überfahren, für schräge Grundstücksgrenzen, in Überhöhe – es bleiben keine Wünsche offen.
+        cta:
+          url: https://www.google.de
+          label: Mehr entdecken
+          target: _self # kept in here until the component is implemented and it can be omitted since _self should be the default
+      - type: content
+        title: Fertiggaragen
+        image:
+          src: images/dummies/458-1200x800.jpg
+          alt: Wunschgarage
+          fit: cover
+          position: 50% 50%
+        content: >-
+          Manchmal reichen einfache Lösungen. Auch Fertiggaragen vom Fachmann können gute, kostengünstige Lösungen sein. Wir liefern Ihnen diese Varianten fix fertig auf Ihr Grundstück. Dabei haben Sie die Wahl zwischen Einzel,- Doppel oder Reihengaragen in verschiedenen Standard-Maßen.
+        cta:
+          url: https://www.google.de
+          label: Mehr entdecken
+          target: _self # kept in here until the component is implemented and it can be omitted since _self should be the default
+  - type: cards_section
+    slug: themen-2
+    cards_type: beta
+    background_image:
+      src: images/dummies/816-1800x900.jpg
+      position: 50% 50%
+    columns:
+      - type: social_media_post
+        post: src/data/social-media-posts/instagram/19-07-19-garage.yaml
+      - type: content
+        title: Wie wir planen
+        content: >-
+          Beim Bau einer individuellen Garage ergeben sind vielfältige Fragestellungen. Wir beantworten solche Fragen jeden Tag und unterstützen Sie, damit alle baurechtlichen Grundlagen berücksichtigt werden, das Projekt optimal geplant wird und Ihre Wünsche bestmöglich umgesetzt werden.
+        cta:
+          url: https://www.google.de
+          label: Mehr entdecken
+          target: _self # kept in here until the component is implemented and it can be omitted since _self should be the default
+      - type: content
+        title: Wie wir bauen
+        content: >-
+          Als Fachbetrieb ist für uns der fachgerechte Bau Ihrer Garage ein wichtiges Anliegen. Dieses sichern wir mit unserer Erfahrung und der Auswahl von hochwertigen Materialien ab - angefangen vom Beton über Putze und Farben bis hin zur Ausstattung und Dach-Beschichtung. Und auch die statische Berechnung ist bei uns mit inbegriffen.
+        cta:
+          url: https://www.google.de
+          label: Mehr entdecken
+          target: _self # kept in here until the component is implemented and it can be omitted since _self should be the default
+      - type: social_media_post
+        post: src/data/social-media-posts/facebook/07-12-2020-garage.yaml
+      - type: content
+        title: Für was wir als Unternehmen stehen
+        content: >-
+          Wir lieben Herausausforderungen und die Suche nach der optimalen Lösung. Bei uns bekommen Sie von der Planung bis zur Umsetzung alles aus einer Hand. Gemeinsam schaffen wir Werte – extern sichtbare mit unseren Projekten und intern gelebt durch unsere familiäre Firmenkultur. Wir sind stolz auf unser Team aus fachlich versierten Mitarbeitern, die unsere Ziele teilen und die passende berufliche Basis und Erfahrung mitbringen.
+        cta:
+          url: https://www.google.de
+          label: Mehr entdecken
+          target: _self # kept in here until the component is implemented and it can be omitted since _self should be the default
+      - type: content
+        title: Versetzen von Garagen
+        content: >-
+          Neues braucht Raum. Und manchmal muss man diesen erst schaffen. Wir vesetzten Ihre alte Garage am Stück. Dafür nutzen wir unseren speziellen LKW, der bis zu 16 Tonnen anheben, aufladen und wegbringen kann. So können Sie das gute Stück entweder auf ein neues Fundament setzen, an einen anderen Platz auf Ihrem Grundstück bringen oder direkt entsorgen lassen.
+        cta:
+          url: https://www.google.de
+          label: Mehr entdecken
+          target: _self # kept in here until the component is implemented and it can be omitted since _self should be the default
+      - type: social_media_post
+        post: src/data/social-media-posts/instagram/19-08-02-garage.yaml
+      - type: social_media_post
+        post: src/data/social-media-posts/youtube/14-11-11-garagen.yaml
+---
