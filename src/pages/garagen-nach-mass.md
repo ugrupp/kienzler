@@ -39,4 +39,9 @@ sections:
       - src/data/faqs/spezialmass.yaml
       - src/data/faqs/garagentor.yaml
       - src/data/faqs/tiere.yaml
+  - type: colors_section
+    title: Farbgestaltung
+    text: >-
+      Die doppelwandigen LPU-Sektionaltore und Neben- türen erhalten Sie serienmäßig in Verkehrsweiß RAL 9016 sowie zusätzlich in 13 preiswerten Super-Color- Farben und rund 200 Farben nach RAL* sowie in vielen NCS und DB Farben.
+    color_groups: src/data/garage-colors.yaml
 ---
