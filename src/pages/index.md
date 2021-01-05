@@ -2,7 +2,6 @@
 title: Startseite
 sections:
   - type: header_section
-    slug: header
     header_type: alpha
     title: >-
       Wir bauen Ihre passgenaue **Wunschgarage** aus Beton
