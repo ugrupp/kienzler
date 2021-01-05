@@ -1,7 +1,7 @@
 ---
 title: Unternehmen
 sections:
-  - type: header_section
+  - type: header
     slug: header
     header_type: gamma
     title: Unternehmen

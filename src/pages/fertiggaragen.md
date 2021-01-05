@@ -1,7 +1,7 @@
 ---
 title: Fertiggaragen
 sections:
-  - type: header_section
+  - type: header
     header_type: beta
     title: Fertiggaragen
     text: >-
@@ -11,7 +11,7 @@ sections:
       alt: Fertiggaragen
       fit: cover
       position: 50% 50%
-  - type: advantages_section
+  - type: advantages
     slug: vorteile
     title: Vorteile
     text: >-
@@ -22,20 +22,33 @@ sections:
       - Eine Umsetzung zum Festpreis, die Ihnen finanzielle Sicherheit gibt
       - Eine schnelle, fachgerechte Ausführung
       - Ein Team von zuverlässigen Facharbeitern mit langjähriger Berufserfahrung
-  - type: faq_section
-    slug: wissenswertes
-    title: Wissenswertes
-    faqs:
-      - src/data/faqs/bauantrag.yaml
-      - src/data/faqs/unterkellern.yaml
-      - src/data/faqs/carport.yaml
-      - src/data/faqs/terasse.yaml
-      - src/data/faqs/versetzen.yaml
-      - src/data/faqs/bauen.yaml
-      - src/data/faqs/kosten.yaml
-  - type: colors_section
+  - type: details
+    slug: details
+    title: Details
+    text: >-
+      Der Fokus auf das Detail macht das große Ganze erst rund. In unserer Planung legen wir Wert auf jede kleine Besonderheit, jede Facette, die zu einem perfekten Ergebnis beiträgt. Wir haben alles im Blick, was notwendig ist, um Ihre Wunschgarage zu bauen.
+    details:
+      - src/data/garages/details/vordach.yaml
+      - src/data/garages/details/unterkellerung.yaml
+      - src/data/garages/details/carport-stuetzen.yaml
+      - src/data/garages/details/lueftungsoeffnungen.yaml
+      - src/data/garages/details/dachbegruenung.yaml
+      - src/data/garages/details/satteldach.yaml
+      - src/data/garages/details/dachbekiesung.yaml
+  - type: colors
     title: Farbgestaltung
     text: >-
       Die doppelwandigen LPU-Sektionaltore und Neben- türen erhalten Sie serienmäßig in Verkehrsweiß RAL 9016 sowie zusätzlich in 13 preiswerten Super-Color- Farben und rund 200 Farben nach RAL* sowie in vielen NCS und DB Farben.
-    color_groups: src/data/garage-colors.yaml
+    color_groups: src/data/garages/colors.yaml
+  - type: faq
+    slug: wissenswertes
+    title: Wissenswertes
+    faqs:
+      - src/data/garages/faqs/bauantrag.yaml
+      - src/data/garages/faqs/unterkellern.yaml
+      - src/data/garages/faqs/carport.yaml
+      - src/data/garages/faqs/terasse.yaml
+      - src/data/garages/faqs/versetzen.yaml
+      - src/data/garages/faqs/bauen.yaml
+      - src/data/garages/faqs/kosten.yaml
 ---

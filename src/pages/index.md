@@ -1,7 +1,7 @@
 ---
 title: Startseite
 sections:
-  - type: header_section
+  - type: header
     header_type: alpha
     title: >-
       Wir bauen Ihre passgenaue **Wunschgarage** aus Beton
@@ -10,7 +10,7 @@ sections:
       alt: Wunschgarage
       fit: cover
       position: 50% 50%
-  - type: cards_section
+  - type: cards
     slug: themen
     cards_type: alpha
     columns:
@@ -45,7 +45,7 @@ sections:
           url: https://www.google.de
           label: Mehr entdecken
           target: _self # kept in here until the component is implemented and it can be omitted since _self should be the default
-  - type: cards_section
+  - type: cards
     slug: themen-2
     cards_type: beta
     background_image:
