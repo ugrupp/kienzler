@@ -5,14 +5,17 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
+import { graphql, useStaticQuery } from "gatsby"
+import _ from "lodash"
 import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-
 import Header from "./header"
 import "./layout.css"
+import sections from "./sections"
 
-const Layout = ({ children }) => {
+const Layout = props => {
+  // Get page query data
+  const { data: pageData } = props
+
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -33,10 +36,22 @@ const Layout = ({ children }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
-        <footer style={{
-          marginTop: `2rem`
-        }}>
+        <main>
+          {_.get(pageData, "mdx.frontmatter.sections", [])
+            .map((section, sectionIdx) => {
+              const Section =
+                sections[_.upperFirst(_.camelCase(`${section.type}_section`))]
+              return Section ? (
+                <Section key={sectionIdx} {...props} section={section} />
+              ) : undefined
+            })
+            .filter(section => section)}
+        </main>
+        <footer
+          style={{
+            marginTop: `2rem`,
+          }}
+        >
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.com">Gatsby</a>
@@ -44,10 +59,6 @@ const Layout = ({ children }) => {
       </div>
     </>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout

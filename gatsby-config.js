@@ -1,59 +1,35 @@
 module.exports = {
-  siteMetadata: {
-    title: `Kienzler Betontechnik`,
-    description: `Wir sind Ihr kompetenter Ansprechpartner für Garagen, Nutzräume und Fertiggaragen von der Beratung bis zur Realisierung.`,
-    keywords: `Grötz Fertiggaragen, Vario-Garagen, Betonteile, Garagen nach Maß, Nutzräume`,
-    author: `Kienzler Betontechnik`,
-    organization: {
-      name: `Kienzler Betontechnik`,
-      legalName: "Kienzler Betontechnik Garagen GmbH & Co. KG",
-      email: `info@kienzler-betontechnik.de`,
-      address: {
-        addressCountry: `Deutschland`,
-        addressLocality: `Freiburg`,
-        postalCode: `79110`,
-        streetAddress: `Ziegelhofstraße 35a`,
-      },
-      telephone: {
-        label: `0761 898 284 04`,
-        href: `+4976189828404`,
-      },
-    },
-    socialProviders: [
-      {
-        type: "facebook",
-        title: "Facebook",
-        user: "@kienzlerbetontechnik",
-        url: "https://www.facebook.com/Kienzler-Betontechnik-1170071456487005",
-      },
-      {
-        type: "instagram",
-        title: "Instagram",
-        user: "@kienzlerbetontechnik",
-        url: "https://www.instagram.com/kienzlerbetontechnik/",
-      },
-      {
-        type: "youtube",
-        title: "YouTube",
-        url: "https://www.youtube.com/channel/UCb0-oNK94ZUQe5ZVemD6DrQ",
-      },
-    ],
-  },
+  siteMetadata: require("./src/data/site.js"),
   plugins: [
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout.js"),
-        },
-      },
-    },
+    `gatsby-transformer-yaml`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        defaultLayouts: {
+          default: require.resolve("./src/components/layout.js"),
+        },
       },
     },
     `gatsby-transformer-sharp`,
