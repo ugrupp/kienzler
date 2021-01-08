@@ -1,4 +1,7 @@
 module.exports = {
+  flags: {
+    FAST_REFRESH: true,
+  },
   siteMetadata: require("./src/data/site.js"),
   plugins: [
     `gatsby-transformer-yaml`,
