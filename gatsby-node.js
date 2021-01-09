@@ -7,11 +7,11 @@
 const { upperFirst } = require("lodash")
 const { createFilePath } = require("gatsby-source-filesystem")
 
-// Extend YAML nodes with refId, based on their file path
-// this refId can later be used to resolve frontmatter refs
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
+  // Extend YAML nodes with refId, based on their file path
+  // this refId can later be used to resolve frontmatter refs
   if (
     node.internal.type === "DetailsYaml" ||
     node.internal.type === "FaqsYaml"
@@ -43,6 +43,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   const typeDefs = [
     `#graphql
       type Image {
+        file: File
         src: String
         alt: String
         fit: String
@@ -152,7 +153,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       },
     }),
 
-    // Ref resolvers
+    // YAML ref resolvers
     resolveRef({
       schema,
       sectionName: "DetailsSection",
@@ -166,6 +167,22 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       fieldType: "[FaqsYaml]",
       fieldId: "faqs",
       targetType: "FaqsYaml",
+    }),
+
+    // Image: transform src to file node
+    schema.buildObjectType({
+      name: "Image",
+      fields: {
+        file: {
+          type: "File",
+          resolve: (source, args, context, info) =>
+            context.nodeModel
+              .getAllNodes({ type: "File" })
+              .find(
+                node => node.relativePath === source.src.replace("images/", "")
+              ),
+        },
+      },
     }),
 
     // Sections union type with custom resolver

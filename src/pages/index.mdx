@@ -93,3 +93,20 @@ sections:
       - type: social_media_post
         post: src/data/social-media-posts/youtube/14-11-11-garagen.yaml
 ---
+
+import { graphql } from "gatsby"
+import "../data/sections-fragment"
+
+export const query = graphql`
+  query {
+    mdx(slug: { eq: "" }) {
+      slug
+      frontmatter {
+        title
+        sections {
+          ...MdxFrontmatterSectionsFields
+        }
+      }
+    }
+  }
+`
