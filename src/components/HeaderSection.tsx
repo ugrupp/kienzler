@@ -1,17 +1,21 @@
 import { graphql } from "gatsby"
-import Img from "gatsby-image/withIEPolyfill"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
 
 const HeaderSection = ({ section }) => {
+  const imageData = getImage(section.image.file)
+
   return (
     <div>
       Header section ({section.type})
-      <Img
-        fluid={section.image.file.childImageSharp.fluid}
-        alt={section.image.alt}
-        objectFit={section.image.fit}
-        objectPosition={section.image.position}
-      />
+      {imageData && (
+        <GatsbyImage
+          image={imageData}
+          alt={section.image.alt}
+          objectFit={section.image.fit}
+          objectPosition={section.image.position}
+        />
+      )}
       {section.text}
     </div>
   )
@@ -28,12 +32,13 @@ export const query = graphql`
     image {
       file {
         childImageSharp {
-          fluid(maxWidth: 1200) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(
+            maxWidth: 1200
+            layout: FLUID
+            placeholder: DOMINANT_COLOR
+          )
         }
       }
-      src
       alt
       fit
       position
