@@ -8,7 +8,8 @@
 import { graphql, useStaticQuery } from "gatsby"
 import _ from "lodash"
 import React from "react"
-import Header from "./header"
+import { Fonts } from "../theme/Fonts"
+import Header from "./Header"
 import sections from "./sections"
 
 const Layout = props => {
@@ -27,6 +28,7 @@ const Layout = props => {
 
   return (
     <>
+      <Fonts />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
 
       <main>

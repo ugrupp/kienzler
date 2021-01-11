@@ -4,4 +4,21 @@
  * See: https://www.gatsbyjs.com/docs/ssr-apis/
  */
 
-// You can delete this file if you're not using it
+import React from "react"
+
+// Prepend myfonts import to <head>
+export const onPreRenderHTML = ({
+  getHeadComponents,
+  replaceHeadComponents,
+}) => {
+  const headComponents = getHeadComponents()
+  headComponents.unshift(
+    <style
+      key="myfonts-counter"
+      dangerouslySetInnerHTML={{
+        __html: '@import url("https://hello.myfonts.net/count/3cf9fc");',
+      }}
+    />
+  )
+  replaceHeadComponents(headComponents)
+}
