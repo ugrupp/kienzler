@@ -8,6 +8,9 @@ export const mdxFrontmatterSectionsFields = graphql`
     ... on DetailsSection {
       ...DetailsSectionFields
     }
+    ... on CardsSection {
+      ...CardsSectionFields
+    }
     ... on FaqsSection {
       faqs {
         id

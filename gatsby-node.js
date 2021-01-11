@@ -122,6 +122,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       type Card {
         type: String!
         title: String
+        image: Image
         content: String
         cta: Link
       }
