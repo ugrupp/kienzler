@@ -4,7 +4,12 @@ module.exports = {
   },
   siteMetadata: require("./src/data/site.js"),
   plugins: [
-    `@chakra-ui/gatsby-plugin`,
+    {
+      resolve: `@chakra-ui/gatsby-plugin`,
+      options: {
+        isUsingColorMode: false,
+      },
+    },
     `gatsby-transformer-yaml`,
     `gatsby-plugin-react-helmet`,
     {

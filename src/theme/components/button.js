@@ -31,16 +31,16 @@ function variantSolid(props) {
   // TODO: globalize gray.800 as default text color somewhere
   if (c === "dark-orange") {
     color = "white"
-    bgColor = "gray.800"
+    bgColor = "gray.500"
     hoverColor = "white"
     bgHoverColor = "orange.500"
   } else if (c === "white-dark") {
-    color = "gray.800"
+    color = "gray.500"
     bgColor = "white"
     hoverColor = "white"
-    bgHoverColor = "gray.800"
+    bgHoverColor = "gray.500"
   } else if (c === "white-orange") {
-    color = "gray.800"
+    color = "gray.500"
     bgColor = "white"
     hoverColor = "white"
     bgHoverColor = "orange.500"
@@ -69,11 +69,11 @@ function variantOutline(props) {
   // Special color schemes
   // TODO: globalize gray.800 as default text color somewhere
   if (c === "dark-orange") {
-    color = "gray.800"
+    color = "gray.500"
     hoverColor = "orange.500"
   } else if (c === "white-dark") {
     color = "white"
-    hoverColor = "gray.800"
+    hoverColor = "gray.500"
   } else if (c === "white-orange") {
     color = "white"
     hoverColor = "orange.500"
