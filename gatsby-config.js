@@ -4,6 +4,7 @@ module.exports = {
   },
   siteMetadata: require("./src/data/site.js"),
   plugins: [
+    `@chakra-ui/gatsby-plugin`,
     `gatsby-transformer-yaml`,
     `gatsby-plugin-react-helmet`,
     {
