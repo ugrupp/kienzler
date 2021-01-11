@@ -44,7 +44,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "svgo": "mkdir -p ../svg/svg-o && svgo ../svg/*.svg -o ../svg/svg-o --config '{ \"plugins\": [ { \"inlineStyles\": { \"onlyMatchedOnce\": false } }] }' --enable=prefixIds"
   },
   "repository": {
     "type": "git",

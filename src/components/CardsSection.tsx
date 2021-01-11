@@ -1,7 +1,7 @@
-import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { Box, Button } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
+import ArrowBoldIcon from "../icons/ArrowBold"
 import Link from "./Link"
 
 const CardsSection = ({ section }) => {
@@ -17,7 +17,7 @@ const CardsSection = ({ section }) => {
                 as={Link}
                 to={cta.url}
                 target={cta.target}
-                rightIcon={<ArrowForwardIcon />}
+                rightIcon={<ArrowBoldIcon />}
               >
                 {cta.label}
               </Button>
