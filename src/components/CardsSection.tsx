@@ -1,9 +1,32 @@
+import { ArrowForwardIcon } from "@chakra-ui/icons"
+import { Box, Button } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
+import Link from "./Link"
 
 const CardsSection = ({ section }) => {
   const { type, slug, cards_type, columns } = section
-  return <div>Cards section ({type})</div>
+  return (
+    <Box>
+      Cards section ({type})
+      <div>
+        {columns.map(({ cta }, idx) => (
+          <div key={idx}>
+            {!!cta && (
+              <Button
+                as={Link}
+                to={cta.url}
+                target={cta.target}
+                rightIcon={<ArrowForwardIcon />}
+              >
+                {cta.label}
+              </Button>
+            )}
+          </div>
+        ))}
+      </div>
+    </Box>
+  )
 }
 
 export default CardsSection
