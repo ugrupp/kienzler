@@ -1,40 +1,27 @@
-import { Box, Button } from "@chakra-ui/react"
+import { GridItem } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
-import ArrowBoldIcon from "../icons/ArrowBold"
+import Card from "./Card"
 import ContainerGrid from "./ContainerGrid"
-import Link from "./Link"
 
 const CardsSection = ({ section }) => {
   const { type, slug, cards_type, columns } = section
+  const defaultColumnPosition = ["main"]
+  const columnPositions = [
+    ["3 / full", null, null, "9 / -3"],
+    ["3 / full", null, null, "3 / 7"],
+  ]
   return (
-    <ContainerGrid>
-      <Box gridColumn="full" backgroundColor="lightblue">
-        full
-      </Box>
-      <Box gridColumn="main / full" backgroundColor="salmon">
-        main-right
-      </Box>
-      <Box backgroundColor="palegreen">main</Box>
-      <Box gridColumn={["full", "4 / 8"]} backgroundColor="darkkhaki">
-        somewhere in the middle
-      </Box>
-      <div>
-        {columns.map(({ cta }, idx) => (
-          <div key={idx}>
-            {!!cta && (
-              <Button
-                as={Link}
-                to={cta.url}
-                target={cta.target}
-                rightIcon={<ArrowBoldIcon />}
-              >
-                {cta.label}
-              </Button>
-            )}
-          </div>
-        ))}
-      </div>
+    <ContainerGrid rowGap={[36]}>
+      {columns.map((card, idx) => (
+        <GridItem
+          rowSpan={{ lg: 2 }}
+          gridColumn={columnPositions[idx % 2] ?? defaultColumnPosition}
+          key={idx}
+        >
+          <Card {...card} />
+        </GridItem>
+      ))}
     </ContainerGrid>
   )
 }
@@ -53,8 +40,17 @@ export const query = graphql`
         content
         image {
           file {
-            relativePath
+            childImageSharp {
+              gatsbyImageData(
+                maxWidth: 800
+                layout: FLUID
+                placeholder: DOMINANT_COLOR
+              )
+            }
           }
+          alt
+          fit
+          position
         }
         cta {
           url
