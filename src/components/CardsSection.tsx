@@ -2,13 +2,23 @@ import { Box, Button } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
 import ArrowBoldIcon from "../icons/ArrowBold"
+import ContainerGrid from "./ContainerGrid"
 import Link from "./Link"
 
 const CardsSection = ({ section }) => {
   const { type, slug, cards_type, columns } = section
   return (
-    <Box>
-      Cards section ({type})
+    <ContainerGrid>
+      <Box gridColumn="full" backgroundColor="lightblue">
+        full
+      </Box>
+      <Box gridColumn="main / full" backgroundColor="salmon">
+        main-right
+      </Box>
+      <Box backgroundColor="palegreen">main</Box>
+      <Box gridColumn={["full", "4 / 8"]} backgroundColor="darkkhaki">
+        somewhere in the middle
+      </Box>
       <div>
         {columns.map(({ cta }, idx) => (
           <div key={idx}>
@@ -25,7 +35,7 @@ const CardsSection = ({ section }) => {
           </div>
         ))}
       </div>
-    </Box>
+    </ContainerGrid>
   )
 }
 
