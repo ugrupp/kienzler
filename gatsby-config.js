@@ -36,6 +36,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: require.resolve(`./plugins/gatsby-remark-remove-root-p`),
+          },
+        ],
         remarkPlugins: [
           [
             require("remark-hypher"),

@@ -77,7 +77,7 @@ exports.createSchemaCustomization = ({
       type HeaderSection implements Section & Node {
         type: String!
         slug: String
-        title: String @mdx
+        title: String @mdx(removeRootParagraph: true)
 
         header_type: String
         image: Image
@@ -211,7 +211,10 @@ exports.createSchemaCustomization = ({
   // MDX extension, allows for MDX in frontmatter (slightly modified version of https://github.com/zslabs/gatsby-plugin-mdx-frontmatter)
   createFieldExtension({
     name: "mdx",
-    extend() {
+    args: {
+      removeRootParagraph: "Boolean",
+    },
+    extend(options) {
       return {
         type: "String",
         resolve(source, args, context, info) {
@@ -233,6 +236,7 @@ exports.createSchemaCustomization = ({
               rawBody: value,
               internal: {
                 contentDigest: createContentDigest(value), // Used for caching
+                removeRootParagraph: !!options.removeRootParagraph,
               },
             },
             args,

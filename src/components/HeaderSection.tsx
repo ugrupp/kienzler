@@ -11,24 +11,6 @@ const HeaderSection = ({ section }) => {
   // Adjust typography
   const originalComponents = useMDXComponents()
 
-  // Heading
-  const headingComponents = {
-    ...originalComponents,
-    h1: props => (
-      <Heading
-        as="h1"
-        textStyle="h1"
-        sx={{
-          strong: {
-            fontWeight: "inherit",
-            color: "orange.500",
-          },
-        }}
-        {...props}
-      />
-    ),
-  }
-
   // Text
   const textComponents = {
     ...originalComponents,
@@ -39,9 +21,18 @@ const HeaderSection = ({ section }) => {
     <div>
       {/* Title */}
       {section.title && (
-        <MDXProvider components={headingComponents}>
+        <Heading
+          as="h1"
+          textStyle="h1"
+          sx={{
+            strong: {
+              fontWeight: "inherit",
+              color: "orange.500",
+            },
+          }}
+        >
           <MDXRenderer>{section.title}</MDXRenderer>
-        </MDXProvider>
+        </Heading>
       )}
 
       {/* Image */}
