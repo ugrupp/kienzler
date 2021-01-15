@@ -1,5 +1,6 @@
 import { Button, Heading } from "@chakra-ui/react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import ArrowBoldIcon from "../icons/ArrowBold"
 import Link from "./Link"
@@ -9,7 +10,7 @@ export interface CardProps {
   title: string
   // TODO
   image: any
-  content: String
+  content: string
   // TODO
   cta: any
 }
@@ -23,7 +24,11 @@ const Card: React.FC<CardProps> = ({ title, image, content, cta }) => {
       {!!title && <Heading>{title}</Heading>}
 
       {/* Content */}
-      {!!content && <div>{content}</div>}
+      {!!content && (
+        <div>
+          <MDXRenderer>{content}</MDXRenderer>
+        </div>
+      )}
 
       {!!imageData && (
         <GatsbyImage

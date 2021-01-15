@@ -5,6 +5,9 @@
  */
 
 import React from "react"
+import { wrapRootElement } from "./wrapRootElement"
+
+export { wrapRootElement }
 
 // Prepend myfonts import to <head>
 export const onPreRenderHTML = ({

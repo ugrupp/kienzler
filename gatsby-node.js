@@ -37,8 +37,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 // Customize schema
 // 1. Tell gatsby about all the section types defined in frontmatter data
 // 2. Resolve frontmatter refs to yaml files
-exports.createSchemaCustomization = ({ actions, schema }) => {
-  const { createTypes } = actions
+// 3. Add MDX extension
+exports.createSchemaCustomization = ({
+  actions,
+  schema,
+  createContentDigest,
+}) => {
+  const { createTypes, createFieldExtension } = actions
 
   const typeDefs = [
     `#graphql
@@ -76,7 +81,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 
         header_type: String
         image: Image
-        text: String
+        text: String @mdx
       }
 
       # Advantages
@@ -85,7 +90,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         slug: String
         title: String
 
-        text: String
+        text: String @mdx
         advantages: [String]
       }
 
@@ -95,7 +100,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         slug: String
         title: String
 
-        text: String
+        text: String @mdx
         details: [String]
       }
 
@@ -105,7 +110,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         slug: String
         title: String
 
-        text: String
+        text: String @mdx
         color_groups: String
       }
 
@@ -123,7 +128,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         type: String!
         title: String
         image: Image
-        content: String
+        content: String @mdx
         cta: Link
       }
 
@@ -202,6 +207,42 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     }),
   ]
   createTypes(typeDefs)
+
+  // MDX extension, allows for MDX in frontmatter (slightly modified version of https://github.com/zslabs/gatsby-plugin-mdx-frontmatter)
+  createFieldExtension({
+    name: "mdx",
+    extend() {
+      return {
+        type: "String",
+        resolve(source, args, context, info) {
+          // Grab field
+          const value = source[info.fieldName]
+
+          // Check if field value is defined (this is the modified part)
+          if (!value) {
+            return null
+          }
+
+          // Isolate MDX
+          const mdxType = info.schema.getType("Mdx")
+          // Grab just the body contents of what MDX generates
+          const { resolve } = mdxType.getFields().body
+
+          return resolve(
+            {
+              rawBody: value,
+              internal: {
+                contentDigest: createContentDigest(value), // Used for caching
+              },
+            },
+            args,
+            context,
+            info
+          )
+        },
+      }
+    },
+  })
 }
 
 // Override ref fields, using the ref to search for corresponding nodes, which must be sourced earlier.
