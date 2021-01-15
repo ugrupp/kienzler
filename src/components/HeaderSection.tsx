@@ -1,3 +1,5 @@
+import { Heading, Text } from "@chakra-ui/react"
+import { MDXProvider, useMDXComponents } from "@mdx-js/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -6,9 +8,43 @@ import React from "react"
 const HeaderSection = ({ section }) => {
   const imageData = getImage(section.image.file)
 
+  // Adjust typography
+  const originalComponents = useMDXComponents()
+
+  // Heading
+  const headingComponents = {
+    ...originalComponents,
+    h1: props => (
+      <Heading
+        as="h1"
+        textStyle="h1"
+        sx={{
+          strong: {
+            fontWeight: "inherit",
+            color: "orange.500",
+          },
+        }}
+        {...props}
+      />
+    ),
+  }
+
+  // Text
+  const textComponents = {
+    ...originalComponents,
+    p: props => <Text textStyle="paragraph-lg" {...props} />,
+  }
+
   return (
     <div>
-      Header section ({section.type})
+      {/* Title */}
+      {section.title && (
+        <MDXProvider components={headingComponents}>
+          <MDXRenderer>{section.title}</MDXRenderer>
+        </MDXProvider>
+      )}
+
+      {/* Image */}
       {imageData && (
         <GatsbyImage
           image={imageData}
@@ -17,7 +53,13 @@ const HeaderSection = ({ section }) => {
           objectPosition={section.image.position}
         />
       )}
-      {section.text && <MDXRenderer>{section.text}</MDXRenderer>}
+
+      {/* Text */}
+      {section.text && (
+        <MDXProvider components={textComponents}>
+          <MDXRenderer>{section.text}</MDXRenderer>
+        </MDXProvider>
+      )}
     </div>
   )
 }

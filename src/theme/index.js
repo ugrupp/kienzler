@@ -4,7 +4,9 @@ import breakpoints from "./foundations/breakpoints"
 import colors from "./foundations/colors"
 import sizes from "./foundations/sizes"
 import typography from "./foundations/typography"
+import layerStyles from "./layerStyles"
 import styles from "./styles"
+import textStyles from "./textStyles"
 
 const overrides = {
   // Global style overrides
@@ -18,6 +20,9 @@ const overrides = {
   components: {
     Button,
   },
+  // Text & layer styles
+  textStyles,
+  layerStyles,
 }
 
 export default extendTheme(overrides)

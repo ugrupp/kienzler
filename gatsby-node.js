@@ -77,7 +77,7 @@ exports.createSchemaCustomization = ({
       type HeaderSection implements Section & Node {
         type: String!
         slug: String
-        title: String
+        title: String @mdx
 
         header_type: String
         image: Image
