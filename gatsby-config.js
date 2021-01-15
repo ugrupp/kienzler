@@ -36,6 +36,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        remarkPlugins: [
+          [
+            require("remark-hypher"),
+            {
+              language: require("hyphenation.de"),
+            },
+          ],
+        ],
         defaultLayouts: {
           default: require.resolve("./src/components/layout.tsx"),
         },
