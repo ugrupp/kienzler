@@ -27,21 +27,23 @@ const CardsSection: React.FC<CardsSectionModel> = ({ section }) => {
     ["full", null, "3 / -3", null, "3 / 7"],
   ]
   return (
-    <ContainerGrid rowGap={[36]}>
-      {columns.map((item, idx) => (
-        <GridItem
-          rowSpan={{ lg: 2 }}
-          gridColumn={columnPositions[idx % 2] ?? defaultColumnPosition}
-          key={idx}
-        >
-          {item.type === "social_media_post" ? (
-            <SocialMediaPost {...(item as SocialMediaPostModel)} />
-          ) : (
-            <Card {...(item as CardModel)} />
-          )}
-        </GridItem>
-      ))}
-    </ContainerGrid>
+    <section>
+      <ContainerGrid rowGap={[36]}>
+        {columns.map((item, idx) => (
+          <GridItem
+            rowSpan={{ lg: 2 }}
+            gridColumn={columnPositions[idx % 2] ?? defaultColumnPosition}
+            key={idx}
+          >
+            {item.type === "social_media_post" ? (
+              <SocialMediaPost {...(item as SocialMediaPostModel)} />
+            ) : (
+              <Card {...(item as CardModel)} />
+            )}
+          </GridItem>
+        ))}
+      </ContainerGrid>
+    </section>
   )
 }
 

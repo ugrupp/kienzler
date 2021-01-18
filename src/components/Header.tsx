@@ -9,9 +9,9 @@ export interface HeaderModel {
 
 const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
   return (
-    <Box as="header" bgColor="orange.500">
+    <Box bgColor="orange.500">
       <ContainerGrid>
-        <h1 style={{ margin: 0, backgroundColor: "lightblue" }}>
+        <strong style={{ margin: 0, backgroundColor: "lightblue" }}>
           <Link
             to="/"
             style={{
@@ -21,7 +21,7 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
           >
             {siteTitle}
           </Link>
-        </h1>
+        </strong>
       </ContainerGrid>
     </Box>
   )
