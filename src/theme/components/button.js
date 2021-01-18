@@ -13,6 +13,14 @@ export default {
     solid: variantSolid,
     outline: variantOutline,
   },
+  sizes: {
+    sm: {
+      fontSize: ["3xs", null, "2xs", "xs"],
+    },
+    md: {
+      fontSize: ["2sm", null, "sm", "md"],
+    },
+  },
   defaultProps: {
     variant: "outline",
     colorScheme: "dark-orange",
@@ -28,7 +36,7 @@ function variantSolid(props) {
   let bgHoverColor = undefined
 
   // Special color schemes
-  // TODO: globalize gray.800 as default text color somewhere
+  // TODO: globalize gray.x00 as default text color somewhere
   if (c === "dark-orange") {
     color = "white"
     bgColor = "gray.500"

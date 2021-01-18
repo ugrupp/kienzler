@@ -4,6 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import ArrowBoldIcon from "../icons/ArrowBold"
 import Link from "./Link"
+import ShiftBy from "./ShiftBy"
 
 export interface CardProps {
   type: string
@@ -48,7 +49,7 @@ const Card: React.FC<CardProps> = ({ title, image, content, cta }) => {
           target={cta.target}
           rightIcon={<ArrowBoldIcon />}
         >
-          {cta.label}
+          <ShiftBy y={2}>{cta.label}</ShiftBy>
         </Button>
       )}
     </div>
