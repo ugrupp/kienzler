@@ -8,6 +8,7 @@ export default {
     fontWeight: "bold",
     borderRadius: "none",
     textTransform: "uppercase",
+    transitionDuration: "slow",
   },
   variants: {
     solid: variantSolid,
