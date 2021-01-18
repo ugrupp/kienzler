@@ -7,7 +7,7 @@ import {
   Theme,
   useTheme,
 } from "@chakra-ui/react"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React, { useState } from "react"
@@ -108,12 +108,23 @@ const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
 
               {/* Image */}
               <Box flexGrow={1} position="relative" overflow="hidden">
-                <GatsbyImage
-                  image={imageData}
-                  alt={image.alt ?? ""}
-                  objectFit={image.fit}
-                  objectPosition={image.position}
-                />
+                <motion.div
+                  initial={false}
+                  animate={{
+                    transform: cardHover ? "scale(1.1)" : "scale(1)",
+                  }}
+                  transition={{
+                    type: "spring",
+                    bounce: cardHover ? 0.4 : 0, // no overshoot on mouseout (image bg would be visible)
+                  }}
+                >
+                  <GatsbyImage
+                    image={imageData}
+                    alt={image.alt ?? ""}
+                    objectFit={image.fit}
+                    objectPosition={image.position}
+                  />
+                </motion.div>
 
                 {/* Image overlay */}
                 <AnimatePresence>
@@ -128,6 +139,7 @@ const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
                         zIndex: 10,
                         mixBlendMode: "multiply",
                         backgroundImage: `linear-gradient(180deg, rgba(234, 106, 31, 1) 0%, rgba(234, 106, 31, 0) 100%)`,
+                        opacity: 0,
                       }}
                       transition={{
                         duration: convertMSToInt(
