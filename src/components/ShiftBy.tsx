@@ -1,13 +1,14 @@
+import { Box } from "@chakra-ui/react"
 import React from "react"
-function ShiftBy({ x = 0, y = 0, children }) {
+function ShiftBy({ x = "0px", y = "0px", children }) {
   return (
-    <div
+    <Box
       style={{
-        transform: `translate(${x}px, ${y}px)`,
+        transform: `translate(${x}, ${y})`,
       }}
     >
       {children}
-    </div>
+    </Box>
   )
 }
 export default ShiftBy

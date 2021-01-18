@@ -19,6 +19,7 @@ export interface CardsSectionModel {
 }
 
 const CardsSection: React.FC<CardsSectionModel> = ({ section }) => {
+  // TODO: use those
   const { type, slug, title, cardsType, backgroundImage, columns } = section
   const defaultColumnPosition = ["main"]
   const columnPositions = [

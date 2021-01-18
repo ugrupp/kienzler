@@ -36,10 +36,10 @@ const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
   const theme: Theme = useTheme()
 
   const gridColumns = {
-    title: ["4 / -3", null, "main / -5", null, "main / -3", "main / -4"],
-    image: ["4 / full", null, "main", "main / -5", "main"],
-    text: ["4 / -3", null, "main / -5", null, "main / -3", "main / -4"],
-    cta: ["4 / -3", null, "main", null, "main"],
+    title: ["3 / -3", "4 / -3", "main / -5", null, "main / -3", "main / -4"],
+    image: ["3 / full", "4 / full", "main", "main / -5", "main"],
+    text: ["3 / -3", "4 / -3", "main / -5", null, "main / -3", "main / -4"],
+    cta: ["3 / -3", "4 / -3", "main", null, "main"],
   }
 
   // Wrapper props (conditionally renders a link)
@@ -161,7 +161,7 @@ const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
             mt={content ? [8, null, 10] : undefined}
           >
             <Button data-hover={cardHover} rightIcon={<ArrowBoldIcon />}>
-              <ShiftBy y={2}>{cta.label}</ShiftBy>
+              <ShiftBy y={"2px"}>{cta.label}</ShiftBy>
             </Button>
           </GridItem>
         )}
