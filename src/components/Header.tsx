@@ -3,11 +3,11 @@ import { Link } from "gatsby"
 import React from "react"
 import ContainerGrid from "./ContainerGrid"
 
-export interface HeaderProps {
+export interface HeaderModel {
   siteTitle: string
 }
 
-const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
+const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
   return (
     <Box as="header" bgColor="orange.500">
       <ContainerGrid>

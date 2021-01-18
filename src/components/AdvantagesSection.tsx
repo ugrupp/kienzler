@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import React from "react"
 import ArrowBoldIcon from "../icons/ArrowBold"
 
-export interface AdvantagesSectionProps {
+export interface AdvantagesSectionModel {
   section: {
     type: string
     slug?: string
@@ -14,7 +14,7 @@ export interface AdvantagesSectionProps {
   }
 }
 
-const AdvantagesSection: React.FC<AdvantagesSectionProps> = ({ section }) => {
+const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({ section }) => {
   const { title, advantages } = section
   return (
     <section>

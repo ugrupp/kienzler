@@ -1,11 +1,25 @@
 import { GridItem } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
-import Card from "./Card"
+import { Image } from "../models/Image"
+import Card, { CardModel } from "./Card"
 import ContainerGrid from "./ContainerGrid"
+import SocialMediaPost, { SocialMediaPostModel } from "./SocialMediaPost"
 
-const CardsSection = ({ section }) => {
-  const { type, slug, cards_type, columns } = section
+export interface CardsSectionModel {
+  section: {
+    type: string
+    slug?: string
+    title?: string
+
+    cardsType?: String
+    backgroundImage?: Image
+    columns?: [CardModel | SocialMediaPostModel]
+  }
+}
+
+const CardsSection: React.FC<CardsSectionModel> = ({ section }) => {
+  const { type, slug, title, cardsType, backgroundImage, columns } = section
   const defaultColumnPosition = ["main"]
   const columnPositions = [
     ["3 / full", null, null, "9 / -3"],
@@ -13,13 +27,17 @@ const CardsSection = ({ section }) => {
   ]
   return (
     <ContainerGrid rowGap={[36]}>
-      {columns.map((card, idx) => (
+      {columns.map((item, idx) => (
         <GridItem
           rowSpan={{ lg: 2 }}
           gridColumn={columnPositions[idx % 2] ?? defaultColumnPosition}
           key={idx}
         >
-          <Card {...card} />
+          {item.type === "social_media_post" ? (
+            <SocialMediaPost {...(item as SocialMediaPostModel)} />
+          ) : (
+            <Card {...(item as CardModel)} />
+          )}
         </GridItem>
       ))}
     </ContainerGrid>
@@ -32,7 +50,7 @@ export const query = graphql`
   fragment CardsSectionFields on CardsSection {
     type
     slug
-    cards_type
+    cardsType: cards_type
     columns {
       ... on Card {
         type

@@ -3,20 +3,20 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import ArrowBoldIcon from "../icons/ArrowBold"
+import { Image } from "../models/Image"
+import { Link as LinkModel } from "../models/Link"
 import Link from "./Link"
 import ShiftBy from "./ShiftBy"
 
-export interface CardProps {
+export interface CardModel {
   type: string
-  title: string
-  // TODO
-  image: any
-  content: string
-  // TODO
-  cta: any
+  title?: string
+  image?: Image
+  content?: string
+  cta?: LinkModel
 }
 
-const Card: React.FC<CardProps> = ({ title, image, content, cta }) => {
+const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
   const imageData = getImage(image?.file)
 
   return (

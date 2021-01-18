@@ -4,9 +4,24 @@ import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
+import { Image } from "../models/Image"
 
-const HeaderSection = ({ section }) => {
-  const imageData = getImage(section.image.file)
+export interface HeaderSectionModel {
+  section: {
+    type: string
+    slug?: string
+    title?: string
+
+    headerType?: string
+    image?: Image
+    text?: string
+  }
+}
+
+const HeaderSection: React.FC<HeaderSectionModel> = ({ section }) => {
+  const { type, slug, title, headerType, image, text } = section
+
+  const imageData = getImage(image.file)
 
   // Adjust typography
   const originalComponents = useMDXComponents()
@@ -20,7 +35,7 @@ const HeaderSection = ({ section }) => {
   return (
     <div>
       {/* Title */}
-      {section.title && (
+      {title && (
         <Heading
           as="h1"
           textStyle="h1"
@@ -31,7 +46,7 @@ const HeaderSection = ({ section }) => {
             },
           }}
         >
-          <MDXRenderer>{section.title}</MDXRenderer>
+          <MDXRenderer>{title}</MDXRenderer>
         </Heading>
       )}
 
@@ -39,16 +54,16 @@ const HeaderSection = ({ section }) => {
       {imageData && (
         <GatsbyImage
           image={imageData}
-          alt={section.image.alt}
-          objectFit={section.image.fit}
-          objectPosition={section.image.position}
+          alt={image.alt}
+          objectFit={image.fit}
+          objectPosition={image.position}
         />
       )}
 
       {/* Text */}
-      {section.text && (
+      {text && (
         <MDXProvider components={textComponents}>
-          <MDXRenderer>{section.text}</MDXRenderer>
+          <MDXRenderer>{text}</MDXRenderer>
         </MDXProvider>
       )}
     </div>
@@ -62,7 +77,7 @@ export const query = graphql`
     type
     slug
     title
-    header_type
+    headerType: header_type
     image {
       file {
         childImageSharp {
