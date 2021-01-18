@@ -2,8 +2,8 @@ import {
   Box,
   Button,
   Flex,
+  GridItem,
   Heading,
-  ScaleFade,
   Theme,
   useTheme,
 } from "@chakra-ui/react"
@@ -16,6 +16,8 @@ import ArrowBoldIcon from "../icons/ArrowBold"
 import { Image } from "../models/Image"
 import { Link as LinkModel } from "../models/Link"
 import { convertMSToInt } from "../util/helpers"
+import ContainerGrid from "./ContainerGrid"
+import ContentStack from "./ContentStack"
 import Link from "./Link"
 import { MotionBox } from "./MotionBox"
 import ShiftBy from "./ShiftBy"
@@ -33,6 +35,13 @@ const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
   const [cardHover, setCardHover] = useState<true | undefined>(undefined)
   const theme: Theme = useTheme()
 
+  const gridColumns = {
+    title: ["4 / -3", null, "main / -5", null, "main / -3", "main / -4"],
+    image: ["4 / full", null, "main", "main / -5", "main"],
+    text: ["4 / -3", null, "main / -5", null, "main / -3", "main / -4"],
+    cta: ["4 / -3", null, "main", null, "main"],
+  }
+
   // Wrapper props (conditionally renders a link)
   const wrapperProps = cta
     ? {
@@ -46,87 +55,117 @@ const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
 
   return (
     <Box display="block" position="relative" {...wrapperProps}>
-      {/* Title */}
-      {!!title && (
-        <Heading as="h2" textStyle="h2" color="orange.500" mb={[6, null, 10]}>
-          {title}
-        </Heading>
-      )}
+      <ContainerGrid
+        sizes={[
+          {
+            mainColumns: 12,
+            mainMaxWidth: "sm",
+            outerSpace: 4,
+          },
+          null,
+          {
+            mainColumns: 10,
+            mainMaxWidth: "container",
+            outerSpace: 0,
+          },
+          null,
+          {
+            mainColumns: 10,
+            mainMaxWidth: "container",
+            outerSpace: 0,
+          },
+        ]}
+      >
+        {/* Title */}
+        {!!title && (
+          <GridItem gridColumn={gridColumns.title} mb={[6, null, 10]}>
+            <Heading as="h2" textStyle="h2" color="orange.500">
+              {title}
+            </Heading>
+          </GridItem>
+        )}
 
-      {/* Image */}
-      {!!imageData && (
-        <Flex
-          mb={[10, null, 12]}
-          alignItems="flex-end"
-          pointerEvents="none" // workaround for https://github.com/gatsbyjs/gatsby/discussions/27950#discussioncomment-290788
-        >
-          {/* Icon */}
-          <Box
-            sx={{
-              marginRight: [4, null, 6],
-              flexShrink: 0,
-              color: "orange.500",
-            }}
-          >
-            <ArrowIcon
-              boxSize={[5, null, 6, null, 7]}
-              style={{ transform: "rotate(90deg)" }}
-            />
-          </Box>
-
-          {/* Image */}
-          <Box flexGrow={1} position="relative" overflow="hidden">
-            <GatsbyImage
-              image={imageData}
-              alt={image.alt ?? ""}
-              objectFit={image.fit}
-              objectPosition={image.position}
-            />
-
-            {/* Image overlay */}
-            <AnimatePresence>
-              {cardHover && (
-                <MotionBox
-                  sx={{
-                    position: "absolute",
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                    bottom: 0,
-                    zIndex: 10,
-                    mixBlendMode: "multiply",
-                    backgroundImage: `linear-gradient(180deg, rgba(234, 106, 31, 1) 0%, rgba(234, 106, 31, 0) 100%)`,
-                  }}
-                  transition={{
-                    duration: convertMSToInt(theme.transition.duration.slow),
-                  }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+        {/* Image */}
+        {!!imageData && (
+          <GridItem gridColumn={gridColumns.image} mb={[10, null, 12]}>
+            <Flex
+              alignItems="flex-end"
+              pointerEvents="none" // workaround for https://github.com/gatsbyjs/gatsby/discussions/27950#discussioncomment-290788
+            >
+              {/* Icon */}
+              <Box
+                sx={{
+                  marginRight: [4, null, 6],
+                  flexShrink: 0,
+                  color: "orange.500",
+                }}
+              >
+                <ArrowIcon
+                  boxSize={[5, null, 6, null, 7]}
+                  style={{ transform: "rotate(90deg)" }}
                 />
-              )}
-            </AnimatePresence>
-          </Box>
-        </Flex>
-      )}
+              </Box>
 
-      {/* Content */}
-      {!!content && (
-        <Box>
-          <MDXRenderer>{content}</MDXRenderer>
-        </Box>
-      )}
+              {/* Image */}
+              <Box flexGrow={1} position="relative" overflow="hidden">
+                <GatsbyImage
+                  image={imageData}
+                  alt={image.alt ?? ""}
+                  objectFit={image.fit}
+                  objectPosition={image.position}
+                />
 
-      {/* Button */}
-      {!!cta && (
-        <Button
-          data-hover={cardHover}
-          mt={content ? [8, null, 10] : undefined}
-          rightIcon={<ArrowBoldIcon />}
-        >
-          <ShiftBy y={2}>{cta.label}</ShiftBy>
-        </Button>
-      )}
+                {/* Image overlay */}
+                <AnimatePresence>
+                  {cardHover && (
+                    <MotionBox
+                      sx={{
+                        position: "absolute",
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        zIndex: 10,
+                        mixBlendMode: "multiply",
+                        backgroundImage: `linear-gradient(180deg, rgba(234, 106, 31, 1) 0%, rgba(234, 106, 31, 0) 100%)`,
+                      }}
+                      transition={{
+                        duration: convertMSToInt(
+                          theme.transition.duration.slow
+                        ),
+                      }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    />
+                  )}
+                </AnimatePresence>
+              </Box>
+            </Flex>
+          </GridItem>
+        )}
+
+        {/* Content */}
+        {!!content && (
+          <GridItem gridColumn={gridColumns.text}>
+            <ContentStack>
+              <MDXRenderer>{content}</MDXRenderer>
+            </ContentStack>
+          </GridItem>
+        )}
+
+        {/* Button */}
+        {!!cta && (
+          <GridItem
+            gridColumn={gridColumns.cta}
+            mt={content ? [8, null, 10] : undefined}
+          >
+            <Button data-hover={cardHover} rightIcon={<ArrowBoldIcon />}>
+              <ShiftBy y={2}>{cta.label}</ShiftBy>
+            </Button>
+          </GridItem>
+        )}
+      </ContainerGrid>
     </Box>
   )
 }

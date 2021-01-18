@@ -2,8 +2,8 @@ import { Grid, useTheme } from "@chakra-ui/react"
 import React from "react"
 
 export interface ContainerGridProps {
-  mainColumns?: number
   sizes?: Array<{
+    mainColumns: number
     mainMaxWidth: string
     outerSpace: number
   }>
@@ -13,19 +13,21 @@ export interface ContainerGridProps {
 
 const ContainerGrid: React.FC<ContainerGridProps> = ({
   children,
-  mainColumns = 12,
   sizes = [
     {
+      mainColumns: 12,
       mainMaxWidth: "sm",
       outerSpace: 4,
     },
     null,
     {
+      mainColumns: 12,
       mainMaxWidth: "container",
       outerSpace: 16,
     },
     null,
     {
+      mainColumns: 12,
       mainMaxWidth: "container",
       outerSpace: 20,
     },
@@ -45,13 +47,17 @@ const ContainerGrid: React.FC<ContainerGridProps> = ({
         minmax(${theme.space[size.outerSpace]}, 1fr)
         [main-start]
         repeat(
-          ${mainColumns / 2},
-          minmax(0, calc(${theme.sizes[size.mainMaxWidth]} / ${mainColumns}))
+          ${size.mainColumns / 2},
+          minmax(0, calc(${theme.sizes[size.mainMaxWidth]} / ${
+            size.mainColumns
+          }))
         )
         [center]
         repeat(
-          ${mainColumns / 2},
-          minmax(0, calc(${theme.sizes[size.mainMaxWidth]} / ${mainColumns}))
+          ${size.mainColumns / 2},
+          minmax(0, calc(${theme.sizes[size.mainMaxWidth]} / ${
+            size.mainColumns
+          }))
         )
         [main-end]
         minmax(${theme.space[size.outerSpace]}, 1fr)

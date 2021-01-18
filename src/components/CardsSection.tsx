@@ -22,8 +22,8 @@ const CardsSection: React.FC<CardsSectionModel> = ({ section }) => {
   const { type, slug, title, cardsType, backgroundImage, columns } = section
   const defaultColumnPosition = ["main"]
   const columnPositions = [
-    ["3 / full", null, null, "9 / -3"],
-    ["3 / full", null, null, "3 / 7"],
+    ["full", null, "3 / -3", null, "9 / -3"],
+    ["full", null, "3 / -3", null, "3 / 7"],
   ]
   return (
     <ContainerGrid rowGap={[36]}>
@@ -63,6 +63,7 @@ export const query = graphql`
                 maxWidth: 800
                 layout: FLUID
                 placeholder: DOMINANT_COLOR
+                quality: 75
               )
             }
           }
