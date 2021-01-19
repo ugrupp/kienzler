@@ -1,4 +1,4 @@
-import { Box, Button, chakra, Flex, Image } from "@chakra-ui/react"
+import { Box, Button, chakra, Flex, Image, Tooltip } from "@chakra-ui/react"
 import { Link } from "gatsby"
 import React from "react"
 // @ts-ignore
@@ -47,7 +47,33 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
             alignItems="center"
             height={logoHeights}
           >
-            <Button variant="solid">+</Button>
+            <Tooltip
+              label={
+                <Flex direction="column" alignItems="flex-end">
+                  {["Menü", "öffnen"].map(labelPart => (
+                    <Box
+                      backgroundColor="gray.200"
+                      textStyle="h4"
+                      fontSize="3xs"
+                      lineHeight="shorter"
+                      px={"0.6em"}
+                      py={"0.4em"}
+                    >
+                      {labelPart}
+                    </Box>
+                  ))}
+                </Flex>
+              }
+              bg={"transparent"}
+              color="white"
+              p={0}
+              borderRadius="none"
+              boxShadow="none"
+              gutter={0}
+              placement="bottom-end"
+            >
+              <Button variant="solid">+</Button>
+            </Tooltip>
           </Flex>
         </Box>
       </ContainerGrid>
