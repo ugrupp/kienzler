@@ -1,4 +1,4 @@
-import { chakra, GridItem, Heading, Text } from "@chakra-ui/react"
+import { Box, chakra, GridItem, Heading, Text } from "@chakra-ui/react"
 import { MDXProvider, useMDXComponents } from "@mdx-js/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
@@ -41,7 +41,14 @@ const HeaderSection: React.FC<HeaderSectionModel> = ({
   }
 
   return (
-    <header>
+    <Box
+      as="header"
+      minHeight="100vh"
+      pt={["24vh", null, "26vh", null, "33vh"]}
+      display="flex"
+      flexDirection="column"
+      justifyContent="flex-end"
+    >
       <ContainerGrid rowGap={[9]}>
         {/* Title */}
         {title && (
@@ -95,7 +102,8 @@ const HeaderSection: React.FC<HeaderSectionModel> = ({
               objectFit={image.fit}
               objectPosition={image.position}
               sx={{
-                height: ["19.75rem", null, "33.25rem", null, "45rem"],
+                height: ["47vh", null, "51vh", null, "67vh"],
+                minHeight: "100%",
               }}
             />
           </GridItem>
@@ -108,7 +116,7 @@ const HeaderSection: React.FC<HeaderSectionModel> = ({
           </MDXProvider>
         )}
       </ContainerGrid>
-    </header>
+    </Box>
   )
 }
 
