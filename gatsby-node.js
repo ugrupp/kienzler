@@ -61,6 +61,10 @@ exports.createSchemaCustomization = ({
         target: String
       }
 
+      type Spacing {
+        bottom: [String]
+      }
+
       # Sections
       type MdxFrontmatter implements Node {
         sections: [MdxFrontmatterSections]
@@ -71,6 +75,7 @@ exports.createSchemaCustomization = ({
         type: String!
         slug: String
         title: String
+        spacing: Spacing
       }
 
       # Header
@@ -78,6 +83,7 @@ exports.createSchemaCustomization = ({
         type: String!
         slug: String
         title: String @mdx(removeRootParagraph: true)
+        spacing: Spacing
 
         header_type: String
         image: Image
@@ -89,6 +95,7 @@ exports.createSchemaCustomization = ({
         type: String!
         slug: String
         title: String
+        spacing: Spacing
 
         text: String @mdx
         advantages: [String]
@@ -99,6 +106,7 @@ exports.createSchemaCustomization = ({
         type: String!
         slug: String
         title: String
+        spacing: Spacing
 
         text: String @mdx
         details: [String]
@@ -109,6 +117,7 @@ exports.createSchemaCustomization = ({
         type: String!
         slug: String
         title: String
+        spacing: Spacing
 
         text: String @mdx
         color_groups: String
@@ -119,6 +128,7 @@ exports.createSchemaCustomization = ({
         type: String!
         slug: String
         title: String
+        spacing: Spacing
 
         faqs: [String]
       }
@@ -143,6 +153,7 @@ exports.createSchemaCustomization = ({
         type: String!
         slug: String
         title: String
+        spacing: Spacing
 
         cards_type: String
         background_image: Image

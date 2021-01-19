@@ -1,20 +1,19 @@
 import { graphql } from "gatsby"
 import React from "react"
+import { Spacing } from "../models/Spacing"
 import Detail, { DetailModel } from "./Detail"
 
 export interface DetailsSectionModel {
-  section: {
-    type: string
-    slug?: string
-    title?: String
+  type: string
+  slug?: string
+  title?: String
+  spacing?: Spacing
 
-    text?: string
-    details?: DetailModel[]
-  }
+  text?: string
+  details?: DetailModel[]
 }
 
-const DetailsSection: React.FC<DetailsSectionModel> = ({ section }) => {
-  const { details } = section
+const DetailsSection: React.FC<DetailsSectionModel> = ({ details }) => {
   return (
     <ul>
       {details.map(detail => (

@@ -5,9 +5,11 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
+import { Grid, GridItem } from "@chakra-ui/react"
 import { graphql, useStaticQuery } from "gatsby"
 import _ from "lodash"
 import React from "react"
+import { SectionModel } from "../models/Section"
 import { Fonts } from "../theme/Fonts"
 import Header from "./Header"
 import sections from "./sections"
@@ -26,21 +28,47 @@ const Layout = props => {
     }
   `)
 
+  // Transform section frontmatter into actual components
+  const frontmatterSections: SectionModel[] = _.get(
+    pageData,
+    "mdx.frontmatter.sections",
+    []
+  )
+  const sectionComponents = frontmatterSections
+    .map(sectionData => {
+      const component: React.FC<SectionModel> =
+        sections[_.upperFirst(_.camelCase(`${sectionData.type}_section`))]
+
+      if (!component) {
+        return
+      }
+
+      return {
+        type: sectionData.type,
+        component,
+        data: sectionData,
+        spacing: sectionData.spacing,
+      }
+    })
+    // Filter out invalid components
+    .filter(sectionComponent => sectionComponent)
+
   return (
     <>
       <Fonts />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
 
       <main>
-        {_.get(pageData, "mdx.frontmatter.sections", [])
-          .map((section, sectionIdx) => {
-            const Section =
-              sections[_.upperFirst(_.camelCase(`${section.type}_section`))]
-            return Section ? (
-              <Section key={sectionIdx} {...props} section={section} />
-            ) : undefined
-          })
-          .filter(section => section)}
+        {/* Render sections as vertically stacked grid */}
+        <Grid gridTemplateColumns="1fr">
+          {sectionComponents.map(
+            ({ type, component: Section, data, spacing }, sectionIdx) => (
+              <GridItem key={`${type}-${sectionIdx}`} mb={spacing?.bottom}>
+                <Section {...data} />
+              </GridItem>
+            )
+          )}
+        </Grid>
       </main>
 
       <footer>

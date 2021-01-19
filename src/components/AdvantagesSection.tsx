@@ -2,20 +2,22 @@ import { Heading, List, ListIcon, ListItem } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
 import ArrowBoldIcon from "../icons/ArrowBold"
+import { Spacing } from "../models/Spacing"
 
 export interface AdvantagesSectionModel {
-  section: {
-    type: string
-    slug?: string
-    title?: string
+  type: string
+  slug?: string
+  title?: string
+  spacing?: Spacing
 
-    text?: string
-    advantages?: string[]
-  }
+  text?: string
+  advantages?: string[]
 }
 
-const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({ section }) => {
-  const { title, advantages } = section
+const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({
+  title,
+  advantages,
+}) => {
   return (
     <section>
       {/* Title */}

@@ -5,24 +5,29 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import { Image } from "../models/Image"
+import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
 import ShiftBy from "./ShiftBy"
 
 export interface HeaderSectionModel {
-  section: {
-    type: string
-    slug?: string
-    title?: string
+  type: string
+  slug?: string
+  title?: string
+  spacing?: Spacing
 
-    headerType?: string
-    image?: Image
-    text?: string
-  }
+  headerType?: string
+  image?: Image
+  text?: string
 }
 
-const HeaderSection: React.FC<HeaderSectionModel> = ({ section }) => {
-  const { type, slug, title, headerType, image, text } = section
-
+const HeaderSection: React.FC<HeaderSectionModel> = ({
+  type,
+  slug,
+  title,
+  headerType,
+  image,
+  text,
+}) => {
   const imageData = getImage(image.file)
   const StyleableGatsbyImage = chakra(GatsbyImage)
 
@@ -114,6 +119,9 @@ export const query = graphql`
     type
     slug
     title
+    spacing {
+      bottom
+    }
     headerType: header_type
     image {
       file {

@@ -2,25 +2,30 @@ import { GridItem } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
 import { Image } from "../models/Image"
+import { Spacing } from "../models/Spacing"
 import Card, { CardModel } from "./Card"
 import ContainerGrid from "./ContainerGrid"
 import SocialMediaPost, { SocialMediaPostModel } from "./SocialMediaPost"
 
 export interface CardsSectionModel {
-  section: {
-    type: string
-    slug?: string
-    title?: string
+  type: string
+  slug?: string
+  title?: string
+  spacing?: Spacing
 
-    cardsType?: String
-    backgroundImage?: Image
-    columns?: [CardModel | SocialMediaPostModel]
-  }
+  cardsType?: String
+  backgroundImage?: Image
+  columns?: [CardModel | SocialMediaPostModel]
 }
 
-const CardsSection: React.FC<CardsSectionModel> = ({ section }) => {
-  // TODO: use those
-  const { type, slug, title, cardsType, backgroundImage, columns } = section
+const CardsSection: React.FC<CardsSectionModel> = ({
+  type,
+  slug,
+  title,
+  cardsType,
+  backgroundImage,
+  columns,
+}) => {
   const defaultColumnPosition = ["main"]
   const columnPositions = [
     ["full", null, "3 / -3", null, "9 / -3"],
@@ -53,6 +58,9 @@ export const query = graphql`
   fragment CardsSectionFields on CardsSection {
     type
     slug
+    spacing {
+      bottom
+    }
     cardsType: cards_type
     columns {
       ... on Card {
