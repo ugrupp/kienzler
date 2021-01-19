@@ -9,6 +9,7 @@ import { Grid, GridItem } from "@chakra-ui/react"
 import { graphql, useStaticQuery } from "gatsby"
 import _ from "lodash"
 import React from "react"
+import { Background } from "../models/Background"
 import { SectionModel } from "../models/Section"
 import { Fonts } from "../theme/Fonts"
 import Header from "./Header"
@@ -28,7 +29,7 @@ const Layout = props => {
     }
   `)
 
-  // Transform section frontmatter into actual components
+  // Get and transform section frontmatter into actual components
   const frontmatterSections: SectionModel[] = _.get(
     pageData,
     "mdx.frontmatter.sections",
@@ -53,17 +54,43 @@ const Layout = props => {
     // Filter out invalid components
     .filter(sectionComponent => sectionComponent)
 
+  // Get backgrounds frontmatter
+  const backgrounds: Background[] = _.get(
+    pageData,
+    "mdx.frontmatter.backgrounds",
+    []
+  )
+
   return (
     <>
       <Fonts />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
 
       <main>
-        {/* Render sections as vertically stacked grid */}
-        <Grid gridTemplateColumns="1fr">
+        {/* Render sections and backgrounds as vertical grid */}
+        <Grid>
+          {/* Backgrounds */}
+          {backgrounds.map(({ rows, gradient, spacing }) => (
+            <GridItem
+              bgGradient={gradient}
+              gridColumn="1"
+              gridRow={rows}
+              pointerEvents="none"
+              mt={spacing?.top}
+              mb={spacing?.bottom}
+            />
+          ))}
+
+          {/* Sections */}
           {sectionComponents.map(
             ({ type, component: Section, data, spacing }, sectionIdx) => (
-              <GridItem key={`${type}-${sectionIdx}`} mb={spacing?.bottom}>
+              <GridItem
+                key={`${type}-${sectionIdx}`}
+                pt={spacing?.top}
+                pb={spacing?.bottom}
+                gridColumn="1"
+                gridRow={sectionIdx + 1}
+              >
                 <Section {...data} />
               </GridItem>
             )

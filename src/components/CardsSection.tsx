@@ -59,7 +59,7 @@ export const query = graphql`
     type
     slug
     spacing {
-      bottom
+      ...SpacingFragment
     }
     cardsType: cards_type
     columns {

@@ -1,5 +1,10 @@
 ---
 title: Startseite
+backgrounds:
+  - rows: 1 / 3
+    gradient: linear-gradient(to-b, gray.50, transparent)
+    spacing:
+      top: [16, null, 24]
 sections:
   - type: header
     header_type: alpha
@@ -11,12 +16,7 @@ sections:
       fit: cover
       position: 50% 65%
     spacing:
-      bottom:
-        - 14
-        - null
-        - 28
-        - null
-        - 24
+      bottom: [14, null, 28, null, 24]
   - type: cards
     slug: themen
     cards_type: alpha
@@ -53,12 +53,7 @@ sections:
           url: /fertiggaragen/
           label: Mehr entdecken
     spacing:
-      bottom:
-        - 40
-        - null
-        - 60
-        - null
-        - 72
+      bottom: [40, null, 60, null, 72]
   - type: cards
     slug: themen-2
     cards_type: beta
@@ -113,6 +108,9 @@ export const query = graphql`
       slug
       frontmatter {
         title
+        backgrounds {
+          ...BackgroundFragment
+        }
         sections {
           ...MdxFrontmatterSectionsFields
         }

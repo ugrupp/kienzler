@@ -62,11 +62,19 @@ exports.createSchemaCustomization = ({
       }
 
       type Spacing {
+        top: [String]
         bottom: [String]
+      }
+
+      type Background {
+        rows: String!
+        gradient: String!
+        spacing: Spacing
       }
 
       # Sections
       type MdxFrontmatter implements Node {
+        backgrounds: [Background]
         sections: [MdxFrontmatterSections]
       }
 

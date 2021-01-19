@@ -120,7 +120,7 @@ export const query = graphql`
     slug
     title
     spacing {
-      bottom
+      ...SpacingFragment
     }
     headerType: header_type
     image {
