@@ -14,7 +14,7 @@ export interface CardsSectionModel {
   title?: string
   spacing?: Spacing
 
-  cardsType?: String
+  cardsType?: "alpha" | "beta"
   backgroundImage?: Image
   columns?: [CardModel | SocialMediaPostModel]
 }
@@ -27,11 +27,121 @@ const CardsSection: React.FC<CardsSectionModel> = ({
   backgroundImage,
   columns,
 }) => {
-  const defaultColumnPosition = ["main"]
-  const columnPositions = [
-    ["full", null, "3 / -3", null, "9 / -3"],
-    ["full", null, "3 / -3", null, "3 / 7"],
-  ]
+  const defaultColumnPosition = ["3 / 13"]
+
+  // TODO: make editable in YAML
+  const cardsConfig = {
+    alpha: {
+      rowSpan: 2,
+      columnPositions: [
+        ["full", null, "3 / 13", null, "9 / 13"],
+        ["full", null, "3 / 13", null, "3 / 7"],
+        ["full", null, "3 / 13", null, "9 / 13"],
+        ["full", null, "3 / 13", null, "3 / 7"],
+      ],
+      cardGridColumns: [
+        {
+          title: [
+            "3 / 13",
+            "4 / 13",
+            "5 / main",
+            "7 / main",
+            "main / -3",
+            "main / -4",
+          ],
+          text: [
+            "3 / 13",
+            "4 / 13",
+            "5 / main",
+            "7 / main",
+            "main / -3",
+            "main / -4",
+          ],
+          cta: [
+            "3 / full",
+            "4 / full",
+            "5 / main",
+            "7 / main",
+            "main / -3",
+            "main / -4",
+          ],
+        },
+      ],
+    },
+    beta: {
+      rowSpan: 3,
+      columnPositions: [
+        ["main / 7", null, "8 / 13", "10 / 13", "9 / 12", "9 / 11"],
+        ["full", null, "3 / 13", null, "3 / 7"],
+        ["full", null, "3 / 13", null, "10 / 14"], // TODO
+        ["7 / main", null, "3 / 8", "3 / 6", "4 / 7", "5 / 7"],
+        ["full", null, "3 / 13", null, "9 / 13"],
+        ["full", null, "3 / 13", null, "4 / 8"],
+        ["main / 7", null, "8 / 13", "10 / 13", "10 / 13", "11 / 13"],
+      ],
+      cardGridColumns: [
+        null,
+        null,
+        {
+          title: [
+            "3 / 13",
+            "4 / 13",
+            "5 / main",
+            "7 / main",
+            "main / -3",
+            "main / -4",
+          ],
+          text: [
+            "3 / 13",
+            "4 / 13",
+            "5 / main",
+            "7 / main",
+            "main / -3",
+            "main / -4",
+          ],
+          cta: [
+            "3 / full",
+            "4 / full",
+            "5 / main",
+            "7 / main",
+            "main / -3",
+            "main / -4",
+          ],
+        },
+        null,
+        null,
+        {
+          title: [
+            "3 / 13",
+            "4 / 13",
+            "5 / main",
+            "7 / main",
+            "main / -3",
+            "main / -4",
+          ],
+          text: [
+            "3 / 13",
+            "4 / 13",
+            "5 / main",
+            "7 / main",
+            "main / -3",
+            "main / -4",
+          ],
+          cta: [
+            "3 / full",
+            "4 / full",
+            "5 / main",
+            "7 / main",
+            "main / -3",
+            "main / -4",
+          ],
+        },
+      ],
+    },
+  }
+
+  const currentCardsConfig = cardsConfig[cardsType]
+
   // Background image
   const backgroundImageData = getImage(backgroundImage?.file)
   const BackgroundImage = chakra(GatsbyImage)
@@ -69,7 +179,7 @@ const CardsSection: React.FC<CardsSectionModel> = ({
             top={0}
             bottom={0}
             zIndex={5}
-            bgGradient="linear-gradient(to-b, orange.500 0%, transparent 100%)"
+            bgGradient="linear-gradient(to-b, orange.500 0%, transparent 90%)"
             sx={{
               mixBlendMode: "multiply",
             }}
@@ -86,14 +196,21 @@ const CardsSection: React.FC<CardsSectionModel> = ({
         <ContainerGrid rowGap={[36]}>
           {columns.map((item, idx) => (
             <GridItem
-              rowSpan={{ lg: 2 }}
-              gridColumn={columnPositions[idx % 2] ?? defaultColumnPosition}
+              rowSpan={{ lg: currentCardsConfig.rowSpan }}
+              gridColumn={
+                currentCardsConfig.columnPositions[idx] ?? defaultColumnPosition
+              }
               key={idx}
             >
               {item.type === "social_media_post" ? (
                 <SocialMediaPost {...(item as SocialMediaPostModel)} />
               ) : (
-                <Card {...(item as CardModel)} />
+                <Card
+                  gridColumns={
+                    currentCardsConfig.cardGridColumns[idx] ?? undefined
+                  }
+                  {...(item as CardModel)}
+                />
               )}
             </GridItem>
           ))}

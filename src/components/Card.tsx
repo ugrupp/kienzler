@@ -29,18 +29,55 @@ export interface CardModel {
   image?: Image
   content?: string
   cta?: LinkModel
+  gridColumns: {
+    title: string[]
+    image: string[]
+    text: string[]
+    cta: string[]
+  }
 }
 
-const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
+const Card: React.FC<CardModel> = ({
+  title,
+  image,
+  content,
+  cta,
+  gridColumns,
+}) => {
   const imageData = getImage(image?.file)
   const [cardHover, setCardHover] = useState<true | undefined>(undefined)
   const theme: Theme = useTheme()
-
-  const gridColumns = {
-    title: ["3 / -3", "4 / -3", "main / -5", null, "main / -3", "main / -4"],
+  const defaultGridColumns = {
+    title: [
+      "3 / -3",
+      "4 / -3",
+      "main / -5",
+      "main / -7",
+      "main / -3",
+      "main / -4",
+    ],
     image: ["3 / full", "4 / full", "main", "main / -5", "main"],
-    text: ["3 / -3", "4 / -3", "main / -5", null, "main / -3", "main / -4"],
-    cta: ["3 / -3", "4 / -3", "main", null, "main"],
+    text: [
+      "3 / -3",
+      "4 / -3",
+      "main / -5",
+      "main / -7",
+      "main / -3",
+      "main / -4",
+    ],
+    cta: [
+      "3 / -3",
+      "4 / -3",
+      "main / -5",
+      "main / -7",
+      "main / -3",
+      "main / -4",
+    ],
+  }
+
+  gridColumns = {
+    ...defaultGridColumns,
+    ...gridColumns,
   }
 
   // Wrapper props (conditionally renders a link)
