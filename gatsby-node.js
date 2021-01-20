@@ -173,7 +173,19 @@ exports.createSchemaCustomization = ({
         post: String
       }
 
-      # Social media post type
+      # Social media post types
+      type FacebookYaml implements Node {
+        thumbnail: Image
+      }
+
+      type InstagramYaml implements Node {
+        thumbnail: Image
+      }
+
+      type YoutubeYaml implements Node {
+        thumbnail: Image
+      }
+
       union SocialMediaPostType = FacebookYaml | InstagramYaml | YoutubeYaml
 
       # Cards

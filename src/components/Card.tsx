@@ -8,6 +8,7 @@ import {
   useTheme,
 } from "@chakra-ui/react"
 import { AnimatePresence, motion } from "framer-motion"
+import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React, { useState } from "react"
@@ -183,3 +184,31 @@ const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
 }
 
 export default Card
+
+export const query = graphql`
+  fragment CardFragment on Card {
+    type
+    title
+    content
+    image {
+      file {
+        childImageSharp {
+          gatsbyImageData(
+            maxWidth: 800
+            layout: FLUID
+            placeholder: DOMINANT_COLOR
+            quality: 75
+          )
+        }
+      }
+      alt
+      fit
+      position
+    }
+    cta {
+      url
+      label
+      target
+    }
+  }
+`

@@ -50,8 +50,9 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
             <Tooltip
               label={
                 <Flex direction="column" alignItems="flex-end">
-                  {["Menü", "öffnen"].map(labelPart => (
+                  {["Menü", "öffnen"].map((labelPart, idx) => (
                     <Box
+                      key={idx}
                       backgroundColor="gray.200"
                       textStyle="h4"
                       fontSize="3xs"

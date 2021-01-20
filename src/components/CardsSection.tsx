@@ -64,52 +64,10 @@ export const query = graphql`
     cardsType: cards_type
     columns {
       ... on Card {
-        type
-        title
-        content
-        image {
-          file {
-            childImageSharp {
-              gatsbyImageData(
-                maxWidth: 800
-                layout: FLUID
-                placeholder: DOMINANT_COLOR
-                quality: 75
-              )
-            }
-          }
-          alt
-          fit
-          position
-        }
-        cta {
-          url
-          label
-          target
-        }
+        ...CardFragment
       }
       ... on SocialMediaPost {
-        type
-        post {
-          ... on FacebookYaml {
-            id
-            title
-            url
-            thumbnail
-          }
-          ... on InstagramYaml {
-            id
-            title
-            url
-            thumbnail
-          }
-          ... on YoutubeYaml {
-            id
-            title
-            url
-            thumbnail
-          }
-        }
+        ...SocialMediaPostFragment
       }
     }
   }

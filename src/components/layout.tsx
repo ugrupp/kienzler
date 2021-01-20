@@ -70,8 +70,9 @@ const Layout = props => {
         {/* Render sections and backgrounds as vertical grid */}
         <Grid>
           {/* Backgrounds */}
-          {backgrounds.map(({ rows, gradient, spacing }) => (
+          {backgrounds.map(({ rows, gradient, spacing }, idx) => (
             <GridItem
+              key={idx}
               bgGradient={gradient}
               gridColumn="1"
               gridRow={rows}
