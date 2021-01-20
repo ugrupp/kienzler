@@ -35,6 +35,7 @@ export interface CardModel {
     text: string[]
     cta: string[]
   }
+  colorScheme: "default" | "white"
 }
 
 const Card: React.FC<CardModel> = ({
@@ -43,6 +44,7 @@ const Card: React.FC<CardModel> = ({
   content,
   cta,
   gridColumns,
+  colorScheme = "default",
 }) => {
   const imageData = getImage(image?.file)
   const [cardHover, setCardHover] = useState<true | undefined>(undefined)
@@ -92,7 +94,12 @@ const Card: React.FC<CardModel> = ({
     : {}
 
   return (
-    <Box display="block" position="relative" {...wrapperProps}>
+    <Box
+      display="block"
+      position="relative"
+      {...wrapperProps}
+      color={colorScheme === "white" ? "white" : undefined}
+    >
       <ContainerGrid
         sizes={[
           {
@@ -117,7 +124,11 @@ const Card: React.FC<CardModel> = ({
         {/* Title */}
         {!!title && (
           <GridItem gridColumn={gridColumns.title} mb={[6, null, 10]}>
-            <Heading as="h2" textStyle="h2" color="orange.500">
+            <Heading
+              as="h2"
+              textStyle="h2"
+              color={colorScheme === "white" ? "white" : "orange.500"}
+            >
               {title}
             </Heading>
           </GridItem>
@@ -135,7 +146,7 @@ const Card: React.FC<CardModel> = ({
                 sx={{
                   marginRight: [4, null, 6],
                   flexShrink: 0,
-                  color: "orange.500",
+                  color: colorScheme === "white" ? "white" : "orange.500",
                 }}
               >
                 <ArrowIcon
@@ -211,7 +222,11 @@ const Card: React.FC<CardModel> = ({
             gridColumn={gridColumns.cta}
             mt={content ? [8, null, 10] : undefined}
           >
-            <Button data-hover={cardHover} rightIcon={<ArrowBoldIcon />}>
+            <Button
+              data-hover={cardHover}
+              rightIcon={<ArrowBoldIcon />}
+              colorScheme={colorScheme === "white" ? "white-dark" : undefined}
+            >
               <ShiftBy y={"2px"}>{cta.label}</ShiftBy>
             </Button>
           </GridItem>
