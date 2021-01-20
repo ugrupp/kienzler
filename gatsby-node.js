@@ -14,16 +14,20 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // this refId can later be used to resolve frontmatter refs
   if (
     node.internal.type === "DetailsYaml" ||
-    node.internal.type === "FaqsYaml"
+    node.internal.type === "FaqsYaml" ||
+    node.internal.type === "FacebookYaml" ||
+    node.internal.type === "InstagramYaml" ||
+    node.internal.type === "YoutubeYaml"
   ) {
     // Create ref id (= filename without extension)
-    const refId = createFilePath({
+    const refParts = createFilePath({
       node,
       getNode,
       trailingSlash: false,
     })
       .split("/")
-      .reverse()[0]
+      .reverse()
+    const refId = refParts[0]
 
     // Added at node.fields.refId
     createNodeField({
@@ -31,6 +35,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value: refId,
     })
+
+    // Also provide the social media post type as a separate field
+    if (
+      node.internal.type === "FacebookYaml" ||
+      node.internal.type === "InstagramYaml" ||
+      node.internal.type === "YoutubeYaml"
+    ) {
+      createNodeField({
+        name: "postType",
+        node,
+        value: refParts[1],
+      })
+    }
   }
 }
 
@@ -156,6 +173,9 @@ exports.createSchemaCustomization = ({
         post: String
       }
 
+      # Social media post type
+      union SocialMediaPostType = FacebookYaml | InstagramYaml | YoutubeYaml
+
       # Cards
       type CardsSection implements Section & Node {
         type: String!
@@ -192,6 +212,35 @@ exports.createSchemaCustomization = ({
       fieldType: "[FaqsYaml]",
       fieldId: "faqs",
       targetType: "FaqsYaml",
+    }),
+    schema.buildObjectType({
+      name: "SocialMediaPost",
+      fields: {
+        post: {
+          type: "SocialMediaPostType",
+          resolve: (source, args, context, info) => {
+            // Get post type and ref id from post ref
+            const postRefParts = source.post.split("/").reverse()
+            const postType = postRefParts[1]
+            const refId = postRefParts[0].replace(".yaml", "")
+
+            // Query for all nodes of the given postType
+            const nodes = context.nodeModel.getAllNodes({
+              type:
+                postType === "facebook"
+                  ? "FacebookYaml"
+                  : postType === "instagram"
+                  ? "InstagramYaml"
+                  : postType === "youtube"
+                  ? "YoutubeYaml"
+                  : null,
+            })
+
+            // Unfortunately the file path isn't exposed on the YAML nodes so we search by the previously set refId
+            return nodes.find(node => node.fields.refId === refId)
+          },
+        },
+      },
     }),
 
     // Image: transform src to file node
@@ -281,8 +330,7 @@ const resolveRef = ({ schema, sectionName, fieldType, fieldId, targetType }) =>
           const nodes = context.nodeModel.getAllNodes({ type: targetType })
           // Map through refs (file paths) and find corresponding nodes
           return source[fieldId].map(ref => {
-            // Unfortunately the file path isn't exposed on the YAML nodes.
-            // TODO: Find a way to query by filepath instead of ref id.
+            // Unfortunately the file path isn't exposed on the YAML nodes so we search by the previously set refId
             const refId = ref.split("/").reverse()[0].replace(".yaml", "")
             return nodes.find(node => node.fields.refId === refId)
           })

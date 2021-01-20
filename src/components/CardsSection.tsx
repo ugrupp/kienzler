@@ -90,7 +90,26 @@ export const query = graphql`
       }
       ... on SocialMediaPost {
         type
-        post
+        post {
+          ... on FacebookYaml {
+            id
+            title
+            url
+            thumbnail
+          }
+          ... on InstagramYaml {
+            id
+            title
+            url
+            thumbnail
+          }
+          ... on YoutubeYaml {
+            id
+            title
+            url
+            thumbnail
+          }
+        }
       }
     }
   }
