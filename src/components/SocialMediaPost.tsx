@@ -82,7 +82,7 @@ const SocialMediaPost: React.FC<SocialMediaPostModel> = ({ post }) => {
                 right={0}
                 top={0}
                 bottom={0}
-                zIndex={10}
+                zIndex={5}
                 opacity={0}
                 bgGradient="linear-gradient(to-b, orange.500 0%, transparent 100%)"
                 sx={{
@@ -105,7 +105,7 @@ const SocialMediaPost: React.FC<SocialMediaPostModel> = ({ post }) => {
         position="absolute"
         left={[4, null, null, null, null, 5]}
         bottom={0}
-        zIndex={10}
+        zIndex={5}
         transform="translateY(50%)"
       >
         <Icon color="orange.500" boxSize={6} />

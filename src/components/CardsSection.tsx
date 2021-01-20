@@ -68,7 +68,7 @@ const CardsSection: React.FC<CardsSectionModel> = ({
             right={0}
             top={0}
             bottom={0}
-            zIndex={10}
+            zIndex={5}
             bgGradient="linear-gradient(to-b, orange.500 0%, transparent 100%)"
             sx={{
               mixBlendMode: "multiply",
@@ -80,7 +80,7 @@ const CardsSection: React.FC<CardsSectionModel> = ({
       {/* Cards grid */}
       <Box
         position="relative"
-        zIndex={10}
+        zIndex={5}
         mt={!!backgroundImageData ? "-100vh" : undefined}
       >
         <ContainerGrid rowGap={[36]}>

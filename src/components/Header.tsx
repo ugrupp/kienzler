@@ -1,4 +1,13 @@
-import { Box, Button, chakra, Flex, Image, Tooltip } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  chakra,
+  Flex,
+  Image,
+  Theme,
+  Tooltip,
+  useTheme,
+} from "@chakra-ui/react"
 import { Link } from "gatsby"
 import React from "react"
 // @ts-ignore
@@ -7,20 +16,21 @@ import ContainerGrid from "./ContainerGrid"
 
 const StyleableLink = chakra(Link)
 
-const logoHeights = [12, null, 14]
-
 export interface HeaderModel {
   siteTitle: string
 }
 
 const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
+  const theme: Theme = useTheme()
+  const logoHeights = [12, null, 14]
+
   return (
     <Box
       position="fixed"
       top={0}
       left={0}
       right={0}
-      zIndex={10}
+      zIndex={theme.zIndices.banner}
       mt={["6vh", null, "7vh", null, "9vh"]}
     >
       <ContainerGrid>
