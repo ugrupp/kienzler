@@ -124,6 +124,7 @@ const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
                     alt={image.alt ?? ""}
                     objectFit={image.fit}
                     objectPosition={image.position}
+                    style={{ display: "block" }}
                   />
                 </motion.div>
 

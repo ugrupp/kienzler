@@ -101,6 +101,7 @@ const HeaderSection: React.FC<HeaderSectionModel> = ({
               alt={image.alt ?? ""}
               objectFit={image.fit}
               objectPosition={image.position}
+              style={{ display: "block" }}
               sx={{
                 height: ["47vh", null, "51vh", null, "67vh"],
                 minHeight: "100%",
