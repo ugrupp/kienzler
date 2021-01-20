@@ -1,5 +1,6 @@
-import { GridItem } from "@chakra-ui/react"
+import { Box, chakra, GridItem } from "@chakra-ui/react"
 import { graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
 import { Image } from "../models/Image"
 import { Spacing } from "../models/Spacing"
@@ -31,24 +32,74 @@ const CardsSection: React.FC<CardsSectionModel> = ({
     ["full", null, "3 / -3", null, "9 / -3"],
     ["full", null, "3 / -3", null, "3 / 7"],
   ]
+  // Background image
+  const backgroundImageData = getImage(backgroundImage?.file)
+  const BackgroundImage = chakra(GatsbyImage)
+
   return (
-    <section>
-      <ContainerGrid rowGap={[36]}>
-        {columns.map((item, idx) => (
-          <GridItem
-            rowSpan={{ lg: 2 }}
-            gridColumn={columnPositions[idx % 2] ?? defaultColumnPosition}
-            key={idx}
-          >
-            {item.type === "social_media_post" ? (
-              <SocialMediaPost {...(item as SocialMediaPostModel)} />
-            ) : (
-              <Card {...(item as CardModel)} />
-            )}
-          </GridItem>
-        ))}
-      </ContainerGrid>
-    </section>
+    <Box as="section" position="relative">
+      {/* Background image */}
+      {!!backgroundImageData && (
+        <Box
+          sx={{
+            position: "sticky",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            zIndex: 0,
+            height: "100vh",
+          }}
+        >
+          {/* Image */}
+          <BackgroundImage
+            image={backgroundImageData}
+            alt={backgroundImage.alt ?? ""}
+            objectFit={"cover"}
+            objectPosition={backgroundImage.position}
+            style={{ display: "block" }}
+            height="100%"
+          />
+
+          {/* Gradient overlay */}
+          <Box
+            position="absolute"
+            left={0}
+            right={0}
+            top={0}
+            bottom={0}
+            zIndex={10}
+            bgGradient="linear-gradient(to-b, orange.500 0%, transparent 100%)"
+            sx={{
+              mixBlendMode: "multiply",
+            }}
+          />
+        </Box>
+      )}
+
+      {/* Cards grid */}
+      <Box
+        position="relative"
+        zIndex={10}
+        mt={!!backgroundImageData ? "-100vh" : undefined}
+      >
+        <ContainerGrid rowGap={[36]}>
+          {columns.map((item, idx) => (
+            <GridItem
+              rowSpan={{ lg: 2 }}
+              gridColumn={columnPositions[idx % 2] ?? defaultColumnPosition}
+              key={idx}
+            >
+              {item.type === "social_media_post" ? (
+                <SocialMediaPost {...(item as SocialMediaPostModel)} />
+              ) : (
+                <Card {...(item as CardModel)} />
+              )}
+            </GridItem>
+          ))}
+        </ContainerGrid>
+      </Box>
+    </Box>
   )
 }
 
@@ -62,6 +113,15 @@ export const query = graphql`
       ...SpacingFragment
     }
     cardsType: cards_type
+    backgroundImage: background_image {
+      file {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, quality: 75)
+        }
+      }
+      alt
+      position
+    }
     columns {
       ... on Card {
         ...CardFragment

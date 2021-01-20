@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import { Grid, GridItem } from "@chakra-ui/react"
+import { Box, Grid, GridItem } from "@chakra-ui/react"
 import { graphql, useStaticQuery } from "gatsby"
 import _ from "lodash"
 import React from "react"
@@ -99,11 +99,11 @@ const Layout = props => {
         </Grid>
       </main>
 
-      <footer>
+      <Box as="footer" height="500px" backgroundColor="gray.500" color="white">
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.com">Gatsby</a>
-      </footer>
+      </Box>
     </>
   )
 }

@@ -132,16 +132,16 @@ const Card: React.FC<CardModel> = ({ title, image, content, cta }) => {
                 <AnimatePresence>
                   {cardHover && (
                     <MotionBox
+                      position="absolute"
+                      left={0}
+                      right={0}
+                      top={0}
+                      bottom={0}
+                      zIndex={10}
+                      opacity={0}
+                      bgGradient="linear-gradient(to-b, orange.500 0%, transparent 100%)"
                       sx={{
-                        position: "absolute",
-                        left: 0,
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                        zIndex: 10,
                         mixBlendMode: "multiply",
-                        backgroundImage: `linear-gradient(180deg, rgba(234, 106, 31, 1) 0%, rgba(234, 106, 31, 0) 100%)`,
-                        opacity: 0,
                       }}
                       transition={{
                         duration: convertMSToInt(
