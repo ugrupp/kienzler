@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   chakra,
   Flex,
   Image,
@@ -10,6 +9,8 @@ import {
 } from "@chakra-ui/react"
 import { Link } from "gatsby"
 import React from "react"
+import useBoop from "../hooks/useBoop"
+import MenuToggleIcon from "../icons/MenuToggle"
 // @ts-ignore
 import Logo from "../images/logo.svg"
 import ContainerGrid from "./ContainerGrid"
@@ -22,6 +23,14 @@ export interface HeaderModel {
 
 const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
   const theme: Theme = useTheme()
+  const [
+    menuToggleBoopAnimation,
+    menuToggleBoopTransition,
+    menuToggleBoopTrigger,
+  ] = useBoop({
+    rotate: 20,
+    scale: 1.15,
+  })
   const logoHeights = [12, null, 14]
 
   return (
@@ -83,7 +92,36 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
               gutter={0}
               placement="bottom-end"
             >
-              <Button variant="solid">+</Button>
+              <Box
+                as="button"
+                aria-label="Menü öffnen"
+                height={["1.625rem", null, "1.875rem"]}
+                width={["1.625rem", null, "1.875rem"]}
+                color="orange.500"
+                transitionProperty="all"
+                transitionDuration="normal"
+                appearance="none"
+                p={0}
+                _hover={{
+                  color: "gray.500",
+                }}
+                _focus={{
+                  outline: "none",
+                  color: "gray.500",
+                }}
+                _active={{
+                  transform: "translate(1px, 1px)",
+                }}
+                onMouseEnter={menuToggleBoopTrigger}
+              >
+                <MenuToggleIcon
+                  height="100%"
+                  width="100%"
+                  display="block"
+                  animate={menuToggleBoopAnimation}
+                  transition={menuToggleBoopTransition}
+                />
+              </Box>
             </Tooltip>
           </Flex>
         </Box>
