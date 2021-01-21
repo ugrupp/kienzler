@@ -1,6 +1,7 @@
 import { Button, Heading, Text } from "@chakra-ui/react"
 import { MDXProvider } from "@mdx-js/react"
 import React from "react"
+import { MenuDisclosureContextProvider } from "./src/context/MenuDisclosureContext"
 
 const h1 = props => <Heading as="h1" textStyle="h1" {...props} />
 const h2 = props => <Heading as="h2" textStyle="h2" {...props} />
@@ -22,5 +23,7 @@ const components = {
 }
 
 export const wrapRootElement = ({ element }) => (
-  <MDXProvider components={components}>{element}</MDXProvider>
+  <MenuDisclosureContextProvider>
+    <MDXProvider components={components}>{element}</MDXProvider>
+  </MenuDisclosureContextProvider>
 )

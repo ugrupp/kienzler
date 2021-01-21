@@ -13,6 +13,7 @@ import { Background } from "../models/Background"
 import { SectionModel } from "../models/Section"
 import { Fonts } from "../theme/Fonts"
 import Header from "./Header"
+import MenuOverlay from "./MenuOverlay"
 import sections from "./sections"
 
 const Layout = props => {
@@ -64,7 +65,10 @@ const Layout = props => {
   return (
     <>
       <Fonts />
+
+      {/* Header & menu overlay */}
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <MenuOverlay />
 
       <main>
         {/* Render sections and backgrounds as vertical grid */}

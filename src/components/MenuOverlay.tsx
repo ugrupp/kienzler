@@ -6,8 +6,8 @@ import {
   GridItem,
 } from "@chakra-ui/react"
 import React, { useContext } from "react"
+import { MenuDisclosureContext } from "../context/MenuDisclosureContext"
 import ContainerGrid from "./ContainerGrid"
-import { MenuDisclosureContext } from "./Header"
 
 export interface MenuOverlayProps {}
 
