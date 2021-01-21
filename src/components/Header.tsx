@@ -98,7 +98,7 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
               boxShadow="none"
               gutter={0}
               placement="bottom-end"
-              closeOnClick={false}
+              closeOnClick={true}
             >
               <Box
                 as="button"
@@ -115,9 +115,6 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
                 _focus={{
                   outline: "none",
                   color: "gray.500",
-                }}
-                _active={{
-                  transform: "translate(1px, 1px)",
                 }}
                 onMouseEnter={menuToggleBoopTrigger}
                 onClick={onMenuToggle}
