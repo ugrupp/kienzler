@@ -3,5 +3,5 @@ image:
   src: images/details-vordach.jpg
   alt: Vordach an der Garage
 tooltip:
-  position: 50% 10%
+  position: 45% 14%
   direction: right

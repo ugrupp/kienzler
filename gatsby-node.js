@@ -137,6 +137,11 @@ exports.createSchemaCustomization = ({
         details: [String]
       }
 
+      type DetailsYaml implements Node {
+        image: Image
+        text: String @mdx
+      }
+
       # Colors
       type ColorsSection implements Section & Node {
         type: String!

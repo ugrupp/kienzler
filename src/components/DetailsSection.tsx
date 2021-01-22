@@ -1,3 +1,4 @@
+import { Box, Flex, Spacer } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
 import { Spacing } from "../models/Spacing"
@@ -15,11 +16,13 @@ export interface DetailsSectionModel {
 
 const DetailsSection: React.FC<DetailsSectionModel> = ({ details }) => {
   return (
-    <ul>
+    <Flex gridGap={10}>
       {details.map(detail => (
-        <Detail {...detail} key={detail.id} />
+        <Box flexShrink={0} key={detail.id}>
+          <Detail {...detail} />
+        </Box>
       ))}
-    </ul>
+    </Flex>
   )
 }
 
@@ -32,8 +35,9 @@ export const query = graphql`
     title
     text
     details {
-      id
-      title
+      ... on DetailsYaml {
+        ...DetailsFragment
+      }
     }
   }
 `

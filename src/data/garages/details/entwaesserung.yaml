@@ -5,5 +5,5 @@ image:
   src: images/details-entwaesserung.jpg
   alt: Entwässerung
 tooltip:
-  position: 60% 20%
+  position: 65% 25%
   direction: right
