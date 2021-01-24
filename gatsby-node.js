@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-const { upperFirst } = require("lodash")
+const { upperFirst, camelCase } = require("lodash")
 const { createFilePath } = require("gatsby-source-filesystem")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -204,6 +204,25 @@ exports.createSchemaCustomization = ({
         background_image: Image
         columns: [CardsColumn]
       }
+
+      # Company header
+      type HeaderCompanySection implements Section & Node {
+        type: String!
+        slug: String
+        title: String @mdx(removeRootParagraph: true)
+        spacing: Spacing
+
+        image: Image
+        background_image: Image
+        columns: [HeaderCompanySectionColumn]
+        listColumn: HeaderCompanySectionColumn
+        imageColumn: Image
+      }
+
+      type HeaderCompanySectionColumn {
+        headline: String @mdx(removeRootParagraph: true)
+        content: String @mdx
+      }
     `,
 
     // Cards column union type with custom resolver
@@ -286,9 +305,10 @@ exports.createSchemaCustomization = ({
         "ColorsSection",
         "FaqsSection",
         "CardsSection",
+        "HeaderCompanySection",
       ],
       // Resolve section based on `type` property
-      resolveType: ({ type }) => `${upperFirst(type)}Section`,
+      resolveType: ({ type }) => `${upperFirst(camelCase(type))}Section`,
     }),
   ]
   createTypes(typeDefs)

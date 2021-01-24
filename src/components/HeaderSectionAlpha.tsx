@@ -20,6 +20,7 @@ const HeaderSectionAlpha: React.FC<HeaderSectionModel> = ({
   return (
     <Box
       as="header"
+      id={slug}
       minHeight="100vh"
       pt={["24vh", null, "26vh", null, "33vh"]}
       display="flex"

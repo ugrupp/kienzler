@@ -9,6 +9,7 @@ export interface ContainerGridProps {
   }>
   rowGap?: number[]
   columnGap?: string[]
+  templateRows?: string[]
 }
 
 const ContainerGrid: React.FC<ContainerGridProps> = ({
@@ -34,12 +35,14 @@ const ContainerGrid: React.FC<ContainerGridProps> = ({
   ],
   rowGap = [0],
   columnGap = [0],
+  templateRows,
 }) => {
   const theme = useTheme()
 
   const gridProps = {
     columnGap: columnGap,
     rowGap: rowGap,
+    templateRows,
     templateColumns: sizes.map(size => {
       return !!size
         ? `

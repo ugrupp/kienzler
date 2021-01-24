@@ -36,6 +36,7 @@ const Layout = props => {
     "mdx.frontmatter.sections",
     []
   )
+
   const sectionComponents = frontmatterSections
     .map(sectionData => {
       const component: React.FC<SectionModel> =
@@ -56,11 +57,8 @@ const Layout = props => {
     .filter(sectionComponent => sectionComponent)
 
   // Get backgrounds frontmatter
-  const backgrounds: Background[] = _.get(
-    pageData,
-    "mdx.frontmatter.backgrounds",
-    []
-  )
+  const backgrounds: Background[] =
+    _.get(pageData, "mdx.frontmatter.backgrounds", []) ?? []
 
   return (
     <>

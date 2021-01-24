@@ -1,11 +1,63 @@
 ---
 title: Unternehmen
 sections:
-  - type: header
+  - type: header_company
     slug: header
-    header_type: gamma
     title: Unternehmen
+    spacing:
+      top: ["24vh", null, "26vh", null, "33vh"]
     image:
-      src: images/dummies/455-1900x800.jpg
+      src: images/header-unternehmen.jpg
+      alt: Unternehmen
+      position: 22% 59%
+    background_image:
+      src: images/beton.jpg
+      position: 50% 50%
+    columns:
+      - headline: Wir bauen Garagen.
+        content: |-
+          Für uns ist eine Garage nicht nur ein Ort, an dem Sie Ihr Auto und andere Dinge unterbringen. Für uns ist eine Garage Ausdruck von Individualität. Der Raum, der Ihr Wohnumfeld stimmig ergänzt. Der Raum, der Platz für Ihre Ideen bietet. Der Raum, der passgenau für Sie von uns entwickelt wird.
+      - headline: Wir sind Problemlöser.
+        content: |-
+          Sie nennen uns die Rahmenbedingungen, wir finden die optimale Lösung. Das Spektrum reicht von einfachen Garagen bis hin zu sehr individuellen Lösungen, unter Nutzung vieler möglicher Optionen. Bei uns bekommen Sie von der Planung bis zur Umsetzung alles aus einer Hand.
+      - headline: Wir sind Spezialisten.
+        content: |-
+          Auf dem Weg zu Ihrer Garage begleiten wir Sie mit unserem reichhaltigen Wissen und unserer weitreichenden Erfahrung. Hier können Sie sich auf uns verlassen. Ihre Zufriedenheit als Kunde ist unser täglicher Anspruch und jede Empfehlung die Bestätigung der Erreichung dieses Ziels.
+      - headline: Wir sind ein Familienunternehmen.
+        content: |-
+          Gemeinsam schaffen wir Werte — extern sichtbare mit unseren Projekten und intern gelebte durch unsere familiäre Firmenkultur. Bei uns sind die Wege kurz und die Kommunikation lebendig. Wir sorgen für ein gutes Miteinander. Das ist die Basis unserer erfolgreichen Arbeit für Sie als Kunde.
+    listColumn:
+      headline: "Was Kunden an uns schätzen:"
+      content: |-
+        * Wir sind spezialisiert auf Garagen
+        * Wir sind kein typisches Bauunternehmen
+        * Wir sind in der Region, in der wir arbeiten, verwurzelt
+        * Wir kümmern uns um den kompletten Prozess
+        * Wir sorgen für eine zeitnahe Abwicklung
+        * Wir sichern die fachgerechte Umsetzung
+        * Wir halten Termine und sind verlässlich
+        * Wir entwickeln uns durch unsere Erfahrungen weiter
+    imageColumn:
+      src: images/unternehmen-grid.jpg
       alt: Unternehmen
 ---
+
+import { graphql } from "gatsby"
+import "../data/sections-fragment"
+
+export const query = graphql`
+  query {
+    mdx(slug: { eq: "unternehmen" }) {
+      slug
+      frontmatter {
+        title
+        backgrounds {
+          ...BackgroundFragment
+        }
+        sections {
+          ...MdxFrontmatterSectionsFields
+        }
+      }
+    }
+  }
+`

@@ -147,7 +147,7 @@ const CardsSection: React.FC<CardsSectionModel> = ({
   const BackgroundImage = chakra(GatsbyImage)
 
   return (
-    <Box as="section" position="relative">
+    <Box as="section" position="relative" id={slug}>
       {/* Background image */}
       {!!backgroundImageData && (
         <Box
