@@ -73,7 +73,7 @@ const CardsSection: React.FC<CardsSectionModel> = ({
       columnPositions: [
         ["main / 7", null, "8 / 13", "10 / 13", "9 / 12", "9 / 11"],
         ["full", null, "3 / 13", null, "3 / 7"],
-        ["full", null, "3 / 13", null, "10 / 14"], // TODO
+        ["full", null, "3 / 13", null, "10 / 14"],
         ["9 / main", null, "3 / 8", "3 / 6", "4 / 7", "5 / 7"],
         ["full", null, "3 / 13", null, "9 / 13"],
         ["full", null, "3 / 13", null, "4 / 8"],

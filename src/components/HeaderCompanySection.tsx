@@ -130,26 +130,24 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
       )}
 
       {/* Background gradient overlay */}
-      {!!backgroundImageData && ( // TODO: handle or kick no-bg-image case
-        <Box
-          id="overlay"
-          position="relative"
-          zIndex={5} // > bg image and front image
-          mt={!!backgroundImageData ? "-100vh" : undefined} // TODO: handle or kick no-bg-image case
-          height="100vh"
-          bgGradient="linear-gradient(to-b, orange.500 0%, transparent 90%)"
-          sx={{
-            mixBlendMode: "multiply",
-          }}
-        />
-      )}
+      <Box
+        id="overlay"
+        position="relative"
+        zIndex={5} // > bg image and front image
+        mt={!!backgroundImageData ? "-100vh" : undefined}
+        height="150vh"
+        bgGradient="linear-gradient(to-b, orange.500 0%, transparent 90%)"
+        sx={{
+          mixBlendMode: "multiply",
+        }}
+      />
 
       {/* Content */}
       <Box
         id="content"
         position="relative"
         zIndex={8} // > bg image, front image & bg gradient
-        mt={!!backgroundImageData ? "-100vh" : undefined} // TODO: handle or kick no-bg-image case
+        mt="-150vh"
         pt={[20, null, 24, null, 60]}
         pb={[64, null, 72]}
       >
