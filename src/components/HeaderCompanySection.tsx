@@ -104,8 +104,10 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
               <StyleableGatsbyImage
                 image={imageData}
                 alt={image.alt ?? ""}
-                objectFit={image.fit}
-                objectPosition={image.position}
+                imgStyle={{
+                  objectFit: image.fit,
+                  objectPosition: image.position,
+                }}
                 style={{ display: "block" }}
                 height={["47vh", null, "51vh", null, "67vh"]}
                 minHeight="100%"
@@ -121,8 +123,10 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
           <StyleableGatsbyImage
             image={backgroundImageData}
             alt={backgroundImage.alt ?? ""}
-            objectFit={"cover"}
-            objectPosition={backgroundImage.position}
+            imgStyle={{
+              objectFit: "cover",
+              objectPosition: backgroundImage.position,
+            }}
             style={{ display: "block" }}
             height="100%"
           />
@@ -205,8 +209,10 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
                 <StyleableGatsbyImage
                   image={imageColumnData}
                   alt={imageColumn.alt ?? ""}
-                  objectFit={imageColumn.fit}
-                  objectPosition={imageColumn.position}
+                  imgStyle={{
+                    objectFit: imageColumn.fit,
+                    objectPosition: imageColumn.position,
+                  }}
                   style={{ display: "block" }}
                   maxWidth={505}
                   ml={[null, null, null, null, "auto"]}

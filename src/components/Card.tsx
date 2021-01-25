@@ -170,8 +170,10 @@ const Card: React.FC<CardModel> = ({
                   <GatsbyImage
                     image={imageData}
                     alt={image.alt ?? ""}
-                    objectFit={image.fit}
-                    objectPosition={image.position}
+                    imgStyle={{
+                      objectFit: image.fit,
+                      objectPosition: image.position,
+                    }}
                     style={{ display: "block" }}
                   />
                 </motion.div>

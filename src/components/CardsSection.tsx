@@ -165,8 +165,10 @@ const CardsSection: React.FC<CardsSectionModel> = ({
           <BackgroundImage
             image={backgroundImageData}
             alt={backgroundImage.alt ?? ""}
-            objectFit={"cover"}
-            objectPosition={backgroundImage.position}
+            imgStyle={{
+              objectFit: "cover",
+              objectPosition: backgroundImage.position,
+            }}
             style={{ display: "block" }}
             height="100%"
           />
