@@ -1,10 +1,23 @@
 import { useDisclosure, UseDisclosureReturn } from "@chakra-ui/react"
-import React, { createContext } from "react"
+import { useLocation } from "@reach/router"
+import React, { createContext, useEffect } from "react"
+import { usePrevious } from "../hooks/usePrevious"
 
 export const MenuDisclosureContext = createContext<UseDisclosureReturn>(null)
 
 export const MenuDisclosureContextProvider = ({ children }) => {
   const menuDisclosure = useDisclosure()
+  const { onClose } = menuDisclosure
+
+  // Close menu on location change
+  const location = useLocation()
+  const prevLocation = usePrevious(location)
+
+  useEffect(() => {
+    if (prevLocation && location !== prevLocation) {
+      onClose()
+    }
+  }, [location, prevLocation, onClose])
 
   return (
     <MenuDisclosureContext.Provider value={menuDisclosure}>

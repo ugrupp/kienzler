@@ -5,15 +5,11 @@
  */
 
 import React from "react"
+import { wrapPageElement } from "./wrapPageElement"
 import { wrapRootElement } from "./wrapRootElement"
 
-export { wrapRootElement }
-
 // Prepend myfonts import to <head>
-export const onPreRenderHTML = ({
-  getHeadComponents,
-  replaceHeadComponents,
-}) => {
+const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
   const headComponents = getHeadComponents()
   headComponents.unshift(
     <style
@@ -25,3 +21,5 @@ export const onPreRenderHTML = ({
   )
   replaceHeadComponents(headComponents)
 }
+
+export { wrapPageElement, wrapRootElement, onPreRenderHTML }

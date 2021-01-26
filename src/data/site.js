@@ -37,4 +37,114 @@ module.exports = {
       url: "https://www.youtube.com/channel/UCb0-oNK94ZUQe5ZVemD6DrQ",
     },
   ],
+  menuLinks: [
+    {
+      slug: "garagen-nach-mass",
+      title: "Garagen nach Maß",
+      link: "/garagen-nach-mass",
+      children: [
+        {
+          slug: "garagen-nach-mass-vorteile",
+          title: "Vorteile",
+          link: "/garagen-nach-mass#vorteile",
+        },
+        {
+          slug: "garagen-nach-mass-referenzprojekte",
+          title: "Referenzprojekte",
+          link: "/garagen-nach-mass#referenzprojekte",
+        },
+        {
+          slug: "garagen-nach-mass-details",
+          title: "Details",
+          link: "/garagen-nach-mass#details",
+        },
+        {
+          slug: "garagen-nach-mass-wissenswertes",
+          title: "Wissenswertes",
+          link: "/garagen-nach-mass#wissenswertes",
+        },
+        {
+          slug: "garagen-nach-mass-anfrage",
+          title: "Anfrage",
+          link: "/garagen-nach-mass#anfrage",
+        },
+      ],
+    },
+    {
+      slug: "fertiggaragen",
+      title: "Fertiggaragen",
+      link: "/fertiggaragen",
+      children: [
+        {
+          slug: "fertiggaragen-vorteile",
+          title: "Vorteile",
+          link: "/fertiggaragen#vorteile",
+        },
+        {
+          slug: "fertiggaragen-groessen",
+          title: "Größen",
+          link: "/fertiggaragen#groessen",
+        },
+        {
+          slug: "fertiggaragen-details",
+          title: "Details",
+          link: "/fertiggaragen#details",
+        },
+        {
+          slug: "fertiggaragen-wissenswertes",
+          title: "Wissenswertes",
+          link: "/fertiggaragen#wissenswertes",
+        },
+        {
+          slug: "fertiggaragen-anfrage",
+          title: "Anfrage",
+          link: "/fertiggaragen#anfrage",
+        },
+      ],
+    },
+    {
+      slug: "leistung",
+      title: "Leistung",
+      link: "/leistung",
+      children: [
+        {
+          slug: "leistung-wie-wir-planen",
+          title: "Wie wir planen",
+          link: "/leistung#wie-wir-planen",
+        },
+        {
+          slug: "leistung-wie-wir-bauen",
+          title: "Wie wir bauen",
+          link: "/leistung#wie-wir-bauen",
+        },
+        {
+          slug: "leistung-versetzen-von-garagen",
+          title: "Versetzen von Garagen",
+          link: "/leistung#versetzen-von-garagen",
+        },
+      ],
+    },
+    {
+      slug: "unternehmen",
+      title: "Unternehmen",
+      link: "/unternehmen",
+      children: [
+        {
+          slug: "unternehmen-team",
+          title: "Team",
+          link: "/unternehmen#team",
+        },
+        {
+          slug: "unternehmen-karriere",
+          title: "Karriere",
+          link: "/unternehmen#karriere",
+        },
+        {
+          slug: "unternehmen-kontakt",
+          title: "Kontakt",
+          link: "/unternehmen#kontakt",
+        },
+      ],
+    },
+  ],
 }

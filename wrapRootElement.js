@@ -8,7 +8,6 @@ import {
 } from "@chakra-ui/react"
 import { MDXProvider } from "@mdx-js/react"
 import React from "react"
-import { MenuDisclosureContextProvider } from "./src/context/MenuDisclosureContext"
 import ArrowBoldIcon from "./src/icons/ArrowBold"
 
 const h1 = props => <Heading as="h1" textStyle="h1" {...props} />
@@ -48,7 +47,5 @@ const components = {
 }
 
 export const wrapRootElement = ({ element }) => (
-  <MenuDisclosureContextProvider>
-    <MDXProvider components={components}>{element}</MDXProvider>
-  </MenuDisclosureContextProvider>
+  <MDXProvider components={components}>{element}</MDXProvider>
 )

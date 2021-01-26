@@ -4,6 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
 
+import { wrapPageElement } from "./wrapPageElement"
 import { wrapRootElement } from "./wrapRootElement"
 
-export { wrapRootElement }
+export { wrapPageElement, wrapRootElement }
