@@ -17,8 +17,8 @@ export interface DetailsSectionModel {
 const DetailsSection: React.FC<DetailsSectionModel> = ({ details }) => {
   return (
     <Flex gridGap={10}>
-      {details.map(detail => (
-        <Box flexShrink={0} key={detail.id}>
+      {details.map((detail, idx) => (
+        <Box flexShrink={0} key={idx}>
           <Detail {...detail} />
         </Box>
       ))}

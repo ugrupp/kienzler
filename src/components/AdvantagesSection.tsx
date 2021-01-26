@@ -30,8 +30,8 @@ const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({
       {/* Advantages */}
       {!!advantages.length && (
         <List textStyle="paragraph">
-          {advantages.map(advantage => (
-            <ListItem>
+          {advantages.map((advantage, idx) => (
+            <ListItem key={idx}>
               <ListIcon as={ArrowBoldIcon} color="orange.500" /> {advantage}
             </ListItem>
           ))}
