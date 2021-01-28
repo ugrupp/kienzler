@@ -7,7 +7,7 @@
 
 import { Box, Grid, GridItem } from "@chakra-ui/react"
 import { graphql, useStaticQuery } from "gatsby"
-import _ from "lodash"
+import { camelCase, get, upperFirst } from "lodash"
 import React from "react"
 import { Background } from "../models/Background"
 import { SectionModel } from "../models/Section"
@@ -31,7 +31,7 @@ const Layout = props => {
   `)
 
   // Get and transform section frontmatter into actual components
-  const frontmatterSections: SectionModel[] = _.get(
+  const frontmatterSections: SectionModel[] = get(
     pageData,
     "mdx.frontmatter.sections",
     []
@@ -40,7 +40,7 @@ const Layout = props => {
   const sectionComponents = frontmatterSections
     .map(sectionData => {
       const component: React.FC<SectionModel> =
-        sections[_.upperFirst(_.camelCase(`${sectionData.type}_section`))]
+        sections[upperFirst(camelCase(`${sectionData.type}_section`))]
 
       if (!component) {
         return
@@ -58,7 +58,7 @@ const Layout = props => {
 
   // Get backgrounds frontmatter
   const backgrounds: Background[] =
-    _.get(pageData, "mdx.frontmatter.backgrounds", []) ?? []
+    get(pageData, "mdx.frontmatter.backgrounds", []) ?? []
 
   return (
     <>
