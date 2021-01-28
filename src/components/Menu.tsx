@@ -120,14 +120,24 @@ const Menu: React.FC<MenuProps> = () => {
 
   // List item
   const Item = ({ menuLink, hasChildren, depth, itemId, menuIndex }) => {
-    const itemStyles =
+    const linkStyles =
       depth === 1
         ? {
-            color: "orange.500",
             fontSize: "xl",
+            color: "orange.500",
+            transitionDuration: "normal",
+            transitionProperty: "colors",
+            _hover: {
+              color: "inherit",
+            },
           }
         : {
             fontSize: "md",
+            transitionDuration: "normal",
+            transitionProperty: "colors",
+            _hover: {
+              color: "orange.500",
+            },
             _before: {
               content: "counter(submenu)",
               color: "orange.500",
@@ -141,7 +151,7 @@ const Menu: React.FC<MenuProps> = () => {
       <ListItem id={itemId} sx={{ counterIncrement: "submenu" }}>
         <Flex alignItems="center" justifyContent="space-between">
           {/* Link */}
-          <Box as={Link} to={menuLink.link} {...itemStyles}>
+          <Box as={Link} to={menuLink.link} {...linkStyles}>
             {menuLink.title}
           </Box>
 
