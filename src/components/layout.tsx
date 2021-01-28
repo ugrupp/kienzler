@@ -12,6 +12,7 @@ import React from "react"
 import { Background } from "../models/Background"
 import { SectionModel } from "../models/Section"
 import { Fonts } from "../theme/Fonts"
+import ContactFooter from "./ContactFooter"
 import Header from "./Header"
 import MenuOverlay from "./MenuOverlay"
 import sections from "./sections"
@@ -101,10 +102,14 @@ const Layout = props => {
         </Grid>
       </main>
 
-      <Box as="footer" height="500px" backgroundColor="gray.500" color="white">
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
+      <Box as="footer" backgroundColor="gray.500" color="white">
+        <ContactFooter />
+
+        <div>
+          © {new Date().getFullYear()}, Built with
+          {` `}
+          <a href="https://www.gatsbyjs.com">Gatsby</a>
+        </div>
       </Box>
     </>
   )

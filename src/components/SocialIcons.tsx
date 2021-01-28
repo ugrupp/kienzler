@@ -9,7 +9,7 @@ import { filter } from "lodash"
 export interface SocialIconsProps {}
 
 const SocialIcons: React.FC<SocialIconsProps> = () => {
-  // Query for menu data
+  // Query for social icons data
   const data = useStaticQuery(graphql`
     query SocialIconsQuery {
       site {

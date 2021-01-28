@@ -17,6 +17,7 @@ module.exports = {
       label: `0761 898 284 04`,
       href: `+4976189828404`,
     },
+    faxNumber: `0761 898 284 05`,
   },
   socialProviders: [
     {
