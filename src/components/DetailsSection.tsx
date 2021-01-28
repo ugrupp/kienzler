@@ -7,7 +7,7 @@ import Detail, { DetailModel } from "./Detail"
 export interface DetailsSectionModel {
   type: string
   slug?: string
-  title?: String
+  title?: string
   spacing?: Spacing
 
   text?: string

@@ -115,6 +115,23 @@ exports.createSchemaCustomization = ({
         text: String @mdx
       }
 
+      # Team
+      type TeamSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String @mdx(removeRootParagraph: true)
+        spacing: Spacing
+
+        members: [TeamMember]
+      }
+
+      # Team members
+      type TeamMember {
+        image: Image
+        first_name: String
+        last_name: String
+      }
+
       # Advantages
       type AdvantagesSection implements Section & Node {
         type: String!
@@ -306,6 +323,7 @@ exports.createSchemaCustomization = ({
         "FaqsSection",
         "CardsSection",
         "HeaderCompanySection",
+        "TeamSection",
       ],
       // Resolve section based on `type` property
       resolveType: ({ type }) => `${upperFirst(camelCase(type))}Section`,

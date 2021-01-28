@@ -17,6 +17,9 @@ export const mdxFrontmatterSectionsFields = graphql`
     ... on HeaderCompanySection {
       ...HeaderCompanySectionFragment
     }
+    ... on TeamSection {
+      ...TeamSectionFragment
+    }
     ... on FaqsSection {
       faqs {
         id

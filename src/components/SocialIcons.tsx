@@ -47,6 +47,7 @@ const SocialIcons: React.FC<SocialIconsProps> = () => {
 
         return (
           <Box
+            key={type}
             as="a"
             href={url}
             target="_blank"

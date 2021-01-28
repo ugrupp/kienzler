@@ -1,4 +1,4 @@
-import { Grid, useTheme } from "@chakra-ui/react"
+import { Grid, GridProps, useTheme } from "@chakra-ui/react"
 import React from "react"
 
 export interface ContainerGridProps {
@@ -12,7 +12,7 @@ export interface ContainerGridProps {
   templateRows?: string[]
 }
 
-const ContainerGrid: React.FC<ContainerGridProps> = ({
+const ContainerGrid: React.FC<ContainerGridProps & GridProps> = ({
   children,
   sizes = [
     {
@@ -35,14 +35,13 @@ const ContainerGrid: React.FC<ContainerGridProps> = ({
   ],
   rowGap = [0],
   columnGap = [0],
-  templateRows,
+  ...otherProps
 }) => {
   const theme = useTheme()
 
-  const gridProps = {
+  const explicitProps = {
     columnGap: columnGap,
     rowGap: rowGap,
-    templateRows,
     templateColumns: sizes.map(size => {
       return !!size
         ? `
@@ -72,7 +71,8 @@ const ContainerGrid: React.FC<ContainerGridProps> = ({
 
   return (
     <Grid
-      {...gridProps}
+      {...explicitProps}
+      {...otherProps}
       sx={{
         "& > *": {
           gridColumn: "main",
