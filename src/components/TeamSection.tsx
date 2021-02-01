@@ -38,6 +38,9 @@ const TeamSection: React.FC<TeamSectionModel> = ({ members }) => {
                 "4 / main",
                 "3 / main",
                 [0, 1].includes(idx % 4) ? "3 / 7" : "8 / 12",
+                null,
+                null,
+                [0, 1].includes(idx % 4) ? null : "9 / 12",
               ]}
             >
               <Flex

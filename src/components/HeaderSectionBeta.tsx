@@ -6,6 +6,7 @@ import React from "react"
 import ArrowBoldIcon from "../icons/ArrowBold"
 import ContainerGrid from "./ContainerGrid"
 import { HeaderSectionModel } from "./HeaderSection"
+import TitleText from "./TitleText"
 
 const HeaderSectionBeta: React.FC<HeaderSectionModel> = ({
   type,
@@ -29,35 +30,14 @@ const HeaderSectionBeta: React.FC<HeaderSectionModel> = ({
   return (
     <Box as="header" pt={["17vh", null, "20vh", null, "0"]}>
       <ContainerGrid rowGap={[9]}>
-        {/* Text & title*/}
+        {/* Text & title */}
         {(!!text || !!title) && (
           <GridItem
             gridRow={[2, null, null, null, 1]}
             gridColumn={["3 / main", "4 / main", "3 / 10", "3 / 9", "3 / 6"]}
             mt={[null, null, null, null, "54vh"]}
           >
-            {/* Title */}
-            {!!title && (
-              <Box
-                as="h1"
-                textStyle="paragraph-lg"
-                color="orange.500"
-                float="left"
-                mr={2}
-              >
-                <MDXRenderer>{title}</MDXRenderer>
-                <ArrowBoldIcon
-                  boxSize={"0.7em"}
-                  ml={2}
-                  verticalAlign="baseline"
-                />
-              </Box>
-            )}
-
-            {/* Text */}
-            <MDXProvider components={textComponents}>
-              <MDXRenderer>{text}</MDXRenderer>
-            </MDXProvider>
+            <TitleText title={title} text={text} />
           </GridItem>
         )}
 

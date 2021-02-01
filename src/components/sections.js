@@ -1,5 +1,6 @@
 import AdvantagesSection from "./AdvantagesSection"
 import CardsSection from "./CardsSection"
+import CareerSection from "./CareerSection"
 import DetailsSection from "./DetailsSection"
 import HeaderCompanySection from "./HeaderCompanySection"
 import HeaderSection from "./HeaderSection"
@@ -12,4 +13,5 @@ export default {
   DetailsSection,
   HeaderCompanySection,
   TeamSection,
+  CareerSection,
 }

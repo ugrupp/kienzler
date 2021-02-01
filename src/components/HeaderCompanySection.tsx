@@ -59,19 +59,51 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
     mainItems: [
       {
         row: "1",
-        column: ["3 / 13", "4 / 13", "3 / span 6", "3 / span 5", "4 / span 4"],
+        column: [
+          "3 / 13",
+          "4 / 13",
+          "3 / span 6",
+          "3 / span 5",
+          "4 / span 4",
+          null,
+          "4 / span 3",
+        ],
       },
       {
         row: "2",
-        column: ["3 / 13", "4 / 13", "3 / span 6", "3 / span 5", "4 / span 4"],
+        column: [
+          "3 / 13",
+          "4 / 13",
+          "3 / span 6",
+          "3 / span 5",
+          "4 / span 4",
+          null,
+          "4 / span 3",
+        ],
       },
       {
         row: ["4", null, "4", null, "3", null, "4"],
-        column: ["3 / 13", "4 / 13", "8 / span 6", "8 / span 5", "8 / span 4"],
+        column: [
+          "3 / 13",
+          "4 / 13",
+          "8 / span 6",
+          "8 / span 5",
+          "8 / span 4",
+          null,
+          "9 / span 3",
+        ],
       },
       {
         row: ["5", null, "5", null, "4", null, "5"],
-        column: ["3 / 13", "4 / 13", "8 / span 6", "8 / span 5", "8 / span 4"],
+        column: [
+          "3 / 13",
+          "4 / 13",
+          "8 / span 6",
+          "8 / span 5",
+          "8 / span 4",
+          null,
+          "9 / span 3",
+        ],
       },
     ],
     listItem: {

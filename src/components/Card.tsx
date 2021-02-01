@@ -261,9 +261,7 @@ export const query = graphql`
       position
     }
     cta {
-      url
-      label
-      target
+      ...LinkFragment
     }
   }
 `
