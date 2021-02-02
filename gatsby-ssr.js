@@ -5,8 +5,8 @@
  */
 
 import React from "react"
-import { wrapPageElement } from "./wrapPageElement"
-import { wrapRootElement } from "./wrapRootElement"
+export { wrapPageElement } from "./wrapPageElement"
+export { wrapRootElement } from "./wrapRootElement"
 
 // Prepend myfonts import to <head>
 const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
@@ -22,4 +22,4 @@ const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
   replaceHeadComponents(headComponents)
 }
 
-export { wrapPageElement, wrapRootElement, onPreRenderHTML }
+export { onPreRenderHTML }
