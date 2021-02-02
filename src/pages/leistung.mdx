@@ -1,0 +1,68 @@
+---
+title: Leistung
+sections:
+  - type: header_service
+    slug: wie-wir-planen
+    title: Leistung
+    spacing:
+      top: ["24vh", null, "26vh", null, "33vh"]
+    image:
+      src: images/header-unternehmen.jpg
+      alt: Unternehmen
+      position: 22% 46%
+    background_image:
+      src: images/beton.jpg
+      position: 100% 100%
+    columns:
+      - headline: Wie wir planen
+        content: |-
+          Mit der Planung beginnt unsere Arbeit. Denn vor dem Bau einer Garage sind Fragen zu klären. **Zum Beispiel:**
+
+          * Wie sind die baurechtlichen Grundlagen?
+          * Welche Fläche kann genutzt werden?
+          * Welchen Nutzen und welche Anforderungen soll die Garage erfüllen?
+          * Welches Budget steht zur Verfügung?
+      - headline: ""
+        content: |-
+          Sie haben solche Fragen sicherlich noch nicht oft beantwortet und tun sich vielleicht schwer. Wir beantworten diese Fragen jeden Tag. Hier unterstützen wir Sie also gerne, denn Ihre Wünsche geben die Richtung der Planung vor. Ihr persönlicher Zugewinn an Nutzen hat für uns oberste Priorität. Während der ganzen Bauzeit haben Sie feste Ansprechpartner, die Sie durch folgende **Phasen** begleiten:
+
+          * Vorgespräch
+          * Besichtigung vor Ort
+          * Zeichnung und Statik
+
+          Danach erfolgt die Herstellung der Fertigteile und wir vereinbaren einen Termin für den Aufbau. Sie können sich dann bereits auf Ihre neue Garage freuen und den neu gewonnen Platz verplanen.
+    listColumn:
+      headline: "Das sichern wir Ihnen zu:"
+      content: |-
+        * eine passgenaue Entwicklung und Zeichnung Ihres Projektes
+        * eine individuelle Berechnung der Statik für Ihr Projekt
+        * eine ganzheitliche Projektbetreuung
+
+  # - type: cards_beta
+  #   slug: wie-wir-bauen
+  #   title: Wie wir bauen
+
+  # - type: cards_gamma
+  #   slug: versetzen-von-garagen
+  #   title: Versetzen von Garagen
+---
+
+import { graphql } from "gatsby"
+import "../data/sections-fragment"
+
+export const query = graphql`
+  query {
+    mdx(slug: { eq: "leistung" }) {
+      slug
+      frontmatter {
+        title
+        backgrounds {
+          ...BackgroundFragment
+        }
+        sections {
+          ...MdxFrontmatterSectionsFields
+        }
+      }
+    }
+  }
+`

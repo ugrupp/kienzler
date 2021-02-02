@@ -253,6 +253,24 @@ exports.createSchemaCustomization = ({
         headline: String @mdx(removeRootParagraph: true)
         content: String @mdx
       }
+
+      # Service header
+      type HeaderServiceSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String @mdx(removeRootParagraph: true)
+        spacing: Spacing
+
+        image: Image
+        background_image: Image
+        columns: [HeaderServiceSectionColumn]
+        listColumn: HeaderServiceSectionColumn
+      }
+
+      type HeaderServiceSectionColumn {
+        headline: String @mdx(removeRootParagraph: true)
+        content: String @mdx
+      }
     `,
 
     // Cards column union type with custom resolver
@@ -338,6 +356,7 @@ exports.createSchemaCustomization = ({
         "HeaderCompanySection",
         "TeamSection",
         "CareerSection",
+        "HeaderServiceSection",
       ],
       // Resolve section based on `type` property
       resolveType: ({ type }) => `${upperFirst(camelCase(type))}Section`,

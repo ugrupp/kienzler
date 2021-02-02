@@ -4,6 +4,7 @@ import CareerSection from "./CareerSection"
 import DetailsSection from "./DetailsSection"
 import HeaderCompanySection from "./HeaderCompanySection"
 import HeaderSection from "./HeaderSection"
+import HeaderServiceSection from "./HeaderServiceSection"
 import TeamSection from "./TeamSection"
 
 export default {
@@ -14,4 +15,5 @@ export default {
   HeaderCompanySection,
   TeamSection,
   CareerSection,
+  HeaderServiceSection,
 }

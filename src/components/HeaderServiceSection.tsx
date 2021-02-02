@@ -14,7 +14,7 @@ import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
 import ContentStack from "./ContentStack"
 
-export interface HeaderCompanySectionModel {
+export interface HeaderServiceSectionModel {
   type: string
   slug?: string
   title?: string
@@ -30,19 +30,17 @@ export interface HeaderCompanySectionModel {
     headline: string
     content: string
   }
-  imageColumn?: Image
 }
 
-const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
+const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
   title,
   image,
   backgroundImage,
   columns,
   listColumn,
-  imageColumn,
 }) => {
+  // TODO: refactor to video
   const imageData = getImage(image.file)
-  const imageColumnData = getImage(imageColumn.file)
 
   // Background image
   const backgroundImageData = getImage(backgroundImage?.file)
@@ -54,34 +52,21 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
       row: "auto",
       column: "main",
     },
-    templateRows: ["max-content"],
     mainItems: [
       {
-        row: "1",
+        row: ["1", null, null, null, "1"],
         column: [
           "3 / 13",
           "4 / 13",
           "3 / span 6",
           "3 / span 5",
-          "4 / span 4",
+          "3 / span 4",
           null,
-          "4 / span 3",
+          "3 / span 3",
         ],
       },
       {
-        row: "2",
-        column: [
-          "3 / 13",
-          "4 / 13",
-          "3 / span 6",
-          "3 / span 5",
-          "4 / span 4",
-          null,
-          "4 / span 3",
-        ],
-      },
-      {
-        row: ["4", null, "4", null, "3", null, "4"],
+        row: ["2", null, null, null, "1"],
         column: [
           "3 / 13",
           "4 / 13",
@@ -91,32 +76,27 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
           null,
           "9 / span 3",
         ],
-      },
-      {
-        row: ["5", null, "5", null, "4", null, "5"],
-        column: [
-          "3 / 13",
-          "4 / 13",
-          "8 / span 6",
-          "8 / span 5",
-          "8 / span 4",
-          null,
-          "9 / span 3",
-        ],
+        mt: {
+          xl: "26vh",
+        },
       },
     ],
     listItem: {
-      row: ["6", null, "6", null, "3 / span 3"],
-      column: ["3 / 13", "4 / 13", "3 / span 6", "3 / span 5", "3 / span 4"],
-    },
-    imageItem: {
-      row: ["3", null, "3 / span 3", null, "1 / span 2"],
-      column: ["full / 10", "full / 8", "full / 6", "full / 6", "9 / 13"],
+      row: ["3", null, null, null, "2"],
+      column: [
+        "3 / 13",
+        "4 / 13",
+        "8 / span 6",
+        "8 / span 5",
+        "8 / span 4",
+        null,
+        "9 / span 3",
+      ],
     },
   }
 
   return (
-    <Box as="section" position="relative">
+    <Box as="section" position="relative" pt={[20, null, 24]}>
       {/* h1, hidden but visible for screen readers and crawlers */}
       <VisuallyHidden as="h1">
         <MDXRenderer>{title}</MDXRenderer>
@@ -126,12 +106,24 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
       {imageData && (
         <Box
           id="image"
-          position="relative"
+          position="absolute"
           zIndex={2} // > bg image
-          mb={[-32, null, -48]}
+          top={0}
+          left={0}
+          right={0}
         >
           <ContainerGrid>
-            <GridItem gridColumn={["3 / full", "4 / full", "3 / main"]}>
+            <GridItem
+              gridColumn={[
+                "3 / full",
+                "4 / full",
+                "3 / main",
+                null,
+                "7 / main",
+                null,
+                "6 / main",
+              ]}
+            >
               <StyleableGatsbyImage
                 image={imageData}
                 alt={image.alt ?? ""}
@@ -183,15 +175,12 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
         position="relative"
         zIndex={8} // > bg image, front image & bg gradient
         mt="-150vh"
-        pt={[20, null, 24, null, 60]}
-        pb={[64, null, 72]}
+        pt={["47vh", null, "28vh", null, "24vh"]}
+        pb={[64, null, 80]}
       >
         {/* Content grid */}
         <Box color="white">
-          <ContainerGrid
-            rowGap={[16, null, 20, null, 24]}
-            templateRows={gridConfig.templateRows}
-          >
+          <ContainerGrid rowGap={[28, null, 48]}>
             {/* Columns */}
             {columns.map(({ headline, content }, idx) => (
               <GridItem
@@ -202,6 +191,7 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
                 gridColumn={
                   gridConfig.mainItems[idx].column ?? gridConfig.defaults.column
                 }
+                mt={gridConfig.mainItems[idx].mt}
               >
                 <ContentStack>
                   {/* Headline */}
@@ -226,7 +216,6 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
               <GridItem
                 gridRow={gridConfig.listItem.row}
                 gridColumn={gridConfig.listItem.column}
-                mt={[null, null, null, null, 32, null, 0]}
               >
                 <ContentStack>
                   <Heading as="h2" textStyle="h3" color="orange.500">
@@ -236,27 +225,6 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
                 </ContentStack>
               </GridItem>
             )}
-
-            {/* Image column */}
-            {imageColumnData && (
-              <GridItem
-                gridRow={gridConfig.imageItem.row}
-                gridColumn={gridConfig.imageItem.column}
-                mt={[null, null, null, null, -24]}
-              >
-                <StyleableGatsbyImage
-                  image={imageColumnData}
-                  alt={imageColumn.alt ?? ""}
-                  imgStyle={{
-                    objectFit: imageColumn.fit,
-                    objectPosition: imageColumn.position,
-                  }}
-                  style={{ display: "block" }}
-                  maxWidth={505}
-                  ml={[null, null, null, null, "auto"]}
-                />
-              </GridItem>
-            )}
           </ContainerGrid>
         </Box>
       </Box>
@@ -264,10 +232,10 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
   )
 }
 
-export default HeaderCompanySection
+export default HeaderServiceSection
 
 export const query = graphql`
-  fragment HeaderCompanySectionFragment on HeaderCompanySection {
+  fragment HeaderServiceSectionFragment on HeaderServiceSection {
     type
     slug
     title
@@ -306,21 +274,6 @@ export const query = graphql`
     listColumn {
       headline
       content
-    }
-    imageColumn {
-      file {
-        childImageSharp {
-          gatsbyImageData(
-            width: 505
-            layout: CONSTRAINED
-            placeholder: DOMINANT_COLOR
-            quality: 75
-          )
-        }
-      }
-      alt
-      fit
-      position
     }
   }
 `
