@@ -8,6 +8,7 @@ import InstagramBoldIcon from "../icons/InstagramBold"
 import PhoneBoldIcon from "../icons/PhoneBold"
 import ContainerGrid from "./ContainerGrid"
 import reactStringReplace from "react-string-replace"
+import { Map } from "./Map"
 
 export interface ContactFooterProps {}
 
@@ -103,7 +104,7 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
                     : null
 
                 return (
-                  <>
+                  <React.Fragment key={type}>
                     <br />
                     <a
                       href={url}
@@ -112,7 +113,7 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
                     >
                       <Icon {...iconStyle} /> {user}
                     </a>
-                  </>
+                  </React.Fragment>
                 )
               })}
           </Box>
@@ -129,8 +130,10 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
           ]}
           gridRow={{ xl: 1 }}
         >
-          <AspectRatio ratio={0.7} backgroundColor="gray.200" color="gray.500">
-            <Box>Map</Box>
+          <AspectRatio ratio={0.7} backgroundColor="gray.200">
+            <Box>
+              <Map />
+            </Box>
           </AspectRatio>
         </GridItem>
       </ContainerGrid>
