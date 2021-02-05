@@ -1,8 +1,9 @@
 import { Box } from "@chakra-ui/react"
 import React from "react"
-import { useGoogleMaps } from "react-hook-google-maps"
+import { Helmet } from "react-helmet"
+import { useGoogleMaps } from "../hooks/useGoogleMaps"
 
-const mapStyles = [
+const mapStyles: google.maps.MapTypeStyle[] = [
   {
     elementType: "geometry",
     stylers: [
@@ -165,24 +166,21 @@ const mapStyles = [
 
 const kienzler = { lat: 48.02616, lng: 7.79239 }
 
-export const Map = React.memo(function Map() {
-  const { ref, map, google } = useGoogleMaps(
-    "AIzaSyC4bNaOWjKO4CGWisTSIZdIVQaxkVmcMn0",
-    {
-      center: kienzler,
-      zoom: 14,
-      zoomControl: true,
-      mapTypeControl: false,
-      streetViewControl: false,
-      rotateControl: false,
-      fullscreenControl: false,
-      styles: mapStyles,
-    }
-  )
+export const Map = () => {
+  const { ref, map, google } = useGoogleMaps({
+    center: kienzler,
+    zoom: 14,
+    zoomControl: true,
+    mapTypeControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false,
+    styles: mapStyles,
+  })
 
   if (map) {
     // execute when map object is ready
-    new google.maps.Marker({
+    new (window as any).google.maps.Marker({
       map,
       position: kienzler,
       title: "Ziegelhofstraße 35a",
@@ -197,5 +195,17 @@ export const Map = React.memo(function Map() {
     })
   }
 
-  return <Box ref={ref} h="full" w="full" />
-})
+  return (
+    <>
+      {/* @ts-ignore */}
+      <Helmet>
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4bNaOWjKO4CGWisTSIZdIVQaxkVmcMn0&amp;callback=initMap"
+          async
+          defer
+        />
+      </Helmet>
+      <Box ref={ref} h="full" w="full" />
+    </>
+  )
+}
