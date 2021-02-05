@@ -4,13 +4,14 @@ import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import ArrowBoldIcon from "../icons/ArrowBold"
-import { Link } from "../models/Link"
+import { Link as LinkModel } from "../models/Link"
 import { Image } from "../models/Image"
 import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
 import ShiftBy from "./ShiftBy"
 import TitleText from "./TitleText"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import Link from "./Link"
 
 export interface CareerSectionModel {
   type: string
@@ -20,7 +21,7 @@ export interface CareerSectionModel {
 
   text?: string
   ctaText?: string
-  cta?: Link
+  cta?: LinkModel
   images?: Image[]
 }
 
@@ -115,7 +116,12 @@ const CareerSection: React.FC<CareerSectionModel> = ({
 
           {/* Button */}
           {!!cta && (
-            <Button rightIcon={<ArrowBoldIcon />} mt={[8, null, 10]}>
+            <Button
+              rightIcon={<ArrowBoldIcon />}
+              mt={[8, null, 10]}
+              as={Link}
+              to={cta.url}
+            >
               <ShiftBy y={"2px"}>{cta.label}</ShiftBy>
             </Button>
           )}
