@@ -6,7 +6,7 @@ const YouTubeIcon = props => {
     <Icon viewBox="0 0 31.5 31.5" {...props}>
       <g>
         <path
-          fill="white"
+          fill="none"
           stroke="currentColor"
           strokeMiterlimit="10"
           strokeWidth="1.5"

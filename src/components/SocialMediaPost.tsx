@@ -5,10 +5,11 @@ import { Image } from "../models/Image"
 import FacebookIcon from "../icons/Facebook"
 import InstagramIcon from "../icons/Instagram"
 import YouTubeIcon from "../icons/YouTube"
-import { Box, Link, Theme, useTheme } from "@chakra-ui/react"
+import { Box, Link, useTheme } from "@chakra-ui/react"
 import { AnimatePresence, motion } from "framer-motion"
 import { MotionBox } from "./MotionBox"
 import { convertMSToInt } from "../util/helpers"
+import { Theme } from "@emotion/react"
 
 export interface SocialMediaPostModel {
   type: string
@@ -108,7 +109,7 @@ const SocialMediaPost: React.FC<SocialMediaPostModel> = ({ post }) => {
         zIndex={5}
         transform="translateY(50%)"
       >
-        <Icon color="orange.500" boxSize={6} />
+        <Icon color="orange.500" bgColor="white" boxSize={6} />
       </Box>
     </Link>
   )

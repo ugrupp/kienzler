@@ -83,16 +83,31 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
             {organization.address.addressLocality}
             <br />
             <br />
-            <a href={`tel:${organization.telephone.href}`} title="Telefon">
+            <Box
+              as="a"
+              href={`tel:${organization.telephone.href}`}
+              title="Telefon"
+              _hover={{ color: "orange.500" }}
+              transitionProperty="colors"
+              transitionDuration="normal"
+            >
               <PhoneBoldIcon {...iconStyle} /> {organization.telephone.label}
-            </a>
+            </Box>
             <br />
             <span title="Fax">
               <FaxBoldIcon {...iconStyle} /> {organization.faxNumber}
             </span>
             <br />
             <br />
-            <a href={`mailto:${organization.email}`}>{organization.email}</a>
+            <Box
+              as="a"
+              href={`mailto:${organization.email}`}
+              _hover={{ color: "orange.500" }}
+              transitionProperty="colors"
+              transitionDuration="normal"
+            >
+              {organization.email}
+            </Box>
             {socialProviders
               .filter(({ type }) => ["facebook", "instagram"].includes(type))
               .map(({ type, title, user, url }) => {
@@ -106,13 +121,17 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
                 return (
                   <React.Fragment key={type}>
                     <br />
-                    <a
+                    <Box
+                      as="a"
                       href={url}
                       target="_blank"
                       title={filter([title, user]).join(": ")}
+                      _hover={{ color: "orange.500" }}
+                      transitionProperty="colors"
+                      transitionDuration="normal"
                     >
                       <Icon {...iconStyle} /> {user}
-                    </a>
+                    </Box>
                   </React.Fragment>
                 )
               })}

@@ -67,6 +67,10 @@ export const query = graphql`
       slug
       frontmatter {
         title
+        footer {
+          showContactFooter: show_contact_footer
+          showContactColumn: show_contact_column
+        }
         backgrounds {
           ...BackgroundFragment
         }

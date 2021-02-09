@@ -89,8 +89,14 @@ exports.createSchemaCustomization = ({
         spacing: Spacing
       }
 
-      # Sections
+      type FooterOptions {
+        show_contact_footer: Boolean
+        show_contact_column: Boolean
+      }
+
+      # Page frontmatter
       type MdxFrontmatter implements Node {
+        footer: FooterOptions
         backgrounds: [Background]
         sections: [MdxFrontmatterSections]
       }

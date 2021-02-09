@@ -20,12 +20,14 @@ export default {
     fontSize: ["3xs", null, "2xs", "xs"],
     fontWeight: "bold",
     textTransform: "uppercase",
-    lineHeight: "8",
   },
   "paragraph-lg": {
     fontSize: ["lg", null, "2lg", "xl"],
   },
   paragraph: {
     fontSize: ["2sm", null, "sm", "md"],
+  },
+  "paragraph-sm": {
+    fontSize: ["3xs", null, "2xs", "xs"],
   },
 }

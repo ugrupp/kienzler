@@ -4,9 +4,9 @@ import {
   Flex,
   GridItem,
   Heading,
-  Theme,
   useTheme,
 } from "@chakra-ui/react"
+import { Theme } from "@emotion/react"
 import { AnimatePresence, motion } from "framer-motion"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"

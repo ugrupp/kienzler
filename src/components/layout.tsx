@@ -13,6 +13,7 @@ import { Background } from "../models/Background"
 import { SectionModel } from "../models/Section"
 import { Fonts } from "../theme/Fonts"
 import ContactFooter from "./ContactFooter"
+import Footer from "./Footer"
 import Header from "./Header"
 import MenuOverlay from "./MenuOverlay"
 import sections from "./sections"
@@ -37,6 +38,11 @@ const Layout = props => {
     "mdx.frontmatter.sections",
     []
   )
+
+  // Get and transform section frontmatter into actual components
+  const footerOptions = get(pageData, "mdx.frontmatter.footer", {})
+
+  console.log(footerOptions)
 
   const sectionComponents = frontmatterSections
     .map(sectionData => {
@@ -103,13 +109,19 @@ const Layout = props => {
       </main>
 
       <Box as="footer" backgroundColor="gray.500" color="white">
-        <ContactFooter />
+        {/* Contact footer */}
+        {footerOptions?.showContactFooter && <ContactFooter />}
 
-        <div>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </div>
+        {/* Regular footer */}
+        <Box
+          mt={
+            footerOptions?.showContactFooter
+              ? [null, null, 12, null, 72]
+              : undefined
+          }
+        >
+          <Footer showContact={footerOptions?.showContactColumn} />
+        </Box>
       </Box>
     </>
   )

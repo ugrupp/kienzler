@@ -148,4 +148,16 @@ module.exports = {
       ],
     },
   ],
+  serviceMenuLinks: [
+    {
+      slug: "impressum",
+      title: "Impressum",
+      link: "/impressum",
+    },
+    {
+      slug: "datenschutz",
+      title: "Datenschutz",
+      link: "/datenschutz",
+    },
+  ],
 }
