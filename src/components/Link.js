@@ -1,5 +1,6 @@
-import { Link as GatsbyLink } from "gatsby"
-import React from "react"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
+import React, { useContext } from "react"
+import { MenuDisclosureContext } from "../context/MenuDisclosureContext"
 
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
@@ -10,17 +11,26 @@ const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {
   // will start with exactly one slash, and that anything else is external.
   const internal = /^\/(?!\/)/.test(to)
 
+  const { onClose } = useContext(MenuDisclosureContext)
+
   // Use Gatsby Link for internal links, and <a> for others
   if (internal) {
     return (
-      <GatsbyLink
+      <AnchorLink
         to={to}
-        activeClassName={activeClassName}
-        partiallyActive={partiallyActive}
-        {...other}
+        stripHash={true}
+        gatsbyLinkProps={{
+          activeClassName,
+          partiallyActive,
+          ...other,
+        }}
+        // Close menu overlay on click
+        onAnchorLinkClick={() => {
+          onClose()
+        }}
       >
         {children}
-      </GatsbyLink>
+      </AnchorLink>
     )
   }
   return (

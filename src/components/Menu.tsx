@@ -3,14 +3,15 @@ import {
   Flex,
   List,
   ListItem,
-  Theme,
   useBreakpointValue,
   useTheme,
   VisuallyHidden,
 } from "@chakra-ui/react"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { Theme } from "@emotion/react"
+import { graphql, useStaticQuery } from "gatsby"
 import React, { useState } from "react"
 import MenuToggleIcon from "../icons/MenuToggle"
+import Link from "./Link"
 
 export interface MenuProps {}
 
