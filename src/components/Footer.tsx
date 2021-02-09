@@ -1,20 +1,14 @@
-import {
-  Box,
-  Heading,
-  VisuallyHidden,
-  VStack,
-  Text,
-  GridItem,
-} from "@chakra-ui/react"
-import { useStaticQuery, graphql } from "gatsby"
+import { Box, GridItem, Heading, Text, VStack } from "@chakra-ui/react"
+import { graphql, useStaticQuery } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
+import { filter } from "lodash"
 import React from "react"
-import Link from "./Link"
+import ArrowIcon from "../icons/Arrow"
 import FacebookIcon from "../icons/Facebook"
 import InstagramIcon from "../icons/Instagram"
 import YouTubeIcon from "../icons/YouTube"
-import { filter } from "lodash"
 import ContainerGrid from "./ContainerGrid"
-import { StaticImage } from "gatsby-plugin-image"
+import Link from "./Link"
 
 export interface FooterProps {
   showContact?: boolean
@@ -269,7 +263,7 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
             null,
             showContact ? "11 / full" : "8 / full",
           ]}
-          gridRow={[null, null, "2 / span 2", null, "1 / span 2"]}
+          gridRow={["4", null, "2 / span 2", null, "1 / span 2"]}
         >
           <StaticImage
             src="../images/beton.jpg"
@@ -282,6 +276,37 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
             }}
             style={{ display: "block", height: "100%" }}
           />
+        </GridItem>
+
+        {/* Top button */}
+        <GridItem
+          position="relative" // > image
+          gridColumn={[
+            "3 / main",
+            "4 / main",
+            showContact ? "9 / main" : "8 / main",
+            null,
+            showContact ? "11 / main" : "8 / main",
+          ]}
+          gridRow={["4", null, "2", null, "1"]}
+          mt={[10, null, 12, null, 24]} // TODO: align tablet with social icons
+          textAlign="right"
+        >
+          <Box
+            as={Link}
+            href="#gatsby-focus-wrapper" // TODO
+            display="inline-flex"
+            alignItems="center"
+            _hover={{ color: "orange.500" }}
+            transitionProperty="colors"
+            transitionDuration="normal"
+            textStyle="h4"
+            transformOrigin="bottom right"
+            transform="translateY(-100%) rotate(-90deg)"
+          >
+            Nach oben
+            <ArrowIcon height={8} width={8} ml={5} />
+          </Box>
         </GridItem>
 
         {/* Copy */}
