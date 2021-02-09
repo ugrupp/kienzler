@@ -14,15 +14,17 @@ export interface DetailsSectionModel {
   details?: DetailModel[]
 }
 
-const DetailsSection: React.FC<DetailsSectionModel> = ({ details }) => {
+const DetailsSection: React.FC<DetailsSectionModel> = ({ details, slug }) => {
   return (
-    <Flex gridGap={10}>
-      {details.map((detail, idx) => (
-        <Box flexShrink={0} key={idx}>
-          <Detail {...detail} />
-        </Box>
-      ))}
-    </Flex>
+    <section id={slug}>
+      <Flex gridGap={10}>
+        {details.map((detail, idx) => (
+          <Box flexShrink={0} key={idx}>
+            <Detail {...detail} />
+          </Box>
+        ))}
+      </Flex>
+    </section>
   )
 }
 

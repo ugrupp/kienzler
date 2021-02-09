@@ -28,7 +28,7 @@ const HeaderSectionBeta: React.FC<HeaderSectionModel> = ({
   }
 
   return (
-    <Box as="header" pt={["17vh", null, "20vh", null, "0"]}>
+    <Box as="header" pt={["17vh", null, "20vh", null, "0"]} id={slug}>
       <ContainerGrid rowGap={[9]}>
         {/* Text & title */}
         {(!!text || !!title) && (

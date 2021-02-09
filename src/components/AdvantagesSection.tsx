@@ -16,10 +16,11 @@ export interface AdvantagesSectionModel {
 
 const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({
   title,
+  slug,
   advantages,
 }) => {
   return (
-    <section>
+    <section id={slug}>
       {/* Title */}
       {!!title && (
         <Heading as="h3" textStyle="h3" color="orange.500">

@@ -35,6 +35,7 @@ export interface HeaderCompanySectionModel {
 
 const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
   title,
+  slug,
   image,
   backgroundImage,
   columns,
@@ -116,7 +117,7 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
   }
 
   return (
-    <Box as="section" position="relative">
+    <Box as="section" position="relative" id={slug}>
       {/* h1, hidden but visible for screen readers and crawlers */}
       <VisuallyHidden as="h1">
         <MDXRenderer>{title}</MDXRenderer>
@@ -125,7 +126,6 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
       {/* Front Image */}
       {imageData && (
         <Box
-          id="image"
           position="relative"
           zIndex={2} // > bg image
           mb={[-32, null, -48]}
@@ -150,7 +150,7 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
 
       {/* Background image */}
       {!!backgroundImageData && (
-        <Box id="bgImage" position="sticky" top={0} zIndex={0} height="100vh">
+        <Box position="sticky" top={0} zIndex={0} height="100vh">
           <StyleableGatsbyImage
             image={backgroundImageData}
             alt={backgroundImage.alt ?? ""}
@@ -166,7 +166,6 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
 
       {/* Background gradient overlay */}
       <Box
-        id="overlay"
         position="relative"
         zIndex={5} // > bg image and front image
         mt={!!backgroundImageData ? "-100vh" : undefined}
@@ -179,7 +178,6 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
 
       {/* Content */}
       <Box
-        id="content"
         position="relative"
         zIndex={8} // > bg image, front image & bg gradient
         mt="-150vh"

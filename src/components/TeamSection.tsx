@@ -19,11 +19,11 @@ export interface TeamSectionModel {
   }>
 }
 
-const TeamSection: React.FC<TeamSectionModel> = ({ members }) => {
+const TeamSection: React.FC<TeamSectionModel> = ({ members, slug }) => {
   const StyleableGatsbyImage = chakra(GatsbyImage)
 
   return (
-    <section>
+    <section id={slug}>
       <ContainerGrid
         rowGap={[10, null, 12, null, null, 14]}
         gridAutoFlow="row dense"
@@ -33,6 +33,7 @@ const TeamSection: React.FC<TeamSectionModel> = ({ members }) => {
 
           return (
             <GridItem
+              key={firstName + lastName}
               gridColumn={[
                 "3 / main",
                 "4 / main",

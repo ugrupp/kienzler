@@ -34,6 +34,7 @@ export interface HeaderServiceSectionModel {
 
 const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
   title,
+  slug,
   image,
   backgroundImage,
   columns,
@@ -96,7 +97,7 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
   }
 
   return (
-    <Box as="section" position="relative" pt={[20, null, 24]}>
+    <Box as="section" position="relative" pt={[20, null, 24]} id={slug}>
       {/* h1, hidden but visible for screen readers and crawlers */}
       <VisuallyHidden as="h1">
         <MDXRenderer>{title}</MDXRenderer>
@@ -105,7 +106,6 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
       {/* Front Image */}
       {imageData && (
         <Box
-          id="image"
           position="absolute"
           zIndex={2} // > bg image
           top={0}
@@ -142,7 +142,7 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
 
       {/* Background image */}
       {!!backgroundImageData && (
-        <Box id="bgImage" position="sticky" top={0} zIndex={0} height="100vh">
+        <Box position="sticky" top={0} zIndex={0} height="100vh">
           <StyleableGatsbyImage
             image={backgroundImageData}
             alt={backgroundImage.alt ?? ""}
@@ -158,7 +158,6 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
 
       {/* Background gradient overlay */}
       <Box
-        id="overlay"
         position="relative"
         zIndex={5} // > bg image and front image
         mt={!!backgroundImageData ? "-100vh" : undefined}
@@ -171,7 +170,6 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
 
       {/* Content */}
       <Box
-        id="content"
         position="relative"
         zIndex={8} // > bg image, front image & bg gradient
         mt="-150vh"

@@ -54,7 +54,7 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
   }
 
   return (
-    <section>
+    <section id="kontakt">
       <ContainerGrid>
         <GridItem
           gridColumn={["3 / 13", "4 / 13", "3 / 13", null, "8 / main"]}
