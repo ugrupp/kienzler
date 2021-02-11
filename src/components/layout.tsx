@@ -42,8 +42,6 @@ const Layout = props => {
   // Get and transform section frontmatter into actual components
   const footerOptions = get(pageData, "mdx.frontmatter.footer", {})
 
-  console.log(footerOptions)
-
   const sectionComponents = frontmatterSections
     .map(sectionData => {
       const component: React.FC<SectionModel> =
@@ -68,7 +66,7 @@ const Layout = props => {
     get(pageData, "mdx.frontmatter.backgrounds", []) ?? []
 
   return (
-    <>
+    <div id="start">
       <Fonts />
 
       {/* Header & menu overlay */}
@@ -123,7 +121,7 @@ const Layout = props => {
           <Footer showContact={footerOptions?.showContactColumn} />
         </Box>
       </Box>
-    </>
+    </div>
   )
 }
 

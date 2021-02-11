@@ -294,7 +294,7 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
         >
           <Box
             as={Link}
-            href="#gatsby-focus-wrapper" // TODO
+            to="#start"
             display="inline-flex"
             alignItems="center"
             _hover={{ color: "orange.500" }}

@@ -1,7 +1,7 @@
 export default {
   global: {
     html: {
-      // scrollBehavior: "smooth",
+      scrollBehavior: "smooth",
       textSizeAdjust: "100%",
     },
 
