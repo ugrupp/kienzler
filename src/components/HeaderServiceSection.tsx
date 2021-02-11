@@ -13,6 +13,8 @@ import { Image } from "../models/Image"
 import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
 import ContentStack from "./ContentStack"
+// @ts-ignore
+import FrontVideo from "../videos/kienzler-leistung-video-1.mp4"
 
 export interface HeaderServiceSectionModel {
   type: string
@@ -103,7 +105,7 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
         <MDXRenderer>{title}</MDXRenderer>
       </VisuallyHidden>
 
-      {/* Front Image */}
+      {/* Front Image / Video */}
       {imageData && (
         <Box
           position="absolute"
@@ -124,17 +126,35 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
                 "6 / main",
               ]}
             >
-              <StyleableGatsbyImage
-                image={imageData}
-                alt={image.alt ?? ""}
-                imgStyle={{
-                  objectFit: image.fit,
-                  objectPosition: image.position,
-                }}
-                style={{ display: "block" }}
+              {/* Video */}
+              <Box
+                as="video"
+                autoPlay={true}
+                loop={true}
+                muted={true}
+                playsInline={true}
+                preload="auto"
+                objectFit="cover"
+                objectPosition="50% 50%"
                 height={["47vh", null, "51vh", null, "67vh"]}
                 minHeight="100%"
-              />
+                display="block"
+              >
+                <source src={FrontVideo} type="video/mp4" />
+
+                {/* Fallback image */}
+                <StyleableGatsbyImage
+                  image={imageData}
+                  alt={image.alt ?? ""}
+                  imgStyle={{
+                    objectFit: image.fit,
+                    objectPosition: image.position,
+                  }}
+                  style={{ display: "block" }}
+                  h="full"
+                  w="full"
+                />
+              </Box>
             </GridItem>
           </ContainerGrid>
         </Box>
