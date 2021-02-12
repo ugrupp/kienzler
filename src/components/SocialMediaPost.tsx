@@ -1,15 +1,14 @@
+import { Box, ChakraTheme, Link, useTheme } from "@chakra-ui/react"
+import { AnimatePresence, motion } from "framer-motion"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
-import { Image } from "../models/Image"
 import FacebookIcon from "../icons/Facebook"
 import InstagramIcon from "../icons/Instagram"
 import YouTubeIcon from "../icons/YouTube"
-import { Box, Link, useTheme } from "@chakra-ui/react"
-import { AnimatePresence, motion } from "framer-motion"
-import { MotionBox } from "./MotionBox"
+import { Image } from "../models/Image"
 import { convertMSToInt } from "../util/helpers"
-import { Theme } from "@emotion/react"
+import { MotionBox } from "./MotionBox"
 
 export interface SocialMediaPostModel {
   type: string
@@ -28,7 +27,7 @@ const SocialMediaPost: React.FC<SocialMediaPostModel> = ({ post }) => {
   const { title, url, thumbnail } = post
   const thumbnailData = getImage(thumbnail?.file)
   const [hover, setHover] = useState<true | undefined>(undefined)
-  const theme: Theme = useTheme()
+  const theme: ChakraTheme = useTheme()
 
   // Get icon, based on post type
   const Icon =

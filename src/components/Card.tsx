@@ -1,12 +1,12 @@
 import {
   Box,
   Button,
+  ChakraTheme,
   Flex,
   GridItem,
   Heading,
   useTheme,
 } from "@chakra-ui/react"
-import { Theme } from "@emotion/react"
 import { AnimatePresence, motion } from "framer-motion"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
@@ -48,7 +48,7 @@ const Card: React.FC<CardModel> = ({
 }) => {
   const imageData = getImage(image?.file)
   const [cardHover, setCardHover] = useState<true | undefined>(undefined)
-  const theme: Theme = useTheme()
+  const theme: ChakraTheme = useTheme()
   const defaultGridColumns = {
     title: [
       "3 / -3",

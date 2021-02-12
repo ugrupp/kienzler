@@ -1,5 +1,6 @@
 import {
   Box,
+  ChakraTheme,
   Flex,
   List,
   ListItem,
@@ -7,7 +8,6 @@ import {
   useTheme,
   VisuallyHidden,
 } from "@chakra-ui/react"
-import { Theme } from "@emotion/react"
 import { graphql, useStaticQuery } from "gatsby"
 import React, { useState } from "react"
 import MenuToggleIcon from "../icons/MenuToggle"
@@ -37,7 +37,7 @@ const Menu: React.FC<MenuProps> = () => {
   const { menuLinks } = data.site.siteMetadata
 
   // Get theme object
-  const theme: Theme = useTheme()
+  const theme: ChakraTheme = useTheme()
 
   // Set up menu state
   const [activeMenus, setActiveMenus] = useState(new Set())

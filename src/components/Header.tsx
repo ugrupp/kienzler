@@ -1,9 +1,9 @@
 import {
   Box,
   chakra,
+  ChakraTheme,
   Flex,
   Image,
-  Theme,
   Tooltip,
   useTheme,
   VisuallyHidden,
@@ -28,7 +28,7 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
     MenuDisclosureContext
   )
 
-  const theme: Theme = useTheme()
+  const theme: ChakraTheme = useTheme()
   const [
     menuToggleBoopAnimation,
     menuToggleBoopTransition,

@@ -1,4 +1,4 @@
-import { Box, Theme, useTheme } from "@chakra-ui/react"
+import { Box, ChakraTheme, useTheme } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -18,7 +18,7 @@ export interface DetailModel {
 }
 
 const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
-  const theme: Theme = useTheme()
+  const theme: ChakraTheme = useTheme()
 
   // Image calculations
   const imageData = getImage(image?.file)
