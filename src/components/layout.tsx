@@ -18,6 +18,7 @@ import Header from "./Header"
 import MenuOverlay from "./MenuOverlay"
 import PageTransition from "./PageTransition"
 import sections from "./sections"
+import SEO from "./seo"
 
 const Layout = props => {
   // Get page query data
@@ -32,6 +33,9 @@ const Layout = props => {
       }
     }
   `)
+
+  // Get page meta info
+  const title: string = get(pageData, "mdx.frontmatter.title", [])
 
   // Get and transform section frontmatter into actual components
   const frontmatterSections: SectionModel[] = get(
@@ -69,6 +73,7 @@ const Layout = props => {
   return (
     <div id="start">
       <Fonts />
+      <SEO title={title} />
 
       {/* Header & menu overlay */}
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
@@ -107,6 +112,9 @@ const Layout = props => {
               )
             )}
           </Grid>
+
+          {/* Render unused children, i.e. for dev 404 page */}
+          {props.children && <Box>{props.children}</Box>}
         </main>
 
         <Box as="footer" backgroundColor="gray.500" color="white">

@@ -1,0 +1,21 @@
+---
+title: "Fehler 404: Seite nicht gefunden"
+---
+
+import { graphql } from "gatsby"
+import "../data/sections-fragment"
+
+export const query = graphql`
+  query {
+    mdx(slug: { eq: "404" }) {
+      slug
+      frontmatter {
+        title
+        footer {
+          showContactFooter: show_contact_footer
+          showContactColumn: show_contact_column
+        }
+      }
+    }
+  }
+`
