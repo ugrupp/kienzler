@@ -68,11 +68,11 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
               organization.legalName,
               /Betontechnik(\s)Garagen/g,
               (match, i) => (
-                <>
+                <React.Fragment key={i}>
                   Betontechnik
                   <br />
                   Garagen
-                </>
+                </React.Fragment>
               )
             )}
             <br />
