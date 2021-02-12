@@ -8,7 +8,6 @@ import {
   useTheme,
   VisuallyHidden,
 } from "@chakra-ui/react"
-import { Link } from "gatsby"
 import React, { useContext } from "react"
 import { MenuDisclosureContext } from "../context/MenuDisclosureContext"
 import useBoop from "../hooks/useBoop"
@@ -16,6 +15,7 @@ import MenuToggleIcon from "../icons/MenuToggle"
 // @ts-ignore
 import Logo from "../images/logo.svg"
 import ContainerGrid from "./ContainerGrid"
+import Link from "./Link"
 
 const StyleableLink = chakra(Link)
 

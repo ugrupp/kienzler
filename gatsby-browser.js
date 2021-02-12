@@ -4,15 +4,17 @@
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
 
-import { navigate } from "@reach/router"
+import { removeTrailingSlash } from "./src/util/helpers"
 
 export { wrapPageElement } from "./wrapPageElement"
 export { wrapRootElement } from "./wrapRootElement"
 
-export const onRouteUpdate = ({ location, prevLocation }) => {
-  // Scroll to hash on route update
-  if (prevLocation !== location && prevLocation?.hash !== location.hash) {
-    let { hash } = location
-    hash && navigate(hash)
-  }
+export const shouldUpdateScroll = ({ routerProps, prevRouterProps }) => {
+  const { location } = routerProps
+
+  return (
+    !!location?.hash ||
+    removeTrailingSlash(routerProps?.location?.pathname ?? "") ===
+      removeTrailingSlash(prevRouterProps?.location?.pathname ?? "")
+  )
 }

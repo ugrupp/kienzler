@@ -1,7 +1,10 @@
-import { useDisclosure, UseDisclosureReturn } from "@chakra-ui/react"
+import {
+  useDisclosure,
+  UseDisclosureReturn,
+  usePrevious,
+} from "@chakra-ui/react"
 import { useLocation } from "@reach/router"
 import React, { createContext, useEffect } from "react"
-import { usePrevious } from "../hooks/usePrevious"
 
 export const MenuDisclosureContext = createContext<UseDisclosureReturn>(null)
 

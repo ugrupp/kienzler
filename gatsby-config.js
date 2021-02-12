@@ -49,9 +49,6 @@ module.exports = {
             },
           ],
         ],
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout.tsx"),
-        },
       },
     },
     `gatsby-plugin-image`,

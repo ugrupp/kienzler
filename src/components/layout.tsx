@@ -16,6 +16,7 @@ import ContactFooter from "./ContactFooter"
 import Footer from "./Footer"
 import Header from "./Header"
 import MenuOverlay from "./MenuOverlay"
+import PageTransition from "./PageTransition"
 import sections from "./sections"
 
 const Layout = props => {
@@ -73,54 +74,57 @@ const Layout = props => {
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <MenuOverlay />
 
-      <main>
-        {/* Render sections and backgrounds as vertical grid */}
-        <Grid>
-          {/* Backgrounds */}
-          {backgrounds.map(({ rows, gradient, spacing }, idx) => (
-            <GridItem
-              key={idx}
-              bgGradient={gradient}
-              gridColumn="1"
-              gridRow={rows}
-              pointerEvents="none"
-              mt={spacing?.top}
-              mb={spacing?.bottom}
-            />
-          ))}
-
-          {/* Sections */}
-          {sectionComponents.map(
-            ({ type, component: Section, data, spacing }, sectionIdx) => (
+      {/* Transitioned content */}
+      <PageTransition>
+        <main>
+          {/* Render sections and backgrounds as vertical grid */}
+          <Grid>
+            {/* Backgrounds */}
+            {backgrounds.map(({ rows, gradient, spacing }, idx) => (
               <GridItem
-                key={`${type}-${sectionIdx}`}
-                pt={spacing?.top}
-                pb={spacing?.bottom}
+                key={idx}
+                bgGradient={gradient}
                 gridColumn="1"
-                gridRow={sectionIdx + 1}
-              >
-                <Section {...data} />
-              </GridItem>
-            )
-          )}
-        </Grid>
-      </main>
+                gridRow={rows}
+                pointerEvents="none"
+                mt={spacing?.top}
+                mb={spacing?.bottom}
+              />
+            ))}
 
-      <Box as="footer" backgroundColor="gray.500" color="white">
-        {/* Contact footer */}
-        {footerOptions?.showContactFooter && <ContactFooter />}
+            {/* Sections */}
+            {sectionComponents.map(
+              ({ type, component: Section, data, spacing }, sectionIdx) => (
+                <GridItem
+                  key={`${type}-${sectionIdx}`}
+                  pt={spacing?.top}
+                  pb={spacing?.bottom}
+                  gridColumn="1"
+                  gridRow={sectionIdx + 1}
+                >
+                  <Section {...data} />
+                </GridItem>
+              )
+            )}
+          </Grid>
+        </main>
 
-        {/* Regular footer */}
-        <Box
-          mt={
-            footerOptions?.showContactFooter
-              ? [null, null, 12, null, 72]
-              : undefined
-          }
-        >
-          <Footer showContact={footerOptions?.showContactColumn} />
+        <Box as="footer" backgroundColor="gray.500" color="white">
+          {/* Contact footer */}
+          {footerOptions?.showContactFooter && <ContactFooter />}
+
+          {/* Regular footer */}
+          <Box
+            mt={
+              footerOptions?.showContactFooter
+                ? [null, null, 12, null, 72]
+                : undefined
+            }
+          >
+            <Footer showContact={footerOptions?.showContactColumn} />
+          </Box>
         </Box>
-      </Box>
+      </PageTransition>
     </div>
   )
 }
