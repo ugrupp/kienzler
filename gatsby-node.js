@@ -269,6 +269,7 @@ exports.createSchemaCustomization = ({
 
         image: Image
         background_image: Image
+        decor_image: Image
         columns: [HeaderServiceSectionColumn]
         listColumn: HeaderServiceSectionColumn
       }

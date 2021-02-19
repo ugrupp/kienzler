@@ -5,16 +5,17 @@ import {
   Heading,
   VisuallyHidden,
 } from "@chakra-ui/react"
+import { MDXProvider, useMDXComponents } from "@mdx-js/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import { Image } from "../models/Image"
 import { Spacing } from "../models/Spacing"
-import ContainerGrid from "./ContainerGrid"
-import ContentStack from "./ContentStack"
 // @ts-ignore
 import FrontVideo from "../videos/kienzler-leistung-video-1.mp4"
+import ContainerGrid from "./ContainerGrid"
+import ContentStack from "./ContentStack"
 
 export interface HeaderServiceSectionModel {
   type: string
@@ -24,6 +25,7 @@ export interface HeaderServiceSectionModel {
 
   image?: Image
   backgroundImage?: Image
+  decorImage?: Image
   columns: Array<{
     headline: string
     content: string
@@ -39,11 +41,12 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
   slug,
   image,
   backgroundImage,
+  decorImage,
   columns,
   listColumn,
 }) => {
-  // TODO: refactor to video
   const imageData = getImage(image.file)
+  const decorImageData = getImage(decorImage.file)
 
   // Background image
   const backgroundImageData = getImage(backgroundImage?.file)
@@ -98,12 +101,47 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
     },
   }
 
+  // Adjust list icon color and indentation
+  const columnsIndentation = [5, null, 6, null, 7, null, 8]
+  const originalComponents = useMDXComponents()
+  const modifiedComponents = {
+    ...originalComponents,
+    li: props =>
+      originalComponents.li({
+        ...props,
+        color: "inherit",
+        iconWidth: columnsIndentation,
+      }),
+    p: props => originalComponents.p({ ...props, pl: columnsIndentation }),
+  }
+
+  const sectionTopSpacing = [20, null, 24]
+
   return (
-    <Box as="section" position="relative" pt={[20, null, 24]} id={slug}>
+    <Box as="section" position="relative" pt={sectionTopSpacing} id={slug}>
       {/* h1, hidden but visible for screen readers and crawlers */}
       <VisuallyHidden as="h1">
         <MDXRenderer>{title}</MDXRenderer>
       </VisuallyHidden>
+
+      {/* Decor image */}
+      {decorImageData && (
+        <StyleableGatsbyImage
+          image={decorImageData}
+          alt={decorImage.alt ?? ""}
+          style={{ display: "block" }}
+          pos="absolute"
+          zIndex={1} // > bg image, < video
+          top={sectionTopSpacing}
+          left={0}
+          w="full"
+          maxW={["none", "80vw", "80vw", 740, null, 885]}
+          mt={["30vh", null, "70vh", null, "60vh"]}
+          transform="translateX(-30%);"
+          pointerEvents="none"
+          opacity={0.6}
+        />
+      )}
 
       {/* Front Image / Video */}
       {imageData && (
@@ -221,9 +259,19 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
 
                   {/* Content */}
                   {!!content && (
-                    <Box pl={[5, null, 6, null, 7, null, 8]}>
-                      <MDXRenderer>{content}</MDXRenderer>
-                    </Box>
+                    <ContentStack>
+                      <MDXProvider
+                        components={{
+                          ...modifiedComponents,
+                          // Indented paragraph for columns with headline
+                          p: !!headline
+                            ? modifiedComponents.p
+                            : originalComponents.p,
+                        }}
+                      >
+                        <MDXRenderer>{content}</MDXRenderer>
+                      </MDXProvider>
+                    </ContentStack>
                   )}
                 </ContentStack>
               </GridItem>
@@ -236,10 +284,30 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
                 gridColumn={gridConfig.listItem.column}
               >
                 <ContentStack>
-                  <Heading as="h2" textStyle="h3" color="orange.500">
-                    <MDXRenderer>{listColumn.headline}</MDXRenderer>
-                  </Heading>
-                  <MDXRenderer>{listColumn.content}</MDXRenderer>
+                  {/* Headline */}
+                  {!!listColumn.headline && (
+                    <Heading as="h2" textStyle="h3" color="orange.500">
+                      <MDXRenderer>{listColumn.headline}</MDXRenderer>
+                    </Heading>
+                  )}
+
+                  {/* Content */}
+                  {!!listColumn.content && (
+                    <ContentStack>
+                      <MDXProvider
+                        components={{
+                          ...modifiedComponents,
+                          li: props =>
+                            originalComponents.li({
+                              ...props,
+                              iconWidth: columnsIndentation,
+                            }),
+                        }}
+                      >
+                        <MDXRenderer>{listColumn.content}</MDXRenderer>
+                      </MDXProvider>
+                    </ContentStack>
+                  )}
                 </ContentStack>
               </GridItem>
             )}
@@ -279,6 +347,20 @@ export const query = graphql`
       file {
         childImageSharp {
           gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, quality: 75)
+        }
+      }
+      alt
+      fit
+      position
+    }
+    decorImage: decor_image {
+      file {
+        childImageSharp {
+          gatsbyImageData(
+            layout: CONSTRAINED
+            placeholder: TRACED_SVG
+            quality: 80
+          )
         }
       }
       alt
