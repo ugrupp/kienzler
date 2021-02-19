@@ -176,6 +176,7 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
                 objectPosition="50% 50%"
                 height={["47vh", null, "51vh", null, "67vh"]}
                 minHeight="100%"
+                w="full"
                 display="block"
               >
                 <source src={FrontVideo} type="video/mp4" />

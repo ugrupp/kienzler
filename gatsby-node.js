@@ -208,8 +208,8 @@ exports.createSchemaCustomization = ({
         cta: Link
       }
 
-      # Social media post
-      type SocialMediaPost {
+      # Social media post card
+      type SocialMediaPostCard {
         type: String!
         post: String
       }
@@ -227,7 +227,7 @@ exports.createSchemaCustomization = ({
         thumbnail: Image
       }
 
-      union SocialMediaPostType = FacebookYaml | InstagramYaml | YoutubeYaml
+      union SocialMediaPost = FacebookYaml | InstagramYaml | YoutubeYaml
 
       # Cards
       type CardsSection implements Section & Node {
@@ -239,6 +239,20 @@ exports.createSchemaCustomization = ({
         cards_type: String
         background_image: Image
         columns: [CardsColumn]
+      }
+
+      # Cards beta
+      type CardsBetaSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String @mdx(removeRootParagraph: true)
+        spacing: Spacing
+
+        image1: Image
+        image2: Image
+        image3: Image
+        social_media_post: String
+        text: String @mdx
       }
 
       # Company header
@@ -283,9 +297,9 @@ exports.createSchemaCustomization = ({
     // Cards column union type with custom resolver
     schema.buildUnionType({
       name: "CardsColumn",
-      types: ["Card", "SocialMediaPost"],
+      types: ["Card", "SocialMediaPostCard"],
       resolveType({ type }) {
-        return type === "social_media_post" ? "SocialMediaPost" : "Card"
+        return type === "social_media_post" ? "SocialMediaPostCard" : "Card"
       },
     }),
 
@@ -305,31 +319,20 @@ exports.createSchemaCustomization = ({
       targetType: "FaqsYaml",
     }),
     schema.buildObjectType({
-      name: "SocialMediaPost",
+      name: "SocialMediaPostCard",
       fields: {
         post: {
-          type: "SocialMediaPostType",
-          resolve: (source, args, context, info) => {
-            // Get post type and ref id from post ref
-            const postRefParts = source.post.split("/").reverse()
-            const postType = postRefParts[1]
-            const refId = postRefParts[0].replace(".yaml", "")
-
-            // Query for all nodes of the given postType
-            const nodes = context.nodeModel.getAllNodes({
-              type:
-                postType === "facebook"
-                  ? "FacebookYaml"
-                  : postType === "instagram"
-                  ? "InstagramYaml"
-                  : postType === "youtube"
-                  ? "YoutubeYaml"
-                  : null,
-            })
-
-            // Unfortunately the file path isn't exposed on the YAML nodes so we search by the previously set refId
-            return nodes.find(node => node.fields.refId === refId)
-          },
+          type: "SocialMediaPost",
+          resolve: resolveSocialMediaPost("post"),
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: "CardsBetaSection",
+      fields: {
+        social_media_post: {
+          type: "SocialMediaPost",
+          resolve: resolveSocialMediaPost("social_media_post"),
         },
       },
     }),
@@ -360,6 +363,7 @@ exports.createSchemaCustomization = ({
         "ColorsSection",
         "FaqsSection",
         "CardsSection",
+        "CardsBetaSection",
         "HeaderCompanySection",
         "TeamSection",
         "CareerSection",
@@ -433,3 +437,25 @@ const resolveRef = ({ schema, sectionName, fieldType, fieldId, targetType }) =>
       },
     },
   })
+
+const resolveSocialMediaPost = field => (source, args, context, info) => {
+  // Get post type and ref id from post ref
+  const postRefParts = source[field].split("/").reverse()
+  const postType = postRefParts[1]
+  const refId = postRefParts[0].replace(".yaml", "")
+
+  // Query for all nodes of the given postType
+  const nodes = context.nodeModel.getAllNodes({
+    type:
+      postType === "facebook"
+        ? "FacebookYaml"
+        : postType === "instagram"
+        ? "InstagramYaml"
+        : postType === "youtube"
+        ? "YoutubeYaml"
+        : null,
+  })
+
+  // Unfortunately the file path isn't exposed on the YAML nodes so we search by the previously set refId
+  return nodes.find(node => node.fields.refId === refId)
+}

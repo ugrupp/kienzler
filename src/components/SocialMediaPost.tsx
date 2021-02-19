@@ -11,31 +11,32 @@ import { convertMSToInt } from "../util/helpers"
 import { MotionBox } from "./MotionBox"
 
 export interface SocialMediaPostModel {
-  type: string
-  post?: {
-    fields: {
-      postType: string
-    }
-    id: string
-    title: string
-    url: string
-    thumbnail: Image
+  fields: {
+    postType: string
   }
+  id: string
+  title: string
+  url: string
+  thumbnail: Image
 }
 
-const SocialMediaPost: React.FC<SocialMediaPostModel> = ({ post }) => {
-  const { title, url, thumbnail } = post
+const SocialMediaPost: React.FC<SocialMediaPostModel> = ({
+  fields,
+  title,
+  url,
+  thumbnail,
+}) => {
   const thumbnailData = getImage(thumbnail?.file)
   const [hover, setHover] = useState<true | undefined>(undefined)
   const theme: ChakraTheme = useTheme()
 
   // Get icon, based on post type
   const Icon =
-    post.fields.postType === "facebook"
+    fields?.postType === "facebook"
       ? FacebookIcon
-      : post.fields.postType === "instagram"
+      : fields?.postType === "instagram"
       ? InstagramIcon
-      : post.fields.postType === "youtube"
+      : fields?.postType === "youtube"
       ? YouTubeIcon
       : null
 
@@ -101,15 +102,17 @@ const SocialMediaPost: React.FC<SocialMediaPostModel> = ({ post }) => {
       )}
 
       {/* Icon */}
-      <Box
-        position="absolute"
-        left={[4, null, null, null, null, 5]}
-        bottom={0}
-        zIndex={5}
-        transform="translateY(50%)"
-      >
-        <Icon color="orange.500" bgColor="white" boxSize={6} />
-      </Box>
+      {!!Icon && (
+        <Box
+          position="absolute"
+          left={[4, null, null, null, null, 5]}
+          bottom={0}
+          zIndex={5}
+          transform="translateY(50%)"
+        >
+          <Icon color="orange.500" bgColor="white" boxSize={6} />
+        </Box>
+      )}
     </Link>
   )
 }
@@ -131,43 +134,40 @@ export const query = graphql`
   }
 
   fragment SocialMediaPostFragment on SocialMediaPost {
-    type
-    post {
-      ... on FacebookYaml {
-        fields {
-          postType
-        }
-        id
-        title
-        url
-        thumbnail {
-          ...SocialMediaPostThumbnailFragment
-          alt
-        }
+    ... on FacebookYaml {
+      fields {
+        postType
       }
-      ... on InstagramYaml {
-        fields {
-          postType
-        }
-        id
-        title
-        url
-        thumbnail {
-          ...SocialMediaPostThumbnailFragment
-          alt
-        }
+      id
+      title
+      url
+      thumbnail {
+        ...SocialMediaPostThumbnailFragment
+        alt
       }
-      ... on YoutubeYaml {
-        fields {
-          postType
-        }
-        id
-        title
-        url
-        thumbnail {
-          ...SocialMediaPostThumbnailFragment
-          alt
-        }
+    }
+    ... on InstagramYaml {
+      fields {
+        postType
+      }
+      id
+      title
+      url
+      thumbnail {
+        ...SocialMediaPostThumbnailFragment
+        alt
+      }
+    }
+    ... on YoutubeYaml {
+      fields {
+        postType
+      }
+      id
+      title
+      url
+      thumbnail {
+        ...SocialMediaPostThumbnailFragment
+        alt
       }
     }
   }

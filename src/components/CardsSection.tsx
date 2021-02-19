@@ -16,7 +16,12 @@ export interface CardsSectionModel {
 
   cardsType?: "alpha" | "beta"
   backgroundImage?: Image
-  columns?: [CardModel | SocialMediaPostModel]
+  columns?: [CardModel | { type: string; post: SocialMediaPostModel }]
+}
+
+interface SocialMediaPostCardModel {
+  type: string
+  post: SocialMediaPostModel
 }
 
 const CardsSection: React.FC<CardsSectionModel> = ({
@@ -205,7 +210,7 @@ const CardsSection: React.FC<CardsSectionModel> = ({
               key={idx}
             >
               {item.type === "social_media_post" ? (
-                <SocialMediaPost {...(item as SocialMediaPostModel)} />
+                <SocialMediaPost {...(item as SocialMediaPostCardModel).post} />
               ) : (
                 <Card
                   gridColumns={
@@ -246,8 +251,11 @@ export const query = graphql`
       ... on Card {
         ...CardFragment
       }
-      ... on SocialMediaPost {
-        ...SocialMediaPostFragment
+      ... on SocialMediaPostCard {
+        type
+        post {
+          ...SocialMediaPostFragment
+        }
       }
     }
   }
