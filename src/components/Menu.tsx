@@ -134,7 +134,6 @@ const Item = ({
             mr: 2,
           },
         }
-  depth === 1 && console.log("rerender")
 
   return (
     <ListItem id={itemId} sx={{ counterIncrement: "submenu" }}>
