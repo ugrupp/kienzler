@@ -14,6 +14,9 @@ export const mdxFrontmatterSectionsFields = graphql`
     ... on CardsBetaSection {
       ...CardsBetaSectionFields
     }
+    ... on CardsGammaSection {
+      ...CardsGammaSectionFields
+    }
     ... on AdvantagesSection {
       ...AdvantagesSectionFields
     }

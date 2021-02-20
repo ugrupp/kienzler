@@ -255,6 +255,27 @@ exports.createSchemaCustomization = ({
         text: String @mdx
       }
 
+      # Cards gamma
+      type CardsGammaSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String @mdx(removeRootParagraph: true)
+        spacing: Spacing
+
+        social_media_post: String
+        text: String @mdx
+        contact: CardsGammaSectionContact
+      }
+
+      type CardsGammaSectionContact  {
+        text: String @mdx
+        first_name: String
+        last_name: String
+        image: Image
+        phone: Link
+        mail: Link
+      }
+
       # Company header
       type HeaderCompanySection implements Section & Node {
         type: String!
@@ -336,6 +357,15 @@ exports.createSchemaCustomization = ({
         },
       },
     }),
+    schema.buildObjectType({
+      name: "CardsGammaSection",
+      fields: {
+        social_media_post: {
+          type: "SocialMediaPost",
+          resolve: resolveSocialMediaPost("social_media_post"),
+        },
+      },
+    }),
 
     // Image: transform src to file node
     schema.buildObjectType({
@@ -364,6 +394,7 @@ exports.createSchemaCustomization = ({
         "FaqsSection",
         "CardsSection",
         "CardsBetaSection",
+        "CardsGammaSection",
         "HeaderCompanySection",
         "TeamSection",
         "CareerSection",
