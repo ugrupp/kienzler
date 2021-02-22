@@ -3,7 +3,7 @@ import {
   chakra,
   ChakraTheme,
   Flex,
-  Image,
+  Img,
   Tooltip,
   useTheme,
   VisuallyHidden,
@@ -59,7 +59,7 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
             top="0"
           >
             <Box as="strong" display="inline-block" height="full">
-              <Image src={Logo} alt={siteTitle} height="full" />
+              <Img src={Logo} alt={siteTitle} height="full" />
             </Box>
           </StyleableLink>
 
