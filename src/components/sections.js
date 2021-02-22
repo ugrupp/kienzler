@@ -8,6 +8,7 @@ import HeaderCompanySection from "./HeaderCompanySection"
 import HeaderErrorSection from "./HeaderErrorSection"
 import HeaderSection from "./HeaderSection"
 import HeaderServiceSection from "./HeaderServiceSection"
+import PlainSection from "./PlainSection"
 import TeamSection from "./TeamSection"
 
 export default {
@@ -22,4 +23,5 @@ export default {
   CareerSection,
   HeaderServiceSection,
   HeaderErrorSection,
+  PlainSection,
 }

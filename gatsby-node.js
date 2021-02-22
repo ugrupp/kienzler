@@ -323,6 +323,17 @@ exports.createSchemaCustomization = ({
 
         image: Image
       }
+
+      # Plain section
+      type PlainSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String @mdx(removeRootParagraph: true)
+        spacing: Spacing
+
+        textCol1: String @mdx
+        textCol2: String @mdx
+      }
     `,
 
     // Cards column union type with custom resolver
@@ -410,6 +421,7 @@ exports.createSchemaCustomization = ({
         "CareerSection",
         "HeaderServiceSection",
         "HeaderErrorSection",
+        "PlainSection",
       ],
       // Resolve section based on `type` property
       resolveType: ({ type }) => `${upperFirst(camelCase(type))}Section`,

@@ -21,6 +21,11 @@ export default {
     fontWeight: "bold",
     textTransform: "uppercase",
   },
+  h5: {
+    fontSize: ["3xs", null, "2xs", "xs"],
+    fontWeight: "bold",
+    textTransform: "uppercase",
+  },
   "paragraph-lg": {
     fontSize: ["lg", null, "2lg", "xl"],
   },

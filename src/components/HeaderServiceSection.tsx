@@ -112,7 +112,6 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
         color: "inherit",
         iconWidth: columnsIndentation,
       }),
-    p: props => originalComponents.p({ ...props, pl: columnsIndentation }),
   }
 
   const sectionTopSpacing = [20, null, 24]

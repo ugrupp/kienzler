@@ -25,6 +25,9 @@ export const query = graphql`
           showContactFooter: show_contact_footer
           showContactColumn: show_contact_column
         }
+        backgrounds {
+          ...BackgroundFragment
+        }
         sections {
           ...MdxFrontmatterSectionsFields
         }
