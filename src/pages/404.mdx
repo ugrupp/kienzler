@@ -1,5 +1,15 @@
 ---
 title: "Fehler 404: Seite nicht gefunden"
+sections:
+  - type: header_error
+    slug: header
+    title: |-
+      Fehler 404: Seite nicht gefunden
+    image:
+      src: images/highlight-garagen-nach-mass-full.jpg
+      alt: Seite nicht gefunden
+      fit: cover
+      position: 50% 50%
 ---
 
 import { graphql } from "gatsby"
@@ -14,6 +24,9 @@ export const query = graphql`
         footer {
           showContactFooter: show_contact_footer
           showContactColumn: show_contact_column
+        }
+        sections {
+          ...MdxFrontmatterSectionsFields
         }
       }
     }

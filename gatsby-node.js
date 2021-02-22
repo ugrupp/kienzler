@@ -313,6 +313,16 @@ exports.createSchemaCustomization = ({
         headline: String @mdx(removeRootParagraph: true)
         content: String @mdx
       }
+
+      # 404 header
+      type HeaderErrorSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String @mdx(removeRootParagraph: true)
+        spacing: Spacing
+
+        image: Image
+      }
     `,
 
     // Cards column union type with custom resolver
@@ -399,6 +409,7 @@ exports.createSchemaCustomization = ({
         "TeamSection",
         "CareerSection",
         "HeaderServiceSection",
+        "HeaderErrorSection",
       ],
       // Resolve section based on `type` property
       resolveType: ({ type }) => `${upperFirst(camelCase(type))}Section`,
