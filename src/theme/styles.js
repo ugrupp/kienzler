@@ -21,7 +21,7 @@ export default {
 
     // Only way to use media queries on swiper slides as it seems
     ".swiper-slide-details": {
-      width: [312, null, 520, null, null, 900, 1160],
+      width: [312, null, 520, null, null, 900, 980],
     },
   },
 }
