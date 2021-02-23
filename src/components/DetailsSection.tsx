@@ -93,7 +93,7 @@ const DetailsSection: React.FC<DetailsSectionModel> = ({
       row: 1,
     },
     controls: {
-      column: ["3 / main", "4 / main", null, null, "6 / 10"],
+      column: ["3 / main", "4 / main", null, null, "span 3 / main"],
       row: [2, null, 1],
     },
     slider: {
@@ -160,7 +160,10 @@ const DetailsSection: React.FC<DetailsSectionModel> = ({
             gridColumn={gridConfig.controls.column}
             alignSelf="flex-end"
           >
-            <HStack spacing={5} justifyContent={{ md: "flex-end" }}>
+            <HStack
+              spacing={5}
+              justifyContent={{ md: "flex-end", xl: "flex-start" }}
+            >
               {/* Previous */}
               <NavButton type="previous" ref={prevRef} />
 

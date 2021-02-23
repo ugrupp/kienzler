@@ -159,7 +159,7 @@ exports.createSchemaCustomization = ({
         spacing: Spacing
 
         text: String @mdx
-        advantages: [String]
+        advantages: String @mdx
       }
 
       # Details
