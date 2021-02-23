@@ -83,7 +83,7 @@ const Layout = props => {
       <PageTransition>
         <main>
           {/* Render sections and backgrounds as vertical grid */}
-          <Grid>
+          <Grid gridTemplateColumns="100%">
             {/* Backgrounds */}
             {backgrounds.map(({ rows, gradient, spacing }, idx) => (
               <GridItem

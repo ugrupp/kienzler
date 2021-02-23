@@ -1,4 +1,4 @@
-import { Box, ChakraTheme, useTheme } from "@chakra-ui/react"
+import { Box, chakra, ChakraTheme, useTheme } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -19,6 +19,7 @@ export interface DetailModel {
 
 const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
   const theme: ChakraTheme = useTheme()
+  const StyleableGatsbyImage = chakra(GatsbyImage)
 
   // Image calculations
   const imageData = getImage(image?.file)
@@ -27,7 +28,8 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
   const svgStrokeWidth = 0.002 * Math.max(width, height)
   const svgLineOffset = 0.07 * Math.max(width, height)
   const tooltipPositionPercentages = tooltip.position.split(" ")
-  const tooltipPadding = 8
+  const tooltipPadding = "1.75em"
+  const imageAr = 0.7
 
   const [x, y] = tooltipPositionPercentages.map(
     (percent, idx) =>
@@ -35,20 +37,38 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
       (idx === 0 ? imageData.width : imageData.height)
   )
 
+  const imageSizes = [312, null, 500, null, null, 663]
+
+  const imageStyles =
+    imageData.width / imageData.height <= 1
+      ? // Portrait
+        {
+          height: imageSizes,
+          width: imageSizes.map(size => size * imageAr || null),
+        }
+      : // Landscape
+        {
+          height: imageSizes.map(size => size * imageAr || null),
+          width: imageSizes,
+        }
+
   return (
     <>
       {/* Don't render anything if image isn't there */}
       {imageData && (
-        <Box position="relative">
+        <Box
+          position="relative"
+          height={imageStyles.height}
+          width={imageStyles.width}
+        >
           {/* Image */}
-          <Box
-            position="relative"
-            maxWidth={imageData.width / imageData.height > 1 ? 500 : undefined}
-          >
-            <GatsbyImage
+          <Box position="relative">
+            <StyleableGatsbyImage
               image={imageData}
-              alt={image.alt ?? ""}
+              imgStyle={{ display: "block" }}
               style={{ display: "block" }}
+              alt={image.alt ?? ""}
+              {...imageStyles}
             />
 
             {/* Image overlay svg for tooltip indicator */}
@@ -105,14 +125,14 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
             ml={
               tooltip.direction === "right"
                 ? -5
-                : `calc(-${theme.space[tooltipPadding]} - 0.5em)`
+                : `calc(-${tooltipPadding} - 0.5em)`
             }
             mt={
               tooltip.direction === "bottom"
                 ? -5
-                : `calc(-${theme.space[tooltipPadding]} - 0.5em)`
+                : `calc(-${tooltipPadding} - 0.5em)`
             }
-            width={250}
+            width={[200, null, 250]}
             p={tooltipPadding}
             color="white"
             textStyle="paragraph"
@@ -151,7 +171,6 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
                   fontWeight="bold"
                   textTransform="uppercase"
                   // ShiftBy, but with margins so surrounding box will shrink also, too.
-                  // TODO: move this into ShiftBy?
                   mt="-0.2em"
                   mb="-0.2em"
                 >

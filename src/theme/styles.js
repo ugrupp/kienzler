@@ -18,5 +18,10 @@ export default {
       bgColor: "orange.500",
       color: "white",
     },
+
+    // Only way to use media queries on swiper slides as it seems
+    ".swiper-slide-details": {
+      width: [312, null, 520, null, null, 900, 1160],
+    },
   },
 }

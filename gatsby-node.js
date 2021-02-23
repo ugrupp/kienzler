@@ -166,9 +166,10 @@ exports.createSchemaCustomization = ({
       type DetailsSection implements Section & Node {
         type: String!
         slug: String
-        title: String
+        title: String @mdx(removeRootParagraph: true)
         spacing: Spacing
 
+        background_image: Image
         text: String @mdx
         details: [String]
       }

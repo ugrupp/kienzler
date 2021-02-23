@@ -33,6 +33,7 @@
     "react-helmet": "^6.1.0",
     "react-string-replace": "^0.4.4",
     "remark-hypher": "0.0.1",
+    "swiper": "^6.4.15",
     "unist-util-select": "^3.0.4"
   },
   "devDependencies": {
