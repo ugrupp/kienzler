@@ -10,6 +10,7 @@ import HeaderErrorSection from "./HeaderErrorSection"
 import HeaderSection from "./HeaderSection"
 import HeaderServiceSection from "./HeaderServiceSection"
 import PlainSection from "./PlainSection"
+import SizesSection from "./SizesSection"
 import TeamSection from "./TeamSection"
 
 export default {
@@ -26,4 +27,5 @@ export default {
   HeaderErrorSection,
   PlainSection,
   ColorsSection,
+  SizesSection,
 }

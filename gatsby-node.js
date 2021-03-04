@@ -191,6 +191,23 @@ exports.createSchemaCustomization = ({
         color_groups: String
       }
 
+      # Sizes
+      type SizesSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String
+        spacing: Spacing
+
+        sizes: [GarageSize]
+      }
+
+      type GarageSize {
+        title: String!
+        widths: String
+        lengths: String
+        image: Image
+      }
+
       # FAQ
       type FaqsSection implements Section & Node {
         type: String!
@@ -428,6 +445,7 @@ exports.createSchemaCustomization = ({
         "HeaderCompanySection",
         "TeamSection",
         "CareerSection",
+        "SizesSection",
         "HeaderServiceSection",
         "HeaderErrorSection",
         "PlainSection",

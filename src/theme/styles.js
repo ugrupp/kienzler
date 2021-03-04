@@ -23,5 +23,13 @@ export default {
     ".swiper-slide-details": {
       width: [312, null, 520, null, null, 900, 980],
     },
+
+    // Only way to use media queries on swiper slides as it seems
+    ".swiper-slide-sizes": {
+      width: [300, null, 360, null, null, null, 460],
+      "&:last-of-type": {
+        marginRight: 100,
+      },
+    },
   },
 }

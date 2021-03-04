@@ -1,11 +1,16 @@
+import { SystemProps, VStack } from "@chakra-ui/react"
 import React from "react"
-import { VStack } from "@chakra-ui/react"
 
-export interface ContentStackProps {}
+export interface ContentStackProps {
+  spacing?: SystemProps["margin"]
+}
 
-const ContentStack: React.FC<ContentStackProps> = ({ children }) => {
+const ContentStack: React.FC<ContentStackProps> = ({
+  children,
+  spacing = [5, null, 6, null, 7],
+}) => {
   return (
-    <VStack align="flex-start" spacing={[5, null, 6, null, 7]}>
+    <VStack align="flex-start" spacing={spacing}>
       {children}
     </VStack>
   )

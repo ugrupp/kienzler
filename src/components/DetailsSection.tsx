@@ -1,66 +1,18 @@
-import { Box, chakra, GridItem, HStack, VisuallyHidden } from "@chakra-ui/react"
+import { Box, chakra, GridItem } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import React, { forwardRef, useRef } from "react"
+import React, { useRef } from "react"
 import SwiperCore, { Navigation } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/swiper-bundle.css"
-import ArrowIcon from "../icons/Arrow"
 import { Image } from "../models/Image"
 import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
 import Detail, { DetailModel } from "./Detail"
+import NavButtons from "./NavButtons"
 import TitleText from "./TitleText"
 
 SwiperCore.use([Navigation])
-
-export interface NavButtonProps {
-  type: "previous" | "next"
-  ref: React.MutableRefObject<any>
-}
-
-const NavButton = forwardRef<any, NavButtonProps>(({ type }, ref) => {
-  return (
-    <Box
-      ref={ref}
-      as={"button"}
-      height={["1.625rem", null, "1.875rem"]}
-      width={["1.625rem", null, "1.875rem"]}
-      color="currentColor"
-      transitionProperty="all"
-      transitionDuration="normal"
-      appearance="none"
-      p={0}
-      _hover={{
-        color: "orange.500",
-      }}
-      _focus={{
-        outline: "none",
-        color: "orange.500",
-      }}
-      sx={{
-        "&.swiper-button-disabled": {
-          opacity: 0.5,
-          cursor: "not-allowed",
-        },
-      }}
-      // @ts-ignore
-      onClick={e => {
-        e.currentTarget.blur()
-      }}
-    >
-      <VisuallyHidden>
-        {type === "next" ? "Nächstes Detail" : "Vorheriges Detail"}
-      </VisuallyHidden>
-      <ArrowIcon
-        height="100%"
-        width="100%"
-        display="block"
-        transform={type === "previous" ? "rotate(180deg)" : undefined}
-      />
-    </Box>
-  )
-})
 
 export interface DetailsSectionModel {
   type: string
@@ -161,19 +113,7 @@ const DetailsSection: React.FC<DetailsSectionModel> = ({
             gridColumn={gridConfig.controls.column}
             alignSelf="flex-end"
           >
-            <HStack
-              spacing={5}
-              justifyContent={{ md: "flex-end", xl: "flex-start" }}
-            >
-              {/* Previous */}
-              <NavButton type="previous" ref={prevRef} />
-
-              {/* Custom spacer */}
-              <Box height="1px" bgColor="currentColor" width={8} />
-
-              {/* Next */}
-              <NavButton type="next" ref={nextRef} />
-            </HStack>
+            <NavButtons prevRef={prevRef} nextRef={nextRef} />
           </GridItem>
 
           {/* Slider */}
