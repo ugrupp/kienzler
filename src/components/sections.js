@@ -3,6 +3,7 @@ import CardsBetaSection from "./CardsBetaSection"
 import CardsGammaSection from "./CardsGammaSection"
 import CardsSection from "./CardsSection"
 import CareerSection from "./CareerSection"
+import ColorsSection from "./ColorsSection"
 import DetailsSection from "./DetailsSection"
 import HeaderCompanySection from "./HeaderCompanySection"
 import HeaderErrorSection from "./HeaderErrorSection"
@@ -24,4 +25,5 @@ export default {
   HeaderServiceSection,
   HeaderErrorSection,
   PlainSection,
+  ColorsSection,
 }

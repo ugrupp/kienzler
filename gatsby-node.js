@@ -17,7 +17,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     node.internal.type === "FaqsYaml" ||
     node.internal.type === "FacebookYaml" ||
     node.internal.type === "InstagramYaml" ||
-    node.internal.type === "YoutubeYaml"
+    node.internal.type === "YoutubeYaml" ||
+    node.internal.type === "ColorsYaml"
   ) {
     // Create ref id (= filename without extension)
     const refParts = createFilePath({
@@ -347,19 +348,26 @@ exports.createSchemaCustomization = ({
     }),
 
     // YAML ref resolvers
-    resolveRef({
+    resolveRefs({
       schema,
       sectionName: "DetailsSection",
       fieldType: "[DetailsYaml]",
       fieldId: "details",
       targetType: "DetailsYaml",
     }),
-    resolveRef({
+    resolveRefs({
       schema,
       sectionName: "FaqsSection",
       fieldType: "[FaqsYaml]",
       fieldId: "faqs",
       targetType: "FaqsYaml",
+    }),
+    resolveRef({
+      schema,
+      sectionName: "ColorsSection",
+      fieldType: "ColorsYaml",
+      fieldId: "color_groups",
+      targetType: "ColorsYaml",
     }),
     schema.buildObjectType({
       name: "SocialMediaPostCard",
@@ -471,9 +479,33 @@ exports.createSchemaCustomization = ({
   })
 }
 
-// Override ref fields, using the ref to search for corresponding nodes, which must be sourced earlier.
+// Override single ref fields, using the ref to search for a corresponding node, which must be sourced earlier.
 // Only works with YAML nodes right now, created by the gatsby-transformer-yaml plugin.
 const resolveRef = ({ schema, sectionName, fieldType, fieldId, targetType }) =>
+  schema.buildObjectType({
+    name: sectionName,
+    fields: {
+      [fieldId]: {
+        type: fieldType,
+        resolve: (source, args, context, info) => {
+          // Query for all nodes
+          const nodes = context.nodeModel.getAllNodes({ type: targetType })
+
+          // Find corresponding node for ref
+          const refId = source[fieldId]
+            .split("/")
+            .reverse()[0]
+            .replace(".yaml", "")
+
+          return nodes.find(node => node.fields.refId === refId)
+        },
+      },
+    },
+  })
+
+// Override ref array fields, using the ref to search for corresponding nodes, which must be sourced earlier.
+// Only works with YAML nodes right now, created by the gatsby-transformer-yaml plugin.
+const resolveRefs = ({ schema, sectionName, fieldType, fieldId, targetType }) =>
   schema.buildObjectType({
     name: sectionName,
     fields: {

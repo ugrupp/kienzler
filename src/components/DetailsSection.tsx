@@ -139,6 +139,7 @@ const DetailsSection: React.FC<DetailsSectionModel> = ({
         position="relative"
         zIndex={10} // > bg image, > bg gradient
         mt="-100vh"
+        minHeight="100vh"
         pt={[40, null, 48]}
         pb={[64, null, 72]}
       >

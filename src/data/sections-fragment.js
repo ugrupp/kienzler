@@ -38,6 +38,9 @@ export const mdxFrontmatterSectionsFields = graphql`
     ... on PlainSection {
       ...PlainSectionFragment
     }
+    ... on ColorsSection {
+      ...ColorsSectionFragment
+    }
     ... on FaqsSection {
       faqs {
         id
