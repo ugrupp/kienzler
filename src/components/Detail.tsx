@@ -73,7 +73,14 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
 
             {/* Image overlay svg for tooltip indicator */}
             {!!title && (
-              <Box position="absolute" left={0} right={0} bottom={0} top={0}>
+              <Box
+                position="absolute"
+                left={0}
+                right={0}
+                bottom={0}
+                top={0}
+                zIndex={10} // > image
+              >
                 <svg
                   viewBox={`0 0 ${width} ${height}`}
                   height="100%"
@@ -112,6 +119,7 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
           {/* Tooltip */}
           <Box
             position="absolute"
+            zIndex={10}
             left={
               tooltip.direction === "right"
                 ? "100%"

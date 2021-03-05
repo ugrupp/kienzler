@@ -76,7 +76,6 @@ const TopMenu = ({ menuLinks, handleArrowClick, activeMenus }) => {
         },
       }}
       display={[null, null, null, null, "flex"]}
-      gridGap={[null, null, null, null, 24]}
     >
       {menuLinks.map((menuLink, index) => {
         const itemId = `menu-${depth}-${index}`
@@ -91,6 +90,7 @@ const TopMenu = ({ menuLinks, handleArrowClick, activeMenus }) => {
             menuIndex={index}
             activeMenus={activeMenus}
             handleArrowClick={handleArrowClick}
+            ml={index !== 0 ? [null, null, null, null, 24] : undefined}
           />
         )
       })}
@@ -107,6 +107,7 @@ const Item = ({
   menuIndex,
   activeMenus,
   handleArrowClick,
+  ...props
 }) => {
   const linkStyles =
     depth === 1
@@ -136,7 +137,7 @@ const Item = ({
         }
 
   return (
-    <ListItem id={itemId} sx={{ counterIncrement: "submenu" }}>
+    <ListItem id={itemId} sx={{ counterIncrement: "submenu" }} {...props}>
       <Flex alignItems="center" justifyContent="space-between">
         {/* Link */}
         <Box as={Link} to={menuLink.link} {...linkStyles}>
