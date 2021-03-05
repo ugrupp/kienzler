@@ -1,6 +1,6 @@
 module.exports = {
   flags: {
-    FAST_REFRESH: true,
+    FAST_DEV: true,
   },
   siteMetadata: require("./src/data/site.js"),
   plugins: [

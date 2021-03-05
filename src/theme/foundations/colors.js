@@ -1,4 +1,4 @@
-export default {
+const colors = {
   gray: {
     50: "#F6F6F6",
     200: "#E4E4E4",
@@ -10,3 +10,5 @@ export default {
     500: "#EA6A1F",
   },
 }
+
+export default colors

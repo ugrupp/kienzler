@@ -1,4 +1,4 @@
-export default {
+const styles = {
   global: {
     html: {
       scrollBehavior: "smooth",
@@ -33,3 +33,5 @@ export default {
     },
   },
 }
+
+export default styles

@@ -1,4 +1,4 @@
-export default {
+const typograhy = {
   lineHeights: {
     normal: "normal",
     none: 1,
@@ -39,3 +39,5 @@ export default {
     "9xl": null,
   },
 }
+
+export default typograhy

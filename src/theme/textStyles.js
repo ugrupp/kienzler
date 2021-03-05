@@ -1,4 +1,4 @@
-export default {
+const textStyles = {
   h1: {
     fontSize: ["4xl", null, "5xl"],
     fontWeight: "light",
@@ -36,3 +36,5 @@ export default {
     fontSize: ["3xs", null, "2xs", "xs"],
   },
 }
+
+export default textStyles

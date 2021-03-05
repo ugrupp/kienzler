@@ -1,1 +1,3 @@
-export default {}
+const layerStyles = {}
+
+export default layerStyles

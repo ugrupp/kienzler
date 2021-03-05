@@ -13,7 +13,7 @@ import PlainSection from "./PlainSection"
 import SizesSection from "./SizesSection"
 import TeamSection from "./TeamSection"
 
-export default {
+const sections = {
   CardsSection,
   CardsBetaSection,
   CardsGammaSection,
@@ -29,3 +29,5 @@ export default {
   ColorsSection,
   SizesSection,
 }
+
+export default sections

@@ -3,7 +3,7 @@ import { isValidMotionProp, motion } from "framer-motion"
 import React from "react"
 
 // TODO: find solutions for ts-ignored stuff
-export const MotionBox = motion.custom(
+export const MotionBox = motion(
   // @ts-ignore
   forwardRef((props, ref) => {
     // @ts-ignore

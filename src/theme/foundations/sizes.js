@@ -2,6 +2,8 @@ const largeSizes = {
   container: "105rem",
 }
 
-export default {
+const sizes = {
   ...largeSizes,
 }
+
+export default sizes

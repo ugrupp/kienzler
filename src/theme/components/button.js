@@ -3,7 +3,7 @@
 // - white-dark
 // - white-orange
 
-export default {
+const button = {
   baseStyle: {
     fontWeight: "bold",
     borderRadius: "none",
@@ -27,6 +27,8 @@ export default {
     colorScheme: "dark-orange",
   },
 }
+
+export default button
 
 function variantSolid(props) {
   const { colorScheme: c } = props
