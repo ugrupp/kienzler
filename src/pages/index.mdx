@@ -1,5 +1,8 @@
 ---
 title: Startseite
+footer:
+  spacing:
+    top: ["48", null, "72", null, "96"]
 backgrounds:
   - rows: 1 / 3
     gradient: linear-gradient(to-b, gray.50, transparent)
@@ -113,6 +116,9 @@ export const query = graphql`
         footer {
           showContactFooter: show_contact_footer
           showContactColumn: show_contact_column
+          spacing {
+            ...SpacingFragment
+          }
         }
         backgrounds {
           ...BackgroundFragment

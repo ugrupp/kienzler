@@ -93,6 +93,7 @@ exports.createSchemaCustomization = ({
       type FooterOptions {
         show_contact_footer: Boolean
         show_contact_column: Boolean
+        spacing: Spacing
       }
 
       # Page frontmatter

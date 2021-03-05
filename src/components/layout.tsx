@@ -117,7 +117,12 @@ const Layout = props => {
           {props.children && <Box>{props.children}</Box>}
         </main>
 
-        <Box as="footer" backgroundColor="gray.500" color="white">
+        <Box
+          as="footer"
+          backgroundColor="gray.500"
+          color="white"
+          pt={footerOptions?.spacing?.top ?? undefined}
+        >
           {/* Contact footer */}
           {footerOptions?.showContactFooter && <ContactFooter />}
 

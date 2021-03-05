@@ -203,11 +203,17 @@ const CardsSection: React.FC<CardsSectionModel> = ({
         <ContainerGrid rowGap={[36]}>
           {columns.map((item, idx) => (
             <GridItem
+              key={idx}
               rowSpan={{ lg: currentCardsConfig.rowSpan }}
               gridColumn={
                 currentCardsConfig.columnPositions[idx] ?? defaultColumnPosition
               }
-              key={idx}
+              // Transform last item
+              transform={
+                cardsType === "beta" && idx >= columns.length - 1
+                  ? "translateY(50%)"
+                  : undefined
+              }
             >
               {item.type === "social_media_post" ? (
                 <SocialMediaPost {...(item as SocialMediaPostCardModel).post} />
