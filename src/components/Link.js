@@ -5,7 +5,9 @@ import React from "react"
 // and partiallyActive, destructure the prop here and
 // pass it only to GatsbyLink
 const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {
-  const external = /https?:\/\/((?:[\w\d-]+\.)+[\w\d]{2,})/i.test(to)
+  const external = /(mailto:\w+)|(tel:\w+)|https?:\/\/((?:[\w\d-]+\.)+[\w\d]{2,})/i.test(
+    to
+  )
 
   // Use Gatsby Link for internal links, and <a> for others
   if (external) {
