@@ -127,7 +127,7 @@ export const query = graphql`
           layout: CONSTRAINED
           aspectRatio: 1
           placeholder: DOMINANT_COLOR
-          quality: 75
+          quality: 90
         )
       }
     }

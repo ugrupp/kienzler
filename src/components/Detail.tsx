@@ -209,7 +209,7 @@ export const query = graphql`
             height: 500
             layout: CONSTRAINED
             placeholder: DOMINANT_COLOR
-            quality: 75
+            quality: 90
           )
         }
       }

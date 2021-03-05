@@ -247,7 +247,7 @@ export const query = graphql`
     backgroundImage: background_image {
       file {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, quality: 75)
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, quality: 80)
         }
       }
       alt

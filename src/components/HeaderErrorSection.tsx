@@ -119,7 +119,7 @@ export const query = graphql`
           gatsbyImageData(
             layout: CONSTRAINED
             placeholder: DOMINANT_COLOR
-            quality: 75
+            quality: 90
             transformOptions: { grayscale: true }
           )
         }
