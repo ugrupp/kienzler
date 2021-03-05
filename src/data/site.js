@@ -59,16 +59,6 @@ module.exports = {
           title: "Details",
           link: "/garagen-nach-mass/#details",
         },
-        {
-          slug: "garagen-nach-mass-wissenswertes",
-          title: "Wissenswertes",
-          link: "/garagen-nach-mass/#wissenswertes",
-        },
-        {
-          slug: "garagen-nach-mass-anfrage",
-          title: "Anfrage",
-          link: "/garagen-nach-mass/#anfrage",
-        },
       ],
     },
     {
@@ -90,16 +80,6 @@ module.exports = {
           slug: "fertiggaragen-details",
           title: "Details",
           link: "/fertiggaragen/#details",
-        },
-        {
-          slug: "fertiggaragen-wissenswertes",
-          title: "Wissenswertes",
-          link: "/fertiggaragen/#wissenswertes",
-        },
-        {
-          slug: "fertiggaragen-anfrage",
-          title: "Anfrage",
-          link: "/fertiggaragen/#anfrage",
         },
       ],
     },
