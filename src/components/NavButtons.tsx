@@ -1,4 +1,4 @@
-import { Box, HStack, VisuallyHidden } from "@chakra-ui/react"
+import { Box, HStack, StackProps, VisuallyHidden } from "@chakra-ui/react"
 import React, { forwardRef } from "react"
 import ArrowIcon from "../icons/Arrow"
 
@@ -53,11 +53,20 @@ const NavButton = forwardRef<any, NavButtonProps>(({ type }, ref) => {
 export interface NavButtonsProps {
   prevRef: React.MutableRefObject<any>
   nextRef: React.MutableRefObject<any>
+  wrapperProps?: StackProps
 }
 
-const NavButtons: React.FC<NavButtonsProps> = ({ prevRef, nextRef }) => {
+const NavButtons: React.FC<NavButtonsProps> = ({
+  prevRef,
+  nextRef,
+  wrapperProps,
+}) => {
   return (
-    <HStack spacing={5} justifyContent={{ md: "flex-end", xl: "flex-start" }}>
+    <HStack
+      spacing={5}
+      justifyContent={{ md: "flex-end", xl: "flex-start" }}
+      {...wrapperProps}
+    >
       {/* Previous */}
       <NavButton type="previous" ref={prevRef} />
 

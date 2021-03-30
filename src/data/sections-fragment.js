@@ -44,6 +44,9 @@ export const mdxFrontmatterSectionsFields = graphql`
     ... on SizesSection {
       ...SizesSectionFragment
     }
+    ... on ReferencesSection {
+      ...ReferencesSectionFragment
+    }
     ... on FaqsSection {
       faqs {
         id

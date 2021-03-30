@@ -164,6 +164,23 @@ exports.createSchemaCustomization = ({
         advantages: String @mdx
       }
 
+      # References
+      type Reference {
+        image: Image
+        title: String @mdx
+        goal: String @mdx
+        location: String @mdx
+      }
+
+      type ReferencesSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String
+        spacing: Spacing
+
+        references: [Reference]
+      }
+
       # Details
       type DetailsSection implements Section & Node {
         type: String!
@@ -450,6 +467,7 @@ exports.createSchemaCustomization = ({
         "HeaderServiceSection",
         "HeaderErrorSection",
         "PlainSection",
+        "ReferencesSection",
       ],
       // Resolve section based on `type` property
       resolveType: ({ type }) => `${upperFirst(camelCase(type))}Section`,

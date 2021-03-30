@@ -10,6 +10,7 @@ import HeaderErrorSection from "./HeaderErrorSection"
 import HeaderSection from "./HeaderSection"
 import HeaderServiceSection from "./HeaderServiceSection"
 import PlainSection from "./PlainSection"
+import ReferencesSection from "./ReferencesSection"
 import SizesSection from "./SizesSection"
 import TeamSection from "./TeamSection"
 
@@ -28,6 +29,7 @@ const sections = {
   PlainSection,
   ColorsSection,
   SizesSection,
+  ReferencesSection,
 }
 
 export default sections
