@@ -59,6 +59,11 @@ module.exports = {
           title: "Details",
           link: "/garagen-nach-mass/#details",
         },
+        {
+          slug: "garagen-nach-mass-farbgestaltung",
+          title: "Farbgestaltung",
+          link: "/garagen-nach-mass/#farbgestaltung",
+        },
       ],
     },
     {
@@ -80,6 +85,11 @@ module.exports = {
           slug: "fertiggaragen-details",
           title: "Details",
           link: "/fertiggaragen/#details",
+        },
+        {
+          slug: "fertiggaragen-farbgestaltung",
+          title: "Farbgestaltung",
+          link: "/fertiggaragen/#farbgestaltung",
         },
       ],
     },
