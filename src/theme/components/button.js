@@ -90,20 +90,49 @@ function variantOutline(props) {
     hoverColor = "orange.500"
   }
 
+  let pseudoBorderStyles = {
+    content: "''",
+    position: "absolute",
+    width: "full",
+    height: "1px",
+    bottom: 0,
+    right: 0,
+    backgroundColor: "currentColor",
+    transition: "transform 0.4s cubic-bezier(0.65, 0.005, 0.35, 0.995)",
+  }
+
   return {
     color,
     border: "none",
-    borderBottom: "1px solid currentColor",
     padding: 0,
     paddingBottom: 2,
     height: "auto",
     _hover: {
       bg: null,
       color: hoverColor,
+      _before: {
+        transform: "scaleX(1)",
+        transitionDelay: "0.25s",
+      },
+      _after: {
+        transform: "scaleX(0)",
+        transitionDelay: "0s",
+      },
     },
     _active: {
       bg: null,
       color: hoverColor,
+    },
+    _before: {
+      ...pseudoBorderStyles,
+      transform: "scaleX(0)",
+      transformOrigin: "left",
+      transitionDelay: "0s",
+    },
+    _after: {
+      ...pseudoBorderStyles,
+      transformOrigin: "right",
+      transitionDelay: "0.25s",
     },
   }
 }
