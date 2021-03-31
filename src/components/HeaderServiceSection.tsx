@@ -177,6 +177,7 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
                 minHeight="100%"
                 w="full"
                 display="block"
+                style={{ minHeight: "-webkit-fill-available;" }}
               >
                 <source src={FrontVideo} type="video/mp4" />
 
