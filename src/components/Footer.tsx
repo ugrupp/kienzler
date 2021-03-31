@@ -235,7 +235,7 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
             "main / span 2",
           ]}
           gridRow={[null, null, "3", null, "2"]}
-          pb={[null, null, 24]}
+          pb={[showContact ? 24 : null, null, 24]}
         >
           <VStack spacing={1} alignItems="flex-start" textStyle="h4">
             {serviceMenuLinks.map((menuLink, index) => (
@@ -252,6 +252,22 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
               </Box>
             ))}
           </VStack>
+
+          <Box textStyle="h4" color="gray.400" mt={8}>
+            Eine Website von{" "}
+            <Box
+              as="a"
+              href="https://www.formatformat.de"
+              target="_blank"
+              textTransform="none"
+              fontWeight="normal"
+              _hover={{ color: "orange.500" }}
+              transitionProperty="colors"
+              transitionDuration="normal"
+            >
+              formatformat.de
+            </Box>
+          </Box>
         </GridItem>
 
         {/* Image box */}
