@@ -235,7 +235,7 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
             "main / span 2",
           ]}
           gridRow={[null, null, "3", null, "2"]}
-          pb={[showContact ? 24 : null, null, 24]}
+          pb={[null, null, 24]}
         >
           <VStack spacing={1} alignItems="flex-start" textStyle="h4">
             {serviceMenuLinks.map((menuLink, index) => (
@@ -279,7 +279,13 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
             null,
             showContact ? "11 / full" : "8 / full",
           ]}
-          gridRow={["4", null, "2 / span 2", null, "1 / span 2"]}
+          gridRow={[
+            showContact ? "5" : "4",
+            null,
+            "2 / span 2",
+            null,
+            "1 / span 2",
+          ]}
         >
           <StaticImage
             src="../images/beton.jpg"
@@ -304,7 +310,7 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
             null,
             showContact ? "11 / main" : "8 / main",
           ]}
-          gridRow={["4", null, "2", null, "1"]}
+          gridRow={[showContact ? "5" : "4", null, "2", null, "1"]}
           mt={[10, null, 12, null, 24]} // TODO: align tablet with social icons
           textAlign="right"
         >
