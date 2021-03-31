@@ -47,7 +47,7 @@ const Card: React.FC<CardModel> = ({
   colorScheme = "default",
 }) => {
   const imageData = getImage(image?.file)
-  const [cardHover, setCardHover] = useState<true | undefined>(undefined)
+  const [imageHover, setImageHover] = useState<true | undefined>(undefined)
   const theme: ChakraTheme = useTheme()
   const defaultGridColumns = {
     title: [
@@ -83,13 +83,11 @@ const Card: React.FC<CardModel> = ({
   }
 
   // Wrapper props (conditionally renders a link)
-  const wrapperProps = cta
+  const linkProps = cta
     ? {
         as: Link,
         to: cta.url,
         target: cta.target,
-        onMouseEnter: () => setCardHover(true),
-        onMouseLeave: () => setCardHover(undefined),
       }
     : {}
 
@@ -97,7 +95,6 @@ const Card: React.FC<CardModel> = ({
     <Box
       display="block"
       position="relative"
-      {...wrapperProps}
       color={colorScheme === "white" ? "white" : undefined}
     >
       <ContainerGrid
@@ -136,7 +133,13 @@ const Card: React.FC<CardModel> = ({
 
         {/* Image */}
         {!!imageData && (
-          <GridItem gridColumn={gridColumns.image} mb={[10, null, 12]}>
+          <GridItem
+            gridColumn={gridColumns.image}
+            mb={[10, null, 12]}
+            {...linkProps}
+            onMouseEnter={() => setImageHover(true)}
+            onMouseLeave={() => setImageHover(undefined)}
+          >
             <Flex
               alignItems="flex-end"
               pointerEvents="none" // workaround for https://github.com/gatsbyjs/gatsby/discussions/27950#discussioncomment-290788
@@ -160,11 +163,11 @@ const Card: React.FC<CardModel> = ({
                 <motion.div
                   initial={false}
                   animate={{
-                    transform: cardHover ? "scale(1.1)" : "scale(1)",
+                    transform: imageHover ? "scale(1.1)" : "scale(1)",
                   }}
                   transition={{
                     type: "spring",
-                    bounce: cardHover ? 0.4 : 0, // no overshoot on mouseout (image bg would be visible)
+                    bounce: imageHover ? 0.4 : 0, // no overshoot on mouseout (image bg would be visible)
                   }}
                 >
                   <GatsbyImage
@@ -180,7 +183,7 @@ const Card: React.FC<CardModel> = ({
 
                 {/* Image overlay */}
                 <AnimatePresence>
-                  {cardHover && (
+                  {imageHover && (
                     <MotionBox
                       position="absolute"
                       left={0}
@@ -225,9 +228,9 @@ const Card: React.FC<CardModel> = ({
             mt={content ? [8, null, 10] : undefined}
           >
             <Button
-              data-hover={cardHover}
               rightIcon={<ArrowBoldIcon />}
               colorScheme={colorScheme === "white" ? "white-dark" : undefined}
+              {...linkProps}
             >
               <ShiftBy y={"2px"}>{cta.label}</ShiftBy>
             </Button>
