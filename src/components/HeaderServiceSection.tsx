@@ -16,6 +16,7 @@ import { Spacing } from "../models/Spacing"
 import FrontVideo from "../videos/kienzler-leistung-video-1.mp4"
 import ContainerGrid from "./ContainerGrid"
 import ContentStack from "./ContentStack"
+import { salConfig } from "./SALWrapper"
 
 export interface HeaderServiceSectionModel {
   type: string
@@ -247,6 +248,7 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
                   gridConfig.mainItems[idx].column ?? gridConfig.defaults.column
                 }
                 mt={gridConfig.mainItems[idx].mt}
+                {...salConfig}
               >
                 <ContentStack>
                   {/* Headline */}
@@ -281,6 +283,7 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
               <GridItem
                 gridRow={gridConfig.listItem.row}
                 gridColumn={gridConfig.listItem.column}
+                {...salConfig}
               >
                 <ContentStack>
                   {/* Headline */}

@@ -10,6 +10,7 @@ import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
 import Detail, { DetailModel } from "./Detail"
 import NavButtons from "./NavButtons"
+import { salConfig } from "./SALWrapper"
 import TitleText from "./TitleText"
 
 SwiperCore.use([Navigation])
@@ -102,6 +103,7 @@ const DetailsSection: React.FC<DetailsSectionModel> = ({
               gridRow={gridConfig.titleText.row}
               gridColumn={gridConfig.titleText.column}
               mb={[10, null, 0]}
+              {...salConfig}
             >
               <TitleText title={title} text={text} />
             </GridItem>
@@ -112,6 +114,7 @@ const DetailsSection: React.FC<DetailsSectionModel> = ({
             gridRow={gridConfig.controls.row}
             gridColumn={gridConfig.controls.column}
             alignSelf="flex-end"
+            {...salConfig}
           >
             <NavButtons prevRef={prevRef} nextRef={nextRef} />
           </GridItem>
@@ -121,6 +124,7 @@ const DetailsSection: React.FC<DetailsSectionModel> = ({
             gridRow={gridConfig.slider.row}
             gridColumn={gridConfig.slider.column}
             mt={[null, null, 14]}
+            {...salConfig}
           >
             <Swiper
               spaceBetween={180}

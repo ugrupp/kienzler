@@ -7,6 +7,7 @@ import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
 import GarageSize, { GarageSizeProps } from "./GarageSize"
 import NavButtons from "./NavButtons"
+import { salConfig } from "./SALWrapper"
 
 SwiperCore.use([Navigation])
 
@@ -52,6 +53,7 @@ const SizesSection: React.FC<SizesSectionProps> = ({ sizes, slug, title }) => {
             gridRow={gridConfig.head.row}
             gridColumn={gridConfig.head.column}
             mb={[10, null, 0]}
+            {...salConfig}
           >
             <Heading as="h3" textStyle="h3" color="orange.500">
               {title}
@@ -64,6 +66,7 @@ const SizesSection: React.FC<SizesSectionProps> = ({ sizes, slug, title }) => {
           gridRow={gridConfig.controls.row}
           gridColumn={gridConfig.controls.column}
           alignSelf="flex-end"
+          {...salConfig}
         >
           <NavButtons prevRef={prevRef} nextRef={nextRef} />
         </GridItem>
@@ -73,6 +76,7 @@ const SizesSection: React.FC<SizesSectionProps> = ({ sizes, slug, title }) => {
           gridRow={gridConfig.slider.row}
           gridColumn={gridConfig.slider.column}
           mt={[null, null, 14]}
+          {...salConfig}
         >
           <Swiper
             spaceBetween={100}

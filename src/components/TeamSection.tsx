@@ -5,6 +5,7 @@ import React from "react"
 import { Image } from "../models/Image"
 import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
+import { salConfig } from "./SALWrapper"
 
 export interface TeamSectionModel {
   type: string
@@ -43,6 +44,7 @@ const TeamSection: React.FC<TeamSectionModel> = ({ members, slug }) => {
                 null,
                 [0, 1].includes(idx % 4) ? null : "9 / 12",
               ]}
+              {...salConfig}
             >
               <Flex
                 align="center"

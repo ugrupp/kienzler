@@ -12,6 +12,7 @@ import ContentStack from "./ContentStack"
 import Person from "./Person"
 import SocialMediaPost, { SocialMediaPostModel } from "./SocialMediaPost"
 import PhoneBoldIcon from "../icons/PhoneBold"
+import { salConfig } from "./SALWrapper"
 
 export interface CardsGammaSectionModel {
   type: string
@@ -114,6 +115,7 @@ const CardsGammaSection: React.FC<CardsGammaSectionModel> = ({
             gridRow={gridConfig.text.row}
             alignSelf="flex-end"
             pb={{ xl: 32, "2xl": 64 }}
+            {...salConfig}
           >
             <ContentStack>
               {/* Headline */}
@@ -149,6 +151,7 @@ const CardsGammaSection: React.FC<CardsGammaSectionModel> = ({
           <GridItem
             gridColumn={gridConfig.contact.column}
             gridRow={gridConfig.contact.row}
+            {...salConfig}
           >
             <ContentStack>
               {/* Text */}

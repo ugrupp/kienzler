@@ -5,6 +5,7 @@ import React from "react"
 import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
 import ContentStack from "./ContentStack"
+import { salConfig } from "./SALWrapper"
 
 export interface AdvantagesSectionModel {
   type: string
@@ -46,6 +47,7 @@ const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({
           <GridItem
             gridRow={gridConfig.text.row}
             gridColumn={gridConfig.text.column}
+            {...salConfig}
           >
             <MDXRenderer>{text}</MDXRenderer>
           </GridItem>
@@ -56,6 +58,7 @@ const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({
           <GridItem
             gridRow={gridConfig.advantages.row}
             gridColumn={gridConfig.advantages.column}
+            {...salConfig}
           >
             <ContentStack>
               {/* Title */}

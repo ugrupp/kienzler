@@ -21,6 +21,7 @@ import ContainerGrid from "./ContainerGrid"
 import ContentStack from "./ContentStack"
 import Link from "./Link"
 import { MotionBox } from "./MotionBox"
+import { salConfig } from "./SALWrapper"
 import ShiftBy from "./ShiftBy"
 
 export interface CardModel {
@@ -93,9 +94,11 @@ const Card: React.FC<CardModel> = ({
 
   return (
     <Box
+      id="card"
       display="block"
       position="relative"
       color={colorScheme === "white" ? "white" : undefined}
+      {...salConfig}
     >
       <ContainerGrid
         sizes={[

@@ -12,6 +12,7 @@ import ShiftBy from "./ShiftBy"
 import TitleText from "./TitleText"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Link from "./Link"
+import { salConfig } from "./SALWrapper"
 
 export interface CareerSectionModel {
   type: string
@@ -88,6 +89,7 @@ const CareerSection: React.FC<CareerSectionModel> = ({
               "5 / span 3",
               "4 / span 3",
             ]}
+            {...salConfig}
           >
             <TitleText title={title} text={text} />
           </GridItem>
@@ -107,6 +109,7 @@ const CareerSection: React.FC<CareerSectionModel> = ({
               null,
               "9 / span 3",
             ]}
+            {...salConfig}
           >
             {/* Text */}
             {!!ctaText && (

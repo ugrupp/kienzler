@@ -6,6 +6,7 @@ import { Spacing } from "../models/Spacing"
 import Color, { ColorProps } from "./Color"
 import ContainerGrid from "./ContainerGrid"
 import ContentStack from "./ContentStack"
+import { salConfig } from "./SALWrapper"
 
 export interface ColorsSectionProps {
   type: string
@@ -27,20 +28,10 @@ const ColorsSection: React.FC<ColorsSectionProps> = ({
   text,
   colorGroups,
 }) => {
-  const gridSizes = [
-    {
-      columns: 2,
-    },
-    null,
-    {
-      columns: 3,
-    },
-  ]
-
   return (
     <Box as="section" position="relative" id={slug}>
       {/* Head section */}
-      <ContainerGrid rowGap={[10]}>
+      <ContainerGrid rowGap={[10]} {...salConfig}>
         <GridItem
           gridColumn={[
             "3 / main",
@@ -93,7 +84,11 @@ const ColorsSection: React.FC<ColorsSectionProps> = ({
 
               return items.map(({ hex, title, label }) => {
                 const item = (
-                  <GridItem key={hex} gridColumnStart={newRow ? 1 : undefined}>
+                  <GridItem
+                    key={hex}
+                    gridColumnStart={newRow ? 1 : undefined}
+                    {...salConfig}
+                  >
                     <Color title={title} hex={hex} label={label} />
                   </GridItem>
                 )

@@ -10,6 +10,7 @@ import ContentStack from "./ContentStack"
 import SocialMediaPost, { SocialMediaPostModel } from "./SocialMediaPost"
 // @ts-ignore
 import CardVideo from "../videos/kienzler-leistung-video-2.mp4"
+import { salConfig } from "./SALWrapper"
 
 export interface CardsBetaSectionModel {
   type: string
@@ -111,6 +112,7 @@ const CardsBetaSection: React.FC<CardsBetaSectionModel> = ({
             gridColumn={gridConfig.text.column}
             gridRow={gridConfig.text.row}
             mt={[null, null, null, null, -52, null, -72]}
+            {...salConfig}
           >
             <ContentStack>
               {/* Headline */}
@@ -149,6 +151,7 @@ const CardsBetaSection: React.FC<CardsBetaSectionModel> = ({
           <GridItem
             gridColumn={gridConfig.video.column}
             gridRow={gridConfig.video.row}
+            {...salConfig}
           >
             {/* Video */}
             <Box

@@ -13,6 +13,7 @@ import { Image } from "../models/Image"
 import { Spacing } from "../models/Spacing"
 import ContainerGrid from "./ContainerGrid"
 import ContentStack from "./ContentStack"
+import { salConfig } from "./SALWrapper"
 
 export interface HeaderCompanySectionModel {
   type: string
@@ -200,6 +201,7 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
                 gridColumn={
                   gridConfig.mainItems[idx].column ?? gridConfig.defaults.column
                 }
+                {...salConfig}
               >
                 <ContentStack>
                   {/* Headline */}
@@ -225,6 +227,7 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
                 gridRow={gridConfig.listItem.row}
                 gridColumn={gridConfig.listItem.column}
                 mt={[null, null, null, null, 32, null, 0]}
+                {...salConfig}
               >
                 <ContentStack>
                   <Heading as="h2" textStyle="h3" color="orange.500">

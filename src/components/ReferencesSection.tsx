@@ -9,6 +9,7 @@ import ContainerGrid from "./ContainerGrid"
 import ContentStack from "./ContentStack"
 import NavButtons from "./NavButtons"
 import Reference, { ReferenceModel } from "./Reference"
+import { salConfig } from "./SALWrapper"
 
 SwiperCore.use([Navigation])
 
@@ -47,7 +48,7 @@ const ReferencesSection: React.FC<ReferencesSectionProps> = ({
 
   return (
     <Box as="section" position="relative" id={slug}>
-      <ContainerGrid rowGap={[10]}>
+      <ContainerGrid rowGap={[10]} {...salConfig}>
         {/* Title */}
         <GridItem
           gridRow={gridConfig.title.row}

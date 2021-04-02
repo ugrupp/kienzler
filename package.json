@@ -26,6 +26,7 @@
     "gatsby-transformer-sharp": "^3.0.0",
     "gatsby-transformer-yaml": "^3.0.0",
     "hyphenation.de": "^0.2.1",
+    "intersection-observer": "^0.12.0",
     "invert-color": "^2.0.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
@@ -34,6 +35,7 @@
     "react-helmet": "^6.1.0",
     "react-string-replace": "^0.4.4",
     "remark-hypher": "0.0.1",
+    "sal.js": "^0.8.4",
     "swiper": "^6.4.15",
     "unist-util-select": "^3.0.4"
   },

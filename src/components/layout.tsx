@@ -17,12 +17,13 @@ import Footer from "./Footer"
 import Header from "./Header"
 import MenuOverlay from "./MenuOverlay"
 import PageTransition from "./PageTransition"
+import SALWrapper from "./SALWrapper"
 import sections from "./sections"
 import SEO from "./seo"
 
 const Layout = props => {
   // Get page query data
-  const { data: pageData } = props
+  const { data: pageData, path } = props
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -81,41 +82,43 @@ const Layout = props => {
 
       {/* Transitioned content */}
       <PageTransition>
-        <main>
-          {/* Render sections and backgrounds as vertical grid */}
-          <Grid gridTemplateColumns="100%">
-            {/* Backgrounds */}
-            {backgrounds.map(({ rows, gradient, spacing }, idx) => (
-              <GridItem
-                key={idx}
-                bgGradient={gradient}
-                gridColumn="1"
-                gridRow={rows}
-                pointerEvents="none"
-                mt={spacing?.top}
-                mb={spacing?.bottom}
-              />
-            ))}
-
-            {/* Sections */}
-            {sectionComponents.map(
-              ({ type, component: Section, data, spacing }, sectionIdx) => (
+        <SALWrapper path={path}>
+          <main>
+            {/* Render sections and backgrounds as vertical grid */}
+            <Grid gridTemplateColumns="100%">
+              {/* Backgrounds */}
+              {backgrounds.map(({ rows, gradient, spacing }, idx) => (
                 <GridItem
-                  key={`${type}-${sectionIdx}`}
-                  pt={spacing?.top}
-                  pb={spacing?.bottom}
+                  key={idx}
+                  bgGradient={gradient}
                   gridColumn="1"
-                  gridRow={sectionIdx + 1}
-                >
-                  <Section {...data} />
-                </GridItem>
-              )
-            )}
-          </Grid>
+                  gridRow={rows}
+                  pointerEvents="none"
+                  mt={spacing?.top}
+                  mb={spacing?.bottom}
+                />
+              ))}
 
-          {/* Render unused children, i.e. for dev 404 page */}
-          {props.children && <Box>{props.children}</Box>}
-        </main>
+              {/* Sections */}
+              {sectionComponents.map(
+                ({ type, component: Section, data, spacing }, sectionIdx) => (
+                  <GridItem
+                    key={`${type}-${sectionIdx}`}
+                    pt={spacing?.top}
+                    pb={spacing?.bottom}
+                    gridColumn="1"
+                    gridRow={sectionIdx + 1}
+                  >
+                    <Section {...data} />
+                  </GridItem>
+                )
+              )}
+            </Grid>
+
+            {/* Render unused children, i.e. for dev 404 page */}
+            {props.children && <Box>{props.children}</Box>}
+          </main>
+        </SALWrapper>
 
         <Box
           as="footer"
