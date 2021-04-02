@@ -28,12 +28,7 @@ const SocialIcons: React.FC<SocialIconsProps> = () => {
   const { socialProviders } = data.site.siteMetadata
 
   return (
-    <VStack
-      spacing={6}
-      height="100%"
-      align="flex-end"
-      justifyContent="flex-end"
-    >
+    <VStack spacing={6} height="100%" align="flex-end">
       {socialProviders.map(({ type, title, user, url }) => {
         // Get icon, based on post type
         const Icon =
