@@ -200,7 +200,13 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
 
       {/* Background image */}
       {!!backgroundImageData && (
-        <Box position="sticky" top={0} zIndex={0} height="100vh">
+        <Box
+          position="sticky"
+          top={0}
+          zIndex={0}
+          height="100vh"
+          filter="brightness(0.85)"
+        >
           <StyleableGatsbyImage
             image={backgroundImageData}
             alt={backgroundImage.alt ?? ""}
@@ -288,7 +294,7 @@ const HeaderServiceSection: React.FC<HeaderServiceSectionModel> = ({
                 <ContentStack>
                   {/* Headline */}
                   {!!listColumn.headline && (
-                    <Heading as="h2" textStyle="h3" color="orange.500">
+                    <Heading as="h2" textStyle="h3">
                       <MDXRenderer>{listColumn.headline}</MDXRenderer>
                     </Heading>
                   )}

@@ -53,7 +53,7 @@ const HeaderSectionAlpha: React.FC<HeaderSectionModel> = ({
               }}
             >
               <ShiftBy y={"-0.2em"}>
-                <MDXRenderer>{title}</MDXRenderer>
+                <MDXRenderer>{title}</MDXRenderer>!
               </ShiftBy>
             </Heading>
           </GridItem>

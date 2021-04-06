@@ -151,7 +151,13 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
 
       {/* Background image */}
       {!!backgroundImageData && (
-        <Box position="sticky" top={0} zIndex={0} height="100vh">
+        <Box
+          position="sticky"
+          top={0}
+          zIndex={0}
+          height="100vh"
+          filter="brightness(0.85)"
+        >
           <StyleableGatsbyImage
             image={backgroundImageData}
             alt={backgroundImage.alt ?? ""}
@@ -171,7 +177,7 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
         zIndex={5} // > bg image and front image
         mt={!!backgroundImageData ? "-100vh" : undefined}
         height="150vh"
-        bgGradient="linear-gradient(to-b, orange.500 0%, transparent 90%)"
+        bgGradient="linear-gradient(to-b, orange.500 0%, transparent 100%)"
         sx={{
           mixBlendMode: "multiply",
         }}
@@ -230,7 +236,7 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
                 {...salConfig}
               >
                 <ContentStack>
-                  <Heading as="h2" textStyle="h3" color="orange.500">
+                  <Heading as="h2" textStyle="h3">
                     <MDXRenderer>{listColumn.headline}</MDXRenderer>
                   </Heading>
                   <MDXRenderer>{listColumn.content}</MDXRenderer>
