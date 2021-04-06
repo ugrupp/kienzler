@@ -223,6 +223,7 @@ exports.createSchemaCustomization = ({
         title: String!
         widths: String
         lengths: String
+        heights: String
         image: Image
       }
 

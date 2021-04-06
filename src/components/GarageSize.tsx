@@ -16,32 +16,37 @@ export interface GarageSizeProps {
   title: string
   widths?: string
   lengths?: string
+  heights?: string
   image?: Image
   index?: number
 }
 
 const GarageSize: React.FC<GarageSizeProps> = ({
   title,
-  widths,
-  lengths,
+  widths = "",
+  lengths = "",
+  heights = "",
   image,
   index,
 }) => {
-  const widthsLengths: Array<{
+  const dimensions: Array<{
     label: string
     value: string
   }> = []
-  widths &&
-    widthsLengths.push({
-      label: "Breiten",
-      value: widths,
-    })
+  dimensions.push({
+    label: "Breiten",
+    value: widths,
+  })
 
-  lengths &&
-    widthsLengths.push({
-      label: "Längen",
-      value: lengths,
-    })
+  dimensions.push({
+    label: "Längen",
+    value: lengths,
+  })
+
+  dimensions.push({
+    label: "Höhen",
+    value: heights,
+  })
 
   return (
     <AspectRatio ratio={1}>
@@ -94,15 +99,21 @@ const GarageSize: React.FC<GarageSizeProps> = ({
               </Heading>
             )}
 
-            {/* Widths & lenghts */}
-            {widthsLengths.length && (
+            {/* Dimensions */}
+            {dimensions.length && (
               <Box>
-                {widthsLengths.map(({ label, value }) => (
+                {dimensions.map(({ label, value }) => (
                   <Text key={label} textStyle="paragraph" lineHeight="tall">
-                    <Text as="strong" textTransform="uppercase">
-                      {label}:
-                    </Text>{" "}
-                    {value}
+                    {value ? (
+                      <>
+                        <Text as="strong" textTransform="uppercase">
+                          {label}:
+                        </Text>{" "}
+                        {value}
+                      </>
+                    ) : (
+                      <br />
+                    )}
                   </Text>
                 ))}
               </Box>
@@ -144,6 +155,7 @@ export const query = graphql`
     title
     widths
     lengths
+    heights
     image {
       file {
         publicURL
