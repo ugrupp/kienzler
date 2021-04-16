@@ -1,7 +1,5 @@
 import { Box } from "@chakra-ui/react"
-import React from "react"
-import { Helmet } from "react-helmet"
-import { useGoogleMaps } from "../hooks/useGoogleMaps"
+import React, { useEffect, useRef, useState } from "react"
 
 const mapStyles: google.maps.MapTypeStyle[] = [
   {
@@ -166,21 +164,31 @@ const mapStyles: google.maps.MapTypeStyle[] = [
 
 const kienzler = { lat: 48.02616, lng: 7.79239 }
 
-export const Map = () => {
-  const { ref, map, google } = useGoogleMaps({
-    center: kienzler,
-    zoom: 14,
-    zoomControl: true,
-    mapTypeControl: false,
-    streetViewControl: false,
-    rotateControl: false,
-    fullscreenControl: false,
-    styles: mapStyles,
-  })
+export const Map = ({ options, onMount, className, onMountProps }) => {
+  const ref = useRef()
+  const [map, setMap] = useState()
+
+  useEffect(() => {
+    const onLoad = () =>
+      // @ts-ignore
+      setMap(new window.google.maps.Map(ref.current, options))
+    if (!window.google) {
+      const script = document.createElement(`script`)
+      script.src =
+        `https://maps.googleapis.com/maps/api/js?key=` +
+        "AIzaSyC4bNaOWjKO4CGWisTSIZdIVQaxkVmcMn0"
+      document.head.append(script)
+      script.addEventListener(`load`, onLoad)
+      return () => script.removeEventListener(`load`, onLoad)
+    } else onLoad()
+  }, [options])
+
+  if (map && typeof onMount === `function`) onMount(map, onMountProps)
 
   if (map) {
     // execute when map object is ready
-    new (window as any).google.maps.Marker({
+    // @ts-ignore
+    new window.google.maps.Marker({
       map,
       position: kienzler,
       title: "Ziegelhofstraße 35a",
@@ -195,17 +203,18 @@ export const Map = () => {
     })
   }
 
-  return (
-    <>
-      {/* @ts-ignore */}
-      <Helmet>
-        <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4bNaOWjKO4CGWisTSIZdIVQaxkVmcMn0&amp;callback=initMap"
-          async
-          defer
-        />
-      </Helmet>
-      <Box ref={ref} h="full" w="full" />
-    </>
-  )
+  return <Box {...{ ref, className }} h="full" w="full" />
+}
+
+Map.defaultProps = {
+  options: {
+    center: kienzler,
+    zoom: 14,
+    zoomControl: true,
+    mapTypeControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false,
+    styles: mapStyles,
+  },
 }
