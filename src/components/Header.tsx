@@ -3,6 +3,7 @@ import {
   chakra,
   ChakraTheme,
   Flex,
+  GridItem,
   Img,
   Tooltip,
   useTheme,
@@ -48,7 +49,7 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
       mt={["6vh", null, "7vh", null, "9vh"]}
     >
       <ContainerGrid>
-        <Box position="relative">
+        <GridItem gridColumn="main" position="relative">
           {/* Logo */}
           <StyleableLink
             to="/"
@@ -131,7 +132,7 @@ const Header: React.FC<HeaderModel> = ({ siteTitle }) => {
               </Box>
             </Tooltip>
           </Flex>
-        </Box>
+        </GridItem>
       </ContainerGrid>
     </Box>
   )

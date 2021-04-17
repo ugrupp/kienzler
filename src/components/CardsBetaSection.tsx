@@ -84,7 +84,7 @@ const CardsBetaSection: React.FC<CardsBetaSectionModel> = ({
     },
     socialMediaPost: {
       row: [3],
-      column: [null, null, null, "main / 5", null, "main / 4"],
+      column: ["main", null, null, "main / 5", null, "main / 4"],
     },
   }
 

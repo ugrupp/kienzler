@@ -70,15 +70,7 @@ const ContainerGrid: React.FC<ContainerGridProps & GridProps> = ({
   }
 
   return (
-    <Grid
-      {...explicitProps}
-      {...otherProps}
-      sx={{
-        "& > *": {
-          gridColumn: "main",
-        },
-      }}
-    >
+    <Grid {...explicitProps} {...otherProps}>
       {children}
     </Grid>
   )

@@ -159,7 +159,7 @@ const CareerSection: React.FC<CareerSectionModel> = ({
             mt={[null, null, null, null, 48]}
             gridRow={[null, null, null, null, "5"]}
             gridColumn={[
-              null,
+              "main",
               null,
               null,
               null,
