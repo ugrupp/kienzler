@@ -17,8 +17,6 @@ const SALWrapper: React.FC<SALWrapperProps> = ({ children, path }) => {
   }
 
   useEffect(() => {
-    console.log("init sal")
-
     sal(options)
   }, [path])
 
