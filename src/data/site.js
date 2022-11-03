@@ -20,6 +20,7 @@ module.exports = {
     faxNumber: `0761 898 284 05`,
   },
   map: {
+    url: "https://goo.gl/maps/gQVmQMA4VFdZBeqU6",
     image: {
       src: "images/kienzler-betontechnik-map.jpg",
       alt: "Standort",

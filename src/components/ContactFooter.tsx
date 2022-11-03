@@ -33,6 +33,7 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
             faxNumber
           }
           map {
+            url
             image {
               alt
               file {

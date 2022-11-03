@@ -1,3 +1,4 @@
+import { Link } from "@chakra-ui/react"
 import { chakra } from "@chakra-ui/react"
 import { Box } from "@chakra-ui/react"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -9,7 +10,14 @@ export const Map = ({ map }) => {
   const StyleableGatsbyImage = chakra(GatsbyImage)
 
   return (
-    <Box h="full" w="full">
+    <Link
+      h="full"
+      w="full"
+      d={"block"}
+      isExternal
+      target="_blank"
+      href={map.url}
+    >
       {/* Image */}
       <StyleableGatsbyImage
         image={imageData}
@@ -22,6 +30,6 @@ export const Map = ({ map }) => {
           objectPosition: "center center",
         }}
       />
-    </Box>
+    </Link>
   )
 }
