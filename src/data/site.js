@@ -19,6 +19,12 @@ module.exports = {
     },
     faxNumber: `0761 898 284 05`,
   },
+  map: {
+    image: {
+      src: "images/kienzler-betontechnik-map.jpg",
+      alt: "Standort",
+    },
+  },
   socialProviders: [
     {
       type: "facebook",

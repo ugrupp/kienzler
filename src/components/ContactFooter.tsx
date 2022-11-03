@@ -32,6 +32,20 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
             }
             faxNumber
           }
+          map {
+            image {
+              alt
+              file {
+                childImageSharp {
+                  gatsbyImageData(
+                    layout: CONSTRAINED
+                    placeholder: NONE
+                    quality: 90
+                  )
+                }
+              }
+            }
+          }
           socialProviders {
             type
             title
@@ -43,7 +57,7 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
     }
   `)
 
-  const { organization, socialProviders } = data.site.siteMetadata
+  const { organization, map, socialProviders } = data.site.siteMetadata
 
   const iconStyle = {
     color: "orange.500",
@@ -151,7 +165,7 @@ const ContactFooter: React.FC<ContactFooterProps> = () => {
         >
           <AspectRatio ratio={0.7} backgroundColor="gray.200">
             <Box>
-              <Map />
+              <Map map={map} />
             </Box>
           </AspectRatio>
         </GridItem>

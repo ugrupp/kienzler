@@ -449,6 +449,22 @@ exports.createSchemaCustomization = ({
       },
     }),
 
+    // Map image: transform src to file node
+    schema.buildObjectType({
+      name: "SiteSiteMetadataMapImage",
+      fields: {
+        file: {
+          type: "File",
+          resolve: (source, args, context, info) =>
+            context.nodeModel
+              .getAllNodes({ type: "File" })
+              .find(
+                node => node.relativePath === source.src.replace("images/", "")
+              ),
+        },
+      },
+    }),
+
     // Sections union type with custom resolver
     schema.buildUnionType({
       name: "MdxFrontmatterSections",
