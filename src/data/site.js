@@ -89,11 +89,6 @@ module.exports = {
           link: "/fertiggaragen/#groessen",
         },
         {
-          slug: "fertiggaragen-details",
-          title: "Details",
-          link: "/fertiggaragen/#details",
-        },
-        {
           slug: "fertiggaragen-farbgestaltung",
           title: "Farbgestaltung",
           link: "/fertiggaragen/#farbgestaltung",
