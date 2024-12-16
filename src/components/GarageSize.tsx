@@ -34,17 +34,17 @@ const GarageSize: React.FC<GarageSizeProps> = ({
     value: string
   }> = []
   dimensions.push({
-    label: "Breiten",
+    label: "Breite",
     value: widths,
   })
 
   dimensions.push({
-    label: "Längen",
+    label: "Länge",
     value: lengths,
   })
 
   dimensions.push({
-    label: "Höhen",
+    label: "Höhe",
     value: heights,
   })
 
