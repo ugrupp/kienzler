@@ -67,9 +67,7 @@ const TopMenu = ({ menuLinks, handleArrowClick, activeMenus }) => {
   const depth = 1
 
   return (
-    <Box
-      as="ul"
-      listStyleType="none"
+    <List
       sx={{
         "& > * ~ *": {
           mt: [5, null, null, null, 0],
@@ -94,7 +92,7 @@ const TopMenu = ({ menuLinks, handleArrowClick, activeMenus }) => {
           />
         )
       })}
-    </Box>
+    </List>
   )
 }
 

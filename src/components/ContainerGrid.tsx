@@ -46,7 +46,7 @@ const ContainerGrid: React.FC<ContainerGridProps & GridProps> = ({
       return !!size
         ? `
         [full-start]
-        minmax(${theme.space[size.outerSpace]}, 1fr)
+        minmax(${theme.space[size.outerSpace] || 0}, 1fr)
         [main-start]
         repeat(
           ${size.mainColumns / 2},
@@ -62,7 +62,7 @@ const ContainerGrid: React.FC<ContainerGridProps & GridProps> = ({
           }))
         )
         [main-end]
-        minmax(${theme.space[size.outerSpace]}, 1fr)
+        minmax(${theme.space[size.outerSpace] || 0}, 1fr)
         [full-end];
         `
         : null

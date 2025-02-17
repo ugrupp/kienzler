@@ -36,7 +36,7 @@ const Layout = props => {
   `)
 
   // Get page meta info
-  const title: string = get(pageData, "mdx.frontmatter.title", [])
+  const title: string = get(pageData, "mdx.frontmatter.title", "")
 
   // Get and transform section frontmatter into actual components
   const frontmatterSections: SectionModel[] = get(
