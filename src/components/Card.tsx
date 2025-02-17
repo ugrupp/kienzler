@@ -4,7 +4,7 @@ import {
   ChakraTheme,
   Flex,
   GridItem,
-  Heading,
+  Text,
   useTheme,
 } from "@chakra-ui/react"
 import { AnimatePresence, motion } from "framer-motion"
@@ -124,13 +124,13 @@ const Card: React.FC<CardModel> = ({
         {/* Title */}
         {!!title && (
           <GridItem gridColumn={gridColumns.title} mb={[6, null, 10]}>
-            <Heading
+            <Text
               as="h2"
               textStyle="h2"
               color={colorScheme === "white" ? "white" : "orange.500"}
             >
               {title}
-            </Heading>
+            </Text>
           </GridItem>
         )}
 

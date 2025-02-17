@@ -1,4 +1,4 @@
-import { Box, chakra, GridItem, Heading } from "@chakra-ui/react"
+import { Box, chakra, GridItem, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -117,9 +117,9 @@ const CardsBetaSection: React.FC<CardsBetaSectionModel> = ({
             <ContentStack>
               {/* Headline */}
               {!!title && (
-                <Heading as="h2" textStyle="h2" color="orange.500">
+                <Text as="h2" textStyle="h2" color="orange.500">
                   <MDXRenderer>{title}</MDXRenderer>
-                </Heading>
+                </Text>
               )}
 
               {/* Text */}

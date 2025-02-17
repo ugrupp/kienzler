@@ -1,4 +1,4 @@
-import { Box, GridItem, Heading } from "@chakra-ui/react"
+import { Box, GridItem, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React, { useRef } from "react"
 import SwiperCore, { Navigation } from "swiper"
@@ -55,9 +55,9 @@ const SizesSection: React.FC<SizesSectionProps> = ({ sizes, slug, title }) => {
             mb={[10, null, 0]}
             {...salConfig}
           >
-            <Heading as="h3" textStyle="h3" color="orange.500">
+            <Text as="h3" textStyle="h3" color="orange.500">
               {title}
-            </Heading>
+            </Text>
           </GridItem>
         )}
 

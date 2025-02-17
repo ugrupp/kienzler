@@ -1,4 +1,4 @@
-import { Box, GridItem, Heading, useToken, Text } from "@chakra-ui/react"
+import { Box, GridItem, useToken, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { pick } from "lodash"
@@ -120,9 +120,9 @@ const CardsGammaSection: React.FC<CardsGammaSectionModel> = ({
             <ContentStack>
               {/* Headline */}
               {!!title && (
-                <Heading as="h2" textStyle="h2" color="orange.500">
+                <Text as="h2" textStyle="h2" color="orange.500">
                   <MDXRenderer>{title}</MDXRenderer>
-                </Heading>
+                </Text>
               )}
 
               {/* Text */}

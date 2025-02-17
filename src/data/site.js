@@ -89,14 +89,26 @@ module.exports = {
           link: "/fertiggaragen/#groessen",
         },
         {
-          slug: "fertiggaragen-details",
-          title: "Details",
-          link: "/fertiggaragen/#details",
-        },
-        {
           slug: "fertiggaragen-farbgestaltung",
           title: "Farbgestaltung",
           link: "/fertiggaragen/#farbgestaltung",
+        },
+      ],
+    },
+    {
+      slug: "carports",
+      title: "Carports",
+      link: "/carports",
+      children: [
+        {
+          slug: "carports-vorteile",
+          title: "Vorteile",
+          link: "/carports/#vorteile",
+        },
+        {
+          slug: "carports-referenzprojekte",
+          title: "Referenzprojekte",
+          link: "/carports/#referenzprojekte",
         },
       ],
     },

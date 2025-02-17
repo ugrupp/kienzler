@@ -34,7 +34,16 @@ const MenuOverlay: React.FC<MenuOverlayProps> = () => {
         >
           <ContainerGrid>
             {/* Menu */}
-            <GridItem gridColumn={["3 / main", "4 / main", "3 / 13"]}>
+            <GridItem
+              gridColumn={[
+                "3 / main",
+                "4 / main",
+                "3 / 13",
+                null,
+                "3 / 10",
+                "3 / 13",
+              ]}
+            >
               <Box maxW={[300, null, null, null, "none"]}>
                 <Menu />
               </Box>

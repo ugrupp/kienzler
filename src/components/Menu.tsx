@@ -67,15 +67,16 @@ const TopMenu = ({ menuLinks, handleArrowClick, activeMenus }) => {
   const depth = 1
 
   return (
-    <Box
-      as="ul"
-      listStyleType="none"
+    <List
       sx={{
         "& > * ~ *": {
           mt: [5, null, null, null, 0],
         },
       }}
       display={[null, null, null, null, "flex"]}
+      flexWrap={[null, null, null, null, "wrap"]}
+      rowGap={[null, null, null, null, 10]}
+      columnGap={[null, null, null, null, 24]}
     >
       {menuLinks.map((menuLink, index) => {
         const itemId = `menu-${depth}-${index}`
@@ -90,11 +91,10 @@ const TopMenu = ({ menuLinks, handleArrowClick, activeMenus }) => {
             menuIndex={index}
             activeMenus={activeMenus}
             handleArrowClick={handleArrowClick}
-            ml={index !== 0 ? [null, null, null, null, 24] : undefined}
           />
         )
       })}
-    </Box>
+    </List>
   )
 }
 

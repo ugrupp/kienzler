@@ -1,10 +1,4 @@
-import {
-  Box,
-  chakra,
-  GridItem,
-  Heading,
-  VisuallyHidden,
-} from "@chakra-ui/react"
+import { Box, chakra, GridItem, Text, VisuallyHidden } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -212,9 +206,9 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
                 <ContentStack>
                   {/* Headline */}
                   {!!headline && (
-                    <Heading as="h2" textStyle="h2">
+                    <Text as="h2" textStyle="h2">
                       <MDXRenderer>{headline}</MDXRenderer>
-                    </Heading>
+                    </Text>
                   )}
 
                   {/* Content */}
@@ -236,9 +230,9 @@ const HeaderCompanySection: React.FC<HeaderCompanySectionModel> = ({
                 {...salConfig}
               >
                 <ContentStack>
-                  <Heading as="h2" textStyle="h3">
+                  <Text as="h2" textStyle="h3">
                     <MDXRenderer>{listColumn.headline}</MDXRenderer>
-                  </Heading>
+                  </Text>
                   <MDXRenderer>{listColumn.content}</MDXRenderer>
                 </ContentStack>
               </GridItem>

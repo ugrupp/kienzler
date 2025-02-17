@@ -1,15 +1,11 @@
-import { Box, chakra, GridItem, Heading, Text } from "@chakra-ui/react"
-import { MDXProvider, useMDXComponents } from "@mdx-js/react"
+import { Box, chakra, GridItem } from "@chakra-ui/react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
-import ArrowBoldIcon from "../icons/ArrowBold"
 import ContainerGrid from "./ContainerGrid"
 import { HeaderSectionModel } from "./HeaderSection"
 import TitleText from "./TitleText"
 
 const HeaderSectionBeta: React.FC<HeaderSectionModel> = ({
-  type,
   slug,
   title,
   image,
@@ -17,15 +13,6 @@ const HeaderSectionBeta: React.FC<HeaderSectionModel> = ({
 }) => {
   const imageData = getImage(image.file)
   const StyleableGatsbyImage = chakra(GatsbyImage)
-
-  // Adjust typography
-  const originalComponents = useMDXComponents()
-
-  // Text
-  const textComponents = {
-    ...originalComponents,
-    p: props => <Text textStyle="paragraph-lg" {...props} />,
-  }
 
   return (
     <Box as="header" pt={["17vh", null, "20vh", null, "0"]} id={slug}>
