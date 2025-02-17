@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  chakra,
-  GridItem,
-  Heading,
-  VStack,
-} from "@chakra-ui/react"
+import { Box, Button, chakra, GridItem, Text, VStack } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
@@ -79,12 +72,12 @@ const HeaderErrorSection: React.FC<HeaderErrorSectionModel> = ({
         >
           <VStack spacing={[8, null, 10]} align="flex-start" maxW={415}>
             {/* Heading */}
-            <Heading as="h2" textStyle="h2">
+            <Text as="h2" textStyle="h2">
               <Box as="strong" color="orange.500">
                 404:
               </Box>{" "}
               die Seite konnte nicht gefunden werden.
-            </Heading>
+            </Text>
 
             {/* Home link */}
             <Button

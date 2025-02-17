@@ -1,4 +1,4 @@
-import { GridItem, Box, Heading, chakra } from "@chakra-ui/react"
+import { GridItem, Box, Text, chakra } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -52,9 +52,9 @@ const Reference: React.FC<ReferenceModel> = ({
           {/* Project title */}
           {!!title && (
             <Box>
-              <Heading as="h5" textStyle="h4" color="orange.500">
+              <Text as="h5" textStyle="h4" color="orange.500">
                 Projekt
-              </Heading>
+              </Text>
               <MDXRenderer>{title}</MDXRenderer>
             </Box>
           )}
@@ -62,9 +62,9 @@ const Reference: React.FC<ReferenceModel> = ({
           {/* Goal */}
           {!!goal && (
             <Box>
-              <Heading as="h5" textStyle="h4" color="orange.500">
+              <Text as="h5" textStyle="h4" color="orange.500">
                 Zielsetzung
-              </Heading>
+              </Text>
               <MDXRenderer>{goal}</MDXRenderer>
             </Box>
           )}
@@ -72,9 +72,9 @@ const Reference: React.FC<ReferenceModel> = ({
           {/* Location */}
           {!!location && (
             <Box>
-              <Heading as="h5" textStyle="h4" color="orange.500">
+              <Text as="h5" textStyle="h4" color="orange.500">
                 Standort
-              </Heading>
+              </Text>
               <MDXRenderer>{location}</MDXRenderer>
             </Box>
           )}

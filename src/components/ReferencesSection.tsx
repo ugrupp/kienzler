@@ -1,4 +1,4 @@
-import { Box, GridItem, Heading } from "@chakra-ui/react"
+import { Box, GridItem, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React, { useRef } from "react"
 import SwiperCore, { Navigation } from "swiper"
@@ -57,9 +57,9 @@ const ReferencesSection: React.FC<ReferencesSectionProps> = ({
           <ContentStack>
             {/* Title */}
             {!!title && (
-              <Heading as="h2" textStyle="h2" color="orange.500">
+              <Text as="h2" textStyle="h2" color="orange.500">
                 {title}
-              </Heading>
+              </Text>
             )}
           </ContentStack>
         </GridItem>

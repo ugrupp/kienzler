@@ -1,12 +1,4 @@
-import {
-  AspectRatio,
-  Box,
-  Flex,
-  Heading,
-  Img,
-  Text,
-  useToken,
-} from "@chakra-ui/react"
+import { AspectRatio, Box, Flex, Img, Text, useToken } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
 import { Image } from "../models/Image"
@@ -94,9 +86,9 @@ const GarageSize: React.FC<GarageSizeProps> = ({
           <ContentStack spacing={4}>
             {/* Title */}
             {!!title && (
-              <Heading as="h3" textStyle="h3" color="orange.500">
+              <Text as="h3" textStyle="h3" color="orange.500">
                 {title}
-              </Heading>
+              </Text>
             )}
 
             {/* Dimensions */}

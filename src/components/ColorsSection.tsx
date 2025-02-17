@@ -1,4 +1,4 @@
-import { Box, Container, Grid, GridItem, Heading } from "@chakra-ui/react"
+import { Box, Grid, GridItem, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
@@ -44,9 +44,9 @@ const ColorsSection: React.FC<ColorsSectionProps> = ({
           <ContentStack>
             {/* Title */}
             {!!title && (
-              <Heading as="h2" textStyle="h2" color="orange.500">
+              <Text as="h2" textStyle="h2" color="orange.500">
                 {title}
-              </Heading>
+              </Text>
             )}
 
             {/* Text */}

@@ -1,4 +1,4 @@
-import { Box, GridItem, Heading } from "@chakra-ui/react"
+import { Box, GridItem, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
@@ -63,9 +63,9 @@ const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({
             <ContentStack>
               {/* Title */}
               {!!title && (
-                <Heading as="h3" textStyle="h3" color="orange.500">
+                <Text as="h3" textStyle="h3" color="orange.500">
                   {title}
-                </Heading>
+                </Text>
               )}
 
               {/* Advantages */}

@@ -1,4 +1,4 @@
-import { Box, GridItem, Heading, Text, VStack } from "@chakra-ui/react"
+import { Box, GridItem, Text, VStack } from "@chakra-ui/react"
 import { graphql, useStaticQuery } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import { filter } from "lodash"
@@ -82,9 +82,9 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
           gridRow={[null, null, "1"]}
           mt={{ xl: 24 }}
         >
-          <Heading as="h4" {...headingStyles}>
+          <Text as="h4" {...headingStyles}>
             Menü
-          </Heading>
+          </Text>
 
           <VStack spacing={4} alignItems="flex-start" textStyle="paragraph-lg">
             {menuLinks.map((menuLink, index) => (
@@ -117,15 +117,15 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
             gridRow={[null, null, "1"]}
             mt={{ xl: 24 }}
           >
-            <Heading as="h4" {...headingStyles}>
+            <Text as="h4" {...headingStyles}>
               Kontakt
-            </Heading>
+            </Text>
 
             <VStack spacing={[5, null, 6]} align="flex-start" lineHeight="tall">
               <Box>
-                <Heading as="h5" textStyle="h4" lineHeight="tall">
+                <Text as="h5" textStyle="h4" lineHeight="tall">
                   Telefon
-                </Heading>
+                </Text>
                 <Text textStyle="paragraph">
                   <Box
                     as="a"
@@ -140,9 +140,9 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
               </Box>
 
               <Box>
-                <Heading as="h5" textStyle="h4" lineHeight="tall">
+                <Text as="h5" textStyle="h4" lineHeight="tall">
                   E-Mail
-                </Heading>
+                </Text>
                 <Text textStyle="paragraph">
                   <Box
                     as="a"
@@ -157,9 +157,9 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
               </Box>
 
               <Box>
-                <Heading as="h5" textStyle="h4" lineHeight="tall">
+                <Text as="h5" textStyle="h4" lineHeight="tall">
                   Adresse
-                </Heading>
+                </Text>
                 <Text textStyle="paragraph">
                   {organization.address.streetAddress}
                   <br />
@@ -185,9 +185,9 @@ const Footer: React.FC<FooterProps> = ({ showContact = true }) => {
           gridRow={[null, null, "2", null, "1"]}
           mt={{ xl: 24 }}
         >
-          <Heading as="h4" {...headingStyles}>
+          <Text as="h4" {...headingStyles}>
             Mehr?
-          </Heading>
+          </Text>
 
           <VStack spacing={8} align="flex-start">
             {socialProviders.map(({ type, title, user, url }) => {

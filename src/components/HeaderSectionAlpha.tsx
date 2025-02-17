@@ -1,5 +1,4 @@
-import { Box, chakra, GridItem, Heading, Text } from "@chakra-ui/react"
-import { MDXProvider, useMDXComponents } from "@mdx-js/react"
+import { Box, chakra, GridItem, Text } from "@chakra-ui/react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
@@ -8,11 +7,9 @@ import { HeaderSectionModel } from "./HeaderSection"
 import ShiftBy from "./ShiftBy"
 
 const HeaderSectionAlpha: React.FC<HeaderSectionModel> = ({
-  type,
   slug,
   title,
   image,
-  text,
 }) => {
   const imageData = getImage(image.file)
   const StyleableGatsbyImage = chakra(GatsbyImage)
@@ -42,7 +39,7 @@ const HeaderSectionAlpha: React.FC<HeaderSectionModel> = ({
               "3 / 6",
             ]}
           >
-            <Heading
+            <Text
               as="h1"
               textStyle="h1"
               sx={{
@@ -55,7 +52,7 @@ const HeaderSectionAlpha: React.FC<HeaderSectionModel> = ({
               <ShiftBy y={"-0.2em"}>
                 <MDXRenderer>{title}</MDXRenderer>
               </ShiftBy>
-            </Heading>
+            </Text>
           </GridItem>
         )}
 
