@@ -74,6 +74,9 @@ const TopMenu = ({ menuLinks, handleArrowClick, activeMenus }) => {
         },
       }}
       display={[null, null, null, null, "flex"]}
+      flexWrap={[null, null, null, null, "wrap"]}
+      rowGap={[null, null, null, null, 10]}
+      columnGap={[null, null, null, null, 24]}
     >
       {menuLinks.map((menuLink, index) => {
         const itemId = `menu-${depth}-${index}`
@@ -88,7 +91,6 @@ const TopMenu = ({ menuLinks, handleArrowClick, activeMenus }) => {
             menuIndex={index}
             activeMenus={activeMenus}
             handleArrowClick={handleArrowClick}
-            ml={index !== 0 ? [null, null, null, null, 24] : undefined}
           />
         )
       })}
