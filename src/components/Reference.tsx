@@ -22,10 +22,11 @@ const Reference: React.FC<ReferenceModel> = ({
 }) => {
   const StyleableGatsbyImage = chakra(GatsbyImage)
   const imageData = getImage(image?.file)
+  const hasInfo = !!title || !!goal || !!location
 
   const gridConfig = {
     image: {
-      column: ["full", null, null, "full / 9"],
+      column: ["full", null, null, !!hasInfo ? "full / 9" : "full / 11"],
     },
     info: {
       column: ["3 / main", "4 / main", "3 / 10", "10 / main", "10 / 13"],
@@ -47,39 +48,41 @@ const Reference: React.FC<ReferenceModel> = ({
       )}
 
       {/* Info */}
-      <GridItem gridColumn={gridConfig.info.column} alignSelf="flex-end">
-        <ContentStack>
-          {/* Project title */}
-          {!!title && (
-            <Box>
-              <Text as="h5" textStyle="h4" color="orange.500">
-                Projekt
-              </Text>
-              <MDXRenderer>{title}</MDXRenderer>
-            </Box>
-          )}
+      {!!hasInfo && (
+        <GridItem gridColumn={gridConfig.info.column} alignSelf="flex-end">
+          <ContentStack>
+            {/* Project title */}
+            {!!title && (
+              <Box>
+                <Text as="h5" textStyle="h4" color="orange.500">
+                  Projekt
+                </Text>
+                <MDXRenderer>{title}</MDXRenderer>
+              </Box>
+            )}
 
-          {/* Goal */}
-          {!!goal && (
-            <Box>
-              <Text as="h5" textStyle="h4" color="orange.500">
-                Zielsetzung
-              </Text>
-              <MDXRenderer>{goal}</MDXRenderer>
-            </Box>
-          )}
+            {/* Goal */}
+            {!!goal && (
+              <Box>
+                <Text as="h5" textStyle="h4" color="orange.500">
+                  Zielsetzung
+                </Text>
+                <MDXRenderer>{goal}</MDXRenderer>
+              </Box>
+            )}
 
-          {/* Location */}
-          {!!location && (
-            <Box>
-              <Text as="h5" textStyle="h4" color="orange.500">
-                Standort
-              </Text>
-              <MDXRenderer>{location}</MDXRenderer>
-            </Box>
-          )}
-        </ContentStack>
-      </GridItem>
+            {/* Location */}
+            {!!location && (
+              <Box>
+                <Text as="h5" textStyle="h4" color="orange.500">
+                  Standort
+                </Text>
+                <MDXRenderer>{location}</MDXRenderer>
+              </Box>
+            )}
+          </ContentStack>
+        </GridItem>
+      )}
     </ContainerGrid>
   )
 }

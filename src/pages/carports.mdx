@@ -1,0 +1,105 @@
+---
+title: Carports
+backgrounds:
+  - rows: 1 / 4
+    gradient: linear-gradient(to-b, gray.50, rgba(255,255,255,0))
+    spacing:
+      top: ["33vh", null, "35vh", null, "45vh"]
+sections:
+  - type: header
+    header_type: beta
+    title: Carports
+    text: |-
+      bieten Ihnen eine robuste und langlebige Lösung für den Schutz Ihrer Fahrzeuge, Außenbereiche und Eingangsbereiche.
+    image:
+      src: images/highlight-beton-carports.jpg
+      alt: Carports
+      fit: cover
+      position: 10% 20%
+  - type: advantages
+    slug: vorteile
+    title: Vorteile
+    spacing:
+      top: ["20", null, "32"]
+      bottom: ["40", null, "72"]
+    text: |-
+      Hergestellt aus hochwertigem Stahlbeton, zeichnen sich unsere Produkte durch ihre außergewöhnliche Stabilität und Langlebigkeit aus. Dank der filigranen Ausführung fügen sich unsere Carports und Überdachungen nahtlos in jede Umgebung ein und bieten gleichzeitig eine hohe Widerstandsfähigkeit gegenüber Witterungseinflüssen.<br /><br />
+      Ein weiterer Vorteil unserer Konstruktionen ist die luftige und helle Ästhetik, die sie bieten. Im Gegensatz zu geschlossenen Garagen ermöglichen unsere Carports und Überdachungen eine offene Architektur, die für mehr Licht und eine freundlichere Atmosphäre sorgt. Ob als Einzel- oder Doppelcarport, Terrassenüberdachung, Eingangsbereich oder Willkommensbereich – wir bieten maßgeschneiderte Lösungen, die perfekt zu Ihrem Grundstück passen und Ihre individuellen Bedürfnisse erfüllen.
+    advantages: |-
+      * Große Spannweiten ohne Stützen möglich
+      * Elegante Anbindung an das Haus
+      * Offenen Willkommensbereich schaffen
+      * Keine Lastabtragung (Befestigung) am Haus erforderlich
+      * Individuelle Maße je nach Gegebenheit
+      * Sicherheit und Optische Aufwertung vom Gebäude (z.B. Beleuchtung mit Spots)
+      * Zum Schutz vor Unwettern
+  - type: references
+    slug: referenzprojekte
+    title: Referenzprojekte
+    references:
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-1.jpg
+          alt: Garage mit Eingangsüberdachung
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-2.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-3.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-4.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-5.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-6.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-7.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-8.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-9.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-10.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-11.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-12.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-13.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-14.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-15.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-16.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-17.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_beton-carports-18.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_carports-mit-waenden-1.jpg
+      - image:
+          src: images/referenzen/carports/referenzprojekt_carports-mit-waenden-2.jpg
+---
+
+import { graphql } from "gatsby"
+import "../data/sections-fragment"
+
+export const query = graphql`
+  query {
+    mdx(slug: { eq: "carports" }) {
+      slug
+      frontmatter {
+        title
+        footer {
+          showContactFooter: show_contact_footer
+          showContactColumn: show_contact_column
+        }
+        backgrounds {
+          ...BackgroundFragment
+        }
+        sections {
+          ...MdxFrontmatterSectionsFields
+        }
+      }
+    }
+  }
+`

@@ -96,6 +96,23 @@ module.exports = {
       ],
     },
     {
+      slug: "carports",
+      title: "Carports",
+      link: "/carports",
+      children: [
+        {
+          slug: "carports-vorteile",
+          title: "Vorteile",
+          link: "/carports/#vorteile",
+        },
+        {
+          slug: "carports-referenzprojekte",
+          title: "Referenzprojekte",
+          link: "/carports/#referenzprojekte",
+        },
+      ],
+    },
+    {
       slug: "leistung",
       title: "Leistung",
       link: "/leistung",

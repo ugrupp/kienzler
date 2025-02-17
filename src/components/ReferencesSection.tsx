@@ -31,13 +31,23 @@ const ReferencesSection: React.FC<ReferencesSectionProps> = ({
   const prevRef = useRef(null)
   const nextRef = useRef(null)
 
+  const referencesWithInfo = references.some(
+    reference => !!reference.title || !!reference.goal || !!reference.location
+  )
+
   const gridConfig = {
     title: {
       column: ["3 / main", "4 / main", "3 / 10", "3 / 9", "3 / 6"],
       row: 1,
     },
     controls: {
-      column: ["3 / main", "4 / main", "3 / 10", "10 / main", "10 / 13"],
+      column: [
+        "3 / main",
+        "4 / main",
+        "3 / 10",
+        !!referencesWithInfo ? "10 / main" : "12 / main",
+        !!referencesWithInfo ? "10 / 13" : "12 / 13",
+      ],
       row: [2, null, null, 3],
     },
     slider: {
