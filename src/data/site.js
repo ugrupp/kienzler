@@ -67,6 +67,11 @@ module.exports = {
           link: "/garagen-nach-mass/#details",
         },
         {
+          slug: "garagen-nach-mass-ueberdachungen",
+          title: "Überdachungen",
+          link: "/garagen-nach-mass/#ueberdachungen",
+        },
+        {
           slug: "garagen-nach-mass-farbgestaltung",
           title: "Farbgestaltung",
           link: "/garagen-nach-mass/#farbgestaltung",

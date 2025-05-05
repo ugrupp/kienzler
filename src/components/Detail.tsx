@@ -14,10 +14,20 @@ export interface DetailModel {
   tooltip?: {
     position: string
     direction: "right" | "bottom"
+    alignOnTheRight?: boolean
   }
+  maxContainerWidth?: boolean
+  imageContainerWidth?: boolean
 }
 
-const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
+const Detail: React.FC<DetailModel> = ({
+  title,
+  text,
+  image,
+  tooltip,
+  maxContainerWidth,
+  imageContainerWidth,
+}) => {
   const theme: ChakraTheme = useTheme()
   const StyleableGatsbyImage = chakra(GatsbyImage)
 
@@ -58,17 +68,25 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
       {imageData && (
         <Box
           position="relative"
-          height={imageStyles.height}
-          width={imageStyles.width}
+          height={imageContainerWidth ? "auto" : imageStyles.height}
+          width={imageContainerWidth ? "100%" : imageStyles.width}
+          maxWidth={maxContainerWidth ? "100%" : "initial"}
         >
           {/* Image */}
           <Box position="relative">
             <StyleableGatsbyImage
               image={imageData}
               imgStyle={{ display: "block" }}
-              style={{ display: "block" }}
+              style={{
+                display: "block",
+                maxWidth: maxContainerWidth ? "100%" : "initial",
+              }}
               alt={image.alt ?? ""}
-              {...imageStyles}
+              {...(imageContainerWidth && {
+                width: "100%",
+                height: "auto",
+              })}
+              {...(!imageContainerWidth && imageStyles)}
             />
 
             {/* Image overlay svg for tooltip indicator */}
@@ -79,7 +97,7 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
                 right={0}
                 bottom={0}
                 top={0}
-                zIndex={10} // > image
+                zIndex={11} // > image
               >
                 <svg
                   viewBox={`0 0 ${width} ${height}`}
@@ -112,6 +130,29 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
                     strokeWidth={svgStrokeWidth}
                   />
                 </svg>
+                {/* The little arrow */}
+                <ArrowBoldIcon
+                  boxSize={"1em"}
+                  verticalAlign="baseline"
+                  position="absolute"
+                  color="white"
+                  left={
+                    tooltip?.direction === "right"
+                      ? `calc(100% - ${tooltipPadding} + 0.5em)`
+                      : `calc(${tooltipPositionPercentages[0]} - 0.5em)`
+                  }
+                  top={
+                    tooltip?.direction === "bottom"
+                      ? `calc(100% - ${tooltipPadding} + 0.5em)`
+                      : `calc(${tooltipPositionPercentages[1]} - 0.5em)`
+                  }
+                  sx={{
+                    transform:
+                      tooltip?.direction === "bottom"
+                        ? "translateY(-50%) rotate(90deg)"
+                        : "translateX(-50%)",
+                  }}
+                />
               </Box>
             )}
           </Box>
@@ -121,22 +162,25 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
             position="absolute"
             zIndex={10}
             left={
-              tooltip.direction === "right"
+              tooltip?.alignOnTheRight
+                ? "initial"
+                : tooltip?.direction === "right"
                 ? "100%"
                 : tooltipPositionPercentages[0]
             }
             top={
-              tooltip.direction === "bottom"
+              tooltip?.direction === "bottom"
                 ? "100%"
                 : tooltipPositionPercentages[1]
             }
+            right={tooltip?.alignOnTheRight ? "0" : "initial"}
             ml={
-              tooltip.direction === "right"
+              tooltip?.direction === "right"
                 ? -5
                 : `calc(-${tooltipPadding} - 0.5em)`
             }
             mt={
-              tooltip.direction === "bottom"
+              tooltip?.direction === "bottom"
                 ? -5
                 : `calc(-${tooltipPadding} - 0.5em)`
             }
@@ -156,21 +200,6 @@ const Detail: React.FC<DetailModel> = ({ title, text, image, tooltip }) => {
               bottom: 0,
             }}
           >
-            {/* The little arrow */}
-            <ArrowBoldIcon
-              boxSize={"1em"}
-              verticalAlign="baseline"
-              position="absolute"
-              left={tooltip.direction === "right" ? 0 : tooltipPadding}
-              top={tooltip.direction === "bottom" ? 0 : tooltipPadding}
-              sx={{
-                transform:
-                  tooltip.direction === "bottom"
-                    ? "translateY(-50%) rotate(90deg)"
-                    : "translateX(-50%)",
-              }}
-            />
-
             {/* Content */}
             {!!title && (
               <Box position="relative" zIndex={5}>
@@ -220,6 +249,9 @@ export const query = graphql`
     tooltip {
       position
       direction
+      alignOnTheRight
     }
+    maxContainerWidth
+    imageContainerWidth
   }
 `

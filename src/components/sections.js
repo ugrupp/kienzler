@@ -1,5 +1,6 @@
 import AdvantagesSection from "./AdvantagesSection"
 import CardsBetaSection from "./CardsBetaSection"
+import CardsDeltaSection from "./CardsDeltaSection"
 import CardsGammaSection from "./CardsGammaSection"
 import CardsSection from "./CardsSection"
 import CareerSection from "./CareerSection"
@@ -17,6 +18,7 @@ import TeamSection from "./TeamSection"
 const sections = {
   CardsSection,
   CardsBetaSection,
+  CardsDeltaSection,
   CardsGammaSection,
   HeaderSection,
   AdvantagesSection,

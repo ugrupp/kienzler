@@ -162,6 +162,7 @@ exports.createSchemaCustomization = ({
 
         text: String @mdx
         advantages: String @mdx
+        allowAdvantagesColumnToGrow: Boolean
       }
 
       # References
@@ -314,6 +315,23 @@ exports.createSchemaCustomization = ({
         mail: Link
       }
 
+      # Cards delta
+      type CardsDeltaSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String @mdx(removeRootParagraph: true)
+        spacing: Spacing
+
+        text: String @mdx
+        highlightImage1: String
+        highlightImage2: String
+        image1: Image
+        image2: Image
+        image3: Image
+        advantagesTitle: String
+        advantages: String @mdx
+      }
+
       # Company header
       type HeaderCompanySection implements Section & Node {
         type: String!
@@ -405,6 +423,20 @@ exports.createSchemaCustomization = ({
       fieldId: "color_groups",
       targetType: "ColorsYaml",
     }),
+    resolveRef({
+      schema,
+      sectionName: "CardsDeltaSection",
+      fieldType: "DetailsYaml",
+      fieldId: "highlightImage1",
+      targetType: "DetailsYaml",
+    }),
+    resolveRef({
+      schema,
+      sectionName: "CardsDeltaSection",
+      fieldType: "DetailsYaml",
+      fieldId: "highlightImage2",
+      targetType: "DetailsYaml",
+    }),
     schema.buildObjectType({
       name: "SocialMediaPostCard",
       fields: {
@@ -477,6 +509,7 @@ exports.createSchemaCustomization = ({
         "CardsSection",
         "CardsBetaSection",
         "CardsGammaSection",
+        "CardsDeltaSection",
         "HeaderCompanySection",
         "TeamSection",
         "CareerSection",

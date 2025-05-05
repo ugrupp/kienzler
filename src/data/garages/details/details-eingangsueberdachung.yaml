@@ -1,0 +1,10 @@
+title: Freitragende Überdachung des Eingangs
+image:
+  src: images/details-eingangsueberdachung.jpg
+  alt: Freitragende Überdachung des Eingangs
+tooltip:
+  position: 65% 24%
+  direction: bottom
+  alignOnTheRight: true
+maxContainerWidth: true
+imageContainerWidth: true

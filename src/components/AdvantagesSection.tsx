@@ -15,6 +15,7 @@ export interface AdvantagesSectionModel {
 
   text?: string
   advantages?: string
+  allowAdvantagesColumnToGrow?: boolean
 }
 
 const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({
@@ -22,6 +23,7 @@ const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({
   slug,
   text,
   advantages,
+  allowAdvantagesColumnToGrow = false,
 }) => {
   const gridConfig = {
     text: {
@@ -29,13 +31,13 @@ const AdvantagesSection: React.FC<AdvantagesSectionModel> = ({
       column: ["3 / main", "4 / main", "span 7 / 13", "span 6 / 13", "3 / 6"],
     },
     advantages: {
-      row: [2, null, null, null, 1],
+      row: [!!text ? 2 : 1, null, null, null, 1],
       column: [
         "3 / main",
         "4 / main",
         "span 7 / 13",
         "span 6 / 13",
-        "span 3 / 13",
+        allowAdvantagesColumnToGrow ? "full" : "span 3 / 13",
       ],
     },
   }
@@ -90,5 +92,6 @@ export const query = graphql`
     title
     text
     advantages
+    allowAdvantagesColumnToGrow
   }
 `
