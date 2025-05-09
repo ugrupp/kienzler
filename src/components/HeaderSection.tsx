@@ -14,6 +14,8 @@ export interface HeaderSectionModel {
   headerType?: string
   image?: Image
   text?: string
+  showVideo?: boolean
+  videoUrl?: string
 }
 
 const HeaderSection: React.FC<HeaderSectionModel> = props =>
@@ -49,5 +51,7 @@ export const query = graphql`
       position
     }
     text
+    showVideo
+    videoUrl
   }
 `

@@ -121,6 +121,8 @@ exports.createSchemaCustomization = ({
         header_type: String
         image: Image
         text: String @mdx
+        showVideo: Boolean
+        videoUrl: String
       }
 
       # Team
