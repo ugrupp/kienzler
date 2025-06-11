@@ -85,7 +85,7 @@ const GarageSize: React.FC<GarageSizeProps> = ({
                 right={0}
                 top={0}
                 bottom={0}
-                opacity={0.7}
+                opacity={0.5}
                 bgColor="white"
               />
             </Flex>
