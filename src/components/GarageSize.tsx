@@ -77,6 +77,17 @@ const GarageSize: React.FC<GarageSizeProps> = ({
                 height="70%"
                 objectFit="contain"
               />
+              <Box
+                position="absolute"
+                h="full"
+                w="full"
+                left={0}
+                right={0}
+                top={0}
+                bottom={0}
+                opacity={0.7}
+                bgColor="white"
+              />
             </Flex>
           )}
         </Box>
