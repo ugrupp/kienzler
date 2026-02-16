@@ -26,17 +26,12 @@ const TextColumn: React.FC<TextColumnProps> = ({ text }) => {
         {...props}
       />
     ),
-    h4: props =>
-      originalComponents.h4({
-        ...props,
-        color: "orange.500",
-        lineHeight: "tall",
-      }),
-    h5: props =>
-      originalComponents.h5({
-        ...props,
-        lineHeight: "tall",
-      }),
+    h4: props => (
+      <Text as="h4" textStyle="h4" color="orange.500" lineHeight="tall" {...props} />
+    ),
+    h5: props => (
+      <Text as="h5" textStyle="h5" lineHeight="tall" {...props} />
+    ),
     a: props => (
       <Box
         {...props}
