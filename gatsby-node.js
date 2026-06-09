@@ -392,6 +392,17 @@ exports.createSchemaCustomization = ({
         textCol1: String @mdx
         textCol2: String @mdx
       }
+
+      # Störer (partner callout banner)
+      type StoererSection implements Section & Node {
+        type: String!
+        slug: String
+        title: String
+        spacing: Spacing
+
+        text: String
+        background_image: Image
+      }
     `,
 
     // Cards column union type with custom resolver
@@ -519,6 +530,7 @@ exports.createSchemaCustomization = ({
         "HeaderServiceSection",
         "HeaderErrorSection",
         "PlainSection",
+        "StoererSection",
         "ReferencesSection",
       ],
       // Resolve section based on `type` property
