@@ -13,6 +13,7 @@ import HeaderServiceSection from "./HeaderServiceSection"
 import PlainSection from "./PlainSection"
 import ReferencesSection from "./ReferencesSection"
 import SizesSection from "./SizesSection"
+import StoererSection from "./StoererSection"
 import TeamSection from "./TeamSection"
 
 const sections = {
@@ -31,6 +32,7 @@ const sections = {
   PlainSection,
   ColorsSection,
   SizesSection,
+  StoererSection,
   ReferencesSection,
 }
 
