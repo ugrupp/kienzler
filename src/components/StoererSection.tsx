@@ -60,7 +60,7 @@ const StoererSection: React.FC<StoererSectionProps> = ({
             direction={["column", null, "row"]}
             align={["flex-start", null, "center"]}
             justifyContent={[null, null, "space-between"]}
-            gap={[8, null, 12, null, 16]}
+            gap={[8, null, null, null, 16]}
           >
             <Img
               src={KemmlerLogo}
@@ -74,7 +74,7 @@ const StoererSection: React.FC<StoererSectionProps> = ({
             {!!text && (
               <Text
                 textStyle="h2"
-                fontSize={["2xl", null, null, "3xl"]}
+                fontSize={["19px", null, "22px", "3xl"]}
                 color="gray.500"
                 whiteSpace="pre-line"
               >
