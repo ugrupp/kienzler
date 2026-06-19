@@ -1,4 +1,4 @@
-import { Box, chakra, Flex, GridItem, Img, Text } from "@chakra-ui/react"
+import { Box, chakra, Flex, GridItem, Img, Link, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
@@ -62,14 +62,19 @@ const StoererSection: React.FC<StoererSectionProps> = ({
             justifyContent={[null, null, "space-between"]}
             gap={[8, null, null, null, 16]}
           >
-            <Img
-              src={KemmlerLogo}
-              alt="Beton Kemmler"
+            <Link
+              href="https://www.kemmler-garage.de/konfigurator/"
+              isExternal
               flexShrink={0}
-              display="block"
-              w={["240px", null, "260px", null, "350px"]}
-              h="auto"
-            />
+            >
+              <Img
+                src={KemmlerLogo}
+                alt="Beton Kemmler – zum Konfigurator"
+                display="block"
+                w={["240px", null, "260px", null, "350px"]}
+                h="auto"
+              />
+            </Link>
 
             {!!text && (
               <Text
